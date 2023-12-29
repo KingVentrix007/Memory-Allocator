@@ -21,7 +21,7 @@ This repository contains a simple memory allocator designed for hobby operating 
 1. **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/KingVentrix007/Memory-Allocator.git]
+    git clone https://github.com/KingVentrix007/Memory-Allocator.git
     ```
 
 2. **Include the Memory Allocator in Your Project:**
@@ -29,6 +29,7 @@ This repository contains a simple memory allocator designed for hobby operating 
     Include the necessary files (`mem.h` and `mem.c`) in your hobby OS project.
 
  **Warning** In these examples `malloc` is used to simulate having a region of memory in the RAM, typically malloc would be replaced with the address of the memory region
+
 3. **Initialize Memory Allocation:**
 
 ```c
