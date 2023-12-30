@@ -1,15 +1,23 @@
 # Memory Allocator for Hobby OS
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=alert_status)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=security_rating)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=bugs)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=ncloc)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
+
 
 ## Overview
 
 This repository contains a simple memory allocator designed for hobby operating systems. It provides basic functionality for managing memory regions using a linked list data structure.
+
 
 ## Features
 
 - **Memory Allocation**: Allocate contiguous blocks of memory.
 - **Memory Deallocation**: Free previously allocated memory.
 - **Extend Allocation Space**: Dynamically extend the allocation space by connecting to a new memory region.
-
+- **_msize functionality**:
+Provides the ability to get the size of a memory region
+- **And many others**
 ## Getting Started
 
 ### Prerequisites
