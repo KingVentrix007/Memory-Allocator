@@ -32,7 +32,7 @@ This repository contains a simple memory allocator designed for hobby operating 
 
 3. **Initialize Memory Allocation:**
 
-```c
+    ```c
     #include "mem.h"
     
     void *memory_region = NULL;
@@ -61,7 +61,7 @@ This repository contains a simple memory allocator designed for hobby operating 
     ```
 
 5. **Extend Allocation Space:**
-    !CURRENTLY NOT WORKING. IS IN PROGRESS
+    **CURRENTLY NOT WORKING. IS IN PROGRESS**
     ```c
     void *new_region = malloc([extra_memory_size]);
     extend_allocation_space(new_region, [extra_memory_size]);
