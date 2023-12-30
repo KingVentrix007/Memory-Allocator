@@ -108,21 +108,15 @@ void *sys_allocate_memory(int size)
                 }
 
                 MEM_ALLOC_LOG("Allocated %d bytes of memory\n", size);
-                // info.ptr = start_node->addr;
-                
-            //    memory_allocations[num_memory_allocations] = info;
-            // num_memory_allocations++;
                 return start_node->addr;
             }
         }
 
         // Move to the next node
-        if(current_node != NULL)
+        if(current_node != NULL && current_node->next != NULL)
         {
-             if(current_node->next != NULL)
-            {
-                current_node = current_node->next;
-            }
+             current_node = current_node->next;
+            
         }
 
         }
@@ -243,7 +237,7 @@ void *sys_reallocate_memory(void *addr, int old_size, int new_size)
  * Return: 
  *   None. 
  */
-void print_memory_info(int print_option)
+void print_memory_info()
 {
     Node *current_node = (Node *)memory_region;
 
@@ -307,7 +301,7 @@ void *init_memory_region(void *start_addr,size_t size)
     Node *node1 = (Node *)memory_region;
 
     // Calculate the end of the node region
-     end_of_node_region = (void *)((char *)start_addr + bytes_used_by_nodes);;
+     end_of_node_region = (void *)((char *)start_addr + bytes_used_by_nodes);
 
     // Calculate the start of the allocation region
     void *start_of_allocation_region = end_of_node_region;

@@ -59,7 +59,7 @@ void sys_free_memory(void *addr);
  *   void* - The new address of the reallocated memory block.
  */
 void *sys_reallocate_memory(void *addr, int old_size, int new_size);
-void print_memory_info(int print_option);
+void print_memory_info();
 void extend_allocation_space(void *extra_region,size_t size);
 void *init_memory_region(void *start_addr,size_t size);
 
