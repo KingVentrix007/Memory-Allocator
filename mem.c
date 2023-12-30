@@ -117,8 +117,12 @@ void *sys_allocate_memory(int size)
         }
 
         // Move to the next node
-        current_node = current_node->next;
+        if(current_node->next != NULL)
+        {
+            current_node = current_node->next;
     }
+        }
+        
 
     MEM_ALLOC_LOG("Failed to allocate %d bytes of memory\n", size);
     return NULL;
@@ -161,49 +165,6 @@ void sys_free_memory(void *addr)
             
         }
 
-        // // Remove the corresponding MemoryAllocationInfo from the list
-        // for (size_t i = 0; i < num_memory_allocations; ++i)
-        // {
-        //     if (memory_allocations[i].ptr == addr)
-        //     {
-        //         // Remove the MemoryAllocationInfo by shifting the remaining elements
-        //         for (size_t j = i; j < num_memory_allocations - 1; ++j)
-        //         {
-        //             memory_allocations[j] = memory_allocations[j + 1];
-        //         }
-
-        //         // Decrement the count of memory allocations
-        //         num_memory_allocations--;
-
-        //         // Sort the memory_allocations based on allocated size in ascending order
-        //         for (size_t k = 0; k < num_memory_allocations - 1; ++k)
-        //         {
-        //             for (size_t l = 0; l < num_memory_allocations - k - 1; ++l)
-        //             {
-        //                 if (memory_allocations[l].allocated_size > memory_allocations[l + 1].allocated_size)
-        //                 {
-        //                     // Swap the MemoryAllocationInfo structures
-        //                     MemoryAllocationInfo temp = memory_allocations[l];
-        //                     memory_allocations[l] = memory_allocations[l + 1];
-        //                     memory_allocations[l + 1] = temp;
-        //                 }
-        //             }
-        //         }
-
-        //         // Print or log the deallocated memory information
-        //         MEM_ALLOC_LOG("Freed memory starting from address %p\n", addr);
-        //         MEM_ALLOC_LOG("Sorted Memory Allocation List:\n");
-        //         for (size_t m = 0; m < num_memory_allocations; ++m)
-        //         {
-        //             MEM_ALLOC_LOG("  Size: %d, Allocated Size: %d, Pointer: %p\n", 
-        //                     memory_allocations[m].size, 
-        //                     memory_allocations[m].allocated_size, 
-        //                     memory_allocations[m].ptr);
-        //         }
-
-        //         return;
-        //     }
-        // }
     }
     else
     {
@@ -297,7 +258,7 @@ void print_memory_info(int print_option)
             {
                 MEM_ALLOC_LOG("\n----------------------------------------------------------------\n");
                 MEM_ALLOC_LOG("Free space : %d\n", free_space);
-                free_space = free_space;
+                free_space = 0;
                 
             }
             else
@@ -345,13 +306,6 @@ void *init_memory_region(void *start_addr,size_t size)
 
     // Calculate the start of the allocation region
     void *start_of_allocation_region = end_of_node_region;
-
-    // Initialize the first node (buffer node)
-    // node1->addr = start_of_allocation_region;
-    // node1->size = 1024;
-    // node1->next = (Node *)((char *)start_addr + sizeof(Node));
-    // node1->allocated = true;
-    // node1->first_block = true;
     node1->num_block_used = node1->num_block_used + num_nodes;
 
     // Initialize the rest of the nodes
@@ -363,7 +317,7 @@ void *init_memory_region(void *start_addr,size_t size)
         {
             node1->num_block_used = i;
             MEM_ALLOC_LOG("Bytes avlible = %ld\n", node1->num_block_used *1024);
-            // sleep(5);
+            
             break;
         }
         current_node->addr = start_of_allocation_region + i * 1024;
