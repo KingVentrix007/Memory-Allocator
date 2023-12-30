@@ -117,11 +117,16 @@ void *sys_allocate_memory(int size)
         }
 
         // Move to the next node
-        if(current_node->next != NULL)
+        if(current_node != NULL)
         {
-            current_node = current_node->next;
-    }
+             if(current_node->next != NULL)
+            {
+                current_node = current_node->next;
+            }
         }
+
+        }
+       
         
 
     MEM_ALLOC_LOG("Failed to allocate %d bytes of memory\n", size);
