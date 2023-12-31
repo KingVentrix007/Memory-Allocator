@@ -85,7 +85,7 @@ size_t get_memory_size(void *ptr);
 #endif
 
 #ifdef AUTOMATED_TESTING_MEMORY_ALLOCATION
-main_automated_testing();
-main_automated_testing_end()
+int main_automated_testing();
+int main_automated_testing_end()
 #endif
 #endif // MEMORY_MANAGER_H
