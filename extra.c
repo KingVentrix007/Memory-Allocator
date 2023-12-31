@@ -14,4 +14,5 @@ int memcpy_m(void *dst, const void *src, size_t size)
     {
         MEM_ALLOC_LOG("Destination buffer is not allocated. Please use a C99 compliant memcpy() instead");
     }
+    return 0;
 }

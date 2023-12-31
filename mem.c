@@ -28,10 +28,12 @@ int main_automated_testing()
 {
     memory_region = malloc(1024 * 1024 * 1024);
     init_memory_allocation(memory_region, 1024 * 1024 * 1024);
+    return 0;
 }
 int main_automated_testing_end()
 {
     free(memory_region);
+    return 0;
 }
 #endif
 #endif
