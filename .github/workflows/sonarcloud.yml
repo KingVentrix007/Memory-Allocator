@@ -31,7 +31,7 @@ jobs:
 
     - name: Check commit message
       run: |
-        if [[ $(git log -1 --pretty=%B) == *'build'* ]]; then
+        
           echo "Run make for building";
           make build-test; # Adjust this line based on your Makefile
           make test-run
@@ -40,6 +40,4 @@ jobs:
             -Dsonar.projectKey=KingVentrix007_Memory-Allocator \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONARCLOUD_TOKEN }};
-        else
-          echo "Build keyword not found in commit message. Skip SonarCloud analysis.";
-        fi
+       
