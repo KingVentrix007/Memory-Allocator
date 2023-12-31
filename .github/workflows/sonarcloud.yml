@@ -23,7 +23,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.sonar/cache
+          ~/.sonar/cache 
           ~/.sonar/native-sonar-scanner
         key: ${{ runner.os }}-sonar
         restore-keys: |
