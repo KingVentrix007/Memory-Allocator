@@ -1,16 +1,13 @@
 #include "mem.h"
-#include "stdlib.h"
-#include "time.h"
-#include "stdio.h"
-#include "string.h"
 
+void *memory_region;
+void *end_of_node_region;
+void *memory_region_end;
+int memory_allocation_error_code;
 
-void *memory_region = NULL;
-void *end_of_node_region = NULL;
-void *memory_region_end = NULL;
-int memory_allocation_error_code = 0;
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION
+
 int main()
 {
     // Allocate initial memory
@@ -23,21 +20,38 @@ int main()
 
     return 0;
 }
+int main_automated_testing()
+{
+    return 0;
+}
+int int main_automated_testing_end()
+{
+    return 0;
+}
 #else
+
 int main_automated_testing()
 {
     memory_region = malloc(1024 * 1024 * 1024);
     init_memory_allocation(memory_region, 1024 * 1024 * 1024);
     return 0;
 }
+
 int main_automated_testing_end()
 {
-    free(memory_region);
+    // Ensure that memory_region is initialized before using it
+    if (memory_region != NULL)
+    {
+        free(memory_region);
+        memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
+    }
     return 0;
 }
+
 #endif
 #endif
-void print_node_info(Node *node)
+
+void print_node_info(const Node *node)
 {
     MEM_ALLOC_LOG("  Address: %p\n", node->addr);
     MEM_ALLOC_LOG("  Size: %zu\n", node->size);
@@ -170,6 +184,7 @@ void sys_free_memory(const void *addr)
     {
         MEM_ALLOC_LOG("Invalid address or memory is not allocated\n");
     }
+    addr = NULL;
 }
 
 
@@ -189,19 +204,14 @@ void sys_free_memory(const void *addr)
 void *sys_reallocate_memory(void *addr, int old_size, int new_size)
 {
     // Check for invalid parameters
-    if (old_size >= new_size)
+    if (old_size >= new_size )
     {
         MEM_ALLOC_LOG("Reallocation of memory unnecessary as the old size exceeds the new size\n");
         return addr;
     }
-    else if (addr == NULL)
+    else if (addr == NULL || (addr < memory_region || addr > memory_region_end) )
     {
-        MEM_ALLOC_LOG("Address is NULL\n");
-        return NULL;
-    }
-    else if (addr < memory_region || addr > memory_region_end)
-    {
-        MEM_ALLOC_LOG("Address out of range\n");
+    MEM_ALLOC_LOG("Address is NULL\n");
         return NULL;
     }
 
@@ -292,11 +302,11 @@ void *init_memory_region(void *start_addr,size_t size)
     size_t bytes_used_by_nodes = num_nodes * sizeof(Node);
     
     // Calculate the size available for actual allocation
-    size_t bytes_available_for_allocation = size - bytes_used_by_nodes;
+    // size_t bytes_available_for_allocation = size - bytes_used_by_nodes;
 
     MEM_ALLOC_LOG("%d nodes \n", num_nodes);
     MEM_ALLOC_LOG("%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
-    MEM_ALLOC_LOG("%d bytes are available for actual allocation\n", bytes_available_for_allocation);
+    // MEM_ALLOC_LOG("%d bytes are available for actual allocation\n", bytes_available_for_allocation);
 
     // Cast the start address to Node pointer
     Node *node1 = (Node *)memory_region;
@@ -380,7 +390,7 @@ void extend_allocation_space(void *extra_region, size_t size)
  * Return: 
  *   size_t - The size of the allocated memory block. 
  */
-size_t get_memory_size(void *ptr)
+size_t get_memory_size(const void *ptr)
 {
     Node *current_node = (Node *)memory_region;
     size_t run_size = current_node->num_block_used;

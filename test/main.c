@@ -14,7 +14,7 @@ void setUp(void) {
  * Description: Tear down function called after each test function.
  */
 void tearDown(void) {
-    // Clean up any resources if needed
+    main_automated_testing_end();
 }
 
 
@@ -25,8 +25,8 @@ void tearDown(void) {
 void test_allocate_memory() {
     
     void const *ptr1 = sys_allocate_memory(4096);
-    void *ptr2 = sys_allocate_memory(2048);
-    void *ptr3 = sys_allocate_memory(8192);
+    void const *ptr2 = sys_allocate_memory(2048);
+    void const *ptr3 = sys_allocate_memory(8192);
 
     TEST_ASSERT_NOT_NULL(ptr1);
     TEST_ASSERT_NOT_NULL(ptr2);
@@ -46,7 +46,7 @@ void test_store_values() {
     char *string = (char *)ptr1;
     const char *StartText = "Test Case 2: Store values in allocated memory";
     strcpy(string, StartText);
-    char *EndText = (char *)ptr1;
+    char const *EndText = (char *)ptr1;
     TEST_ASSERT_EQUAL_STRING(EndText,StartText);
     
     sys_free_memory(ptr1);
@@ -57,9 +57,10 @@ void test_store_values() {
  * Description: Tests freeing allocated memory.
  */
 void test_free_memory() {
-    void *ptr2 = sys_allocate_memory(2048);
+    void const *ptr2 = sys_allocate_memory(2048);
    
     sys_free_memory(ptr2);
+    TEST_ASSERT_NULL(ptr2)
 }
 
 /**
@@ -70,16 +71,17 @@ void test_reallocate_memory() {
 
     
     void *ptr1 = sys_allocate_memory(4096);
-    char *text = "hello world";
+    char const *text = "hello world";
     strcpy(ptr1, text);
 
-    void *ptr4 = sys_reallocate_memory(ptr1, 4096, 8192);
+    void const *ptr4 = sys_reallocate_memory(ptr1, 4096, 8192);
     TEST_ASSERT_EQUAL_STRING(text, ptr4);
     TEST_ASSERT_NOT_NULL(ptr4);
-    // sys_free_memory(ptr1);
+    
 
     
     sys_free_memory(ptr4);
+    TEST_ASSERT_NOT_NULL(ptr4);
 }
 
 /**
@@ -88,8 +90,7 @@ void test_reallocate_memory() {
  */
 void test_invalid_reallocation() {
   
-    void *ptr4 = sys_allocate_memory(8192);
-    void *invalid_ptr = sys_reallocate_memory(NULL, 0, 8192);
+    const void *invalid_ptr = sys_reallocate_memory(NULL, 0, 8192);
     TEST_ASSERT_NULL(invalid_ptr);
 }
 
@@ -124,10 +125,8 @@ void test_get_memory_size() {
  */
 void test_free_all_memory() {
    
-
-    // sys_free_memory(ptr1);
-    // sys_free_memory(ptr3);
-    // sys_free_memory(ptr4);
+    //Simple test case for freeing all memory. Still to be implemented
+    
 }
 
 

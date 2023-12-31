@@ -3,8 +3,11 @@
         "stdint.h": "c",
         "time.h": "c",
         "mem.h": "c",
-        "unity.h": "c"
+        "unity.h": "c",
+        "stddef.h": "c",
+        "string.h": "c"
     },
     "makefile.compileCommandsPath": ".vscode/compile_commands.json",
-    "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json"
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+    "C_Cpp.errorSquiggles": "disabled"
 }

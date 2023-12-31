@@ -1,8 +1,13 @@
 // memory_manager.h
 #ifndef MEMORY_MANAGER_H
 #define MEMORY_MANAGER_H
+#include <stddef.h> // Include for size_t
+#include "stdlib.h"
+#include "time.h"
+#include "stdio.h"
+#include "string.h"
 #include "stdbool.h"
-#include "stddef.h"
+
 
 typedef struct Node {
     void* addr;           // Starting address of the memory region represented by the node
@@ -84,8 +89,6 @@ size_t get_memory_size(void *ptr);
 #define MEM_ALLOC_LOG(fmt, ...) do { } while (0)
 #endif
 
-#ifdef AUTOMATED_TESTING_MEMORY_ALLOCATION
 int main_automated_testing();
-int main_automated_testing_end()
-#endif
+int main_automated_testing_end();
 #endif // MEMORY_MANAGER_H
