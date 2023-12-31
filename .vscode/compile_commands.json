@@ -1,0 +1,7 @@
+[
+    {
+        "command": "gcc -Wall -Wextra -o mem.out mem.c",
+        "directory": "/home/king/AthenXDev/tests/memaroy_allction",
+        "file": "/home/king/AthenXDev/tests/memaroy_allction/mem.c"
+    }
+]

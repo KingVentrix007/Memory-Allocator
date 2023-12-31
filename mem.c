@@ -3,14 +3,14 @@
 #include "time.h"
 #include "stdio.h"
 #include "string.h"
-// #define TEST_CASE_MEMORY_ALLOC
 // #define MEMORY_ALLOCATION_LOGGING
 
 void *memory_region = NULL;
 void *end_of_node_region = NULL;
 void *memory_region_end = NULL;
 int memory_allocation_error_code = 0;
-
+#ifdef STANDALONE_MEMORY_ALLOCATION
+#ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION
 int main()
 {
     // Allocate initial memory
@@ -18,24 +18,23 @@ int main()
     init_memory_allocation(memory_region, 1024 * 1024 * 1024);
 
     // Run the memory allocator test suite
-    #ifdef TEST_CASE_MEMORY_ALLOC
-       int ret =  run_memory_allocator_test_suite();
-       if(ret != 0)
-       {
-            printf("Test Cases Failed: Test Case %d\n", (ret*-1));
-       }
-       else
-       {
-        printf("Test Cases Successful");
-       }
-       #endif
-    // #endif
     // Free the initial allocated memory
     free(memory_region);
 
     return 0;
 }
-
+#else
+int main_automated_testing()
+{
+    memory_region = malloc(1024 * 1024 * 1024);
+    init_memory_allocation(memory_region, 1024 * 1024 * 1024);
+}
+int main_automated_testing_end()
+{
+    free(memory_region);
+}
+#endif
+#endif
 void print_node_info(Node *node)
 {
     MEM_ALLOC_LOG("  Address: %p\n", node->addr);
@@ -138,7 +137,7 @@ void *sys_allocate_memory(int size)
  * Return:
  *   void
  */
-void sys_free_memory(void *addr)
+void sys_free_memory(const void *addr)
 {
     Node *current_node = (Node *)memory_region;
 
@@ -151,7 +150,7 @@ void sys_free_memory(void *addr)
     // If the node is found, free the memory blocks
     if (current_node != NULL && current_node->allocated)
     {
-        int num_blocks_to_free = current_node->num_block_used;
+        size_t num_blocks_to_free = current_node->num_block_used;
 
         // Mark the nodes as free
         for (int i = 0; i < num_blocks_to_free; ++i)
@@ -285,13 +284,13 @@ void print_memory_info()
 void *init_memory_region(void *start_addr,size_t size)
 {
      // Calculate the number of nodes based on the size of each node
-    int num_nodes = size / 1024;
+    size_t num_nodes = size / 1024;
     memory_region_end = memory_region+size;
     // Calculate the size needed for the nodes
-    int bytes_used_by_nodes = num_nodes * sizeof(Node);
+    size_t bytes_used_by_nodes = num_nodes * sizeof(Node);
     
     // Calculate the size available for actual allocation
-    int bytes_available_for_allocation = size - bytes_used_by_nodes;
+    size_t bytes_available_for_allocation = size - bytes_used_by_nodes;
 
     MEM_ALLOC_LOG("%d nodes \n", num_nodes);
     MEM_ALLOC_LOG("%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
@@ -382,7 +381,7 @@ void extend_allocation_space(void *extra_region, size_t size)
 size_t get_memory_size(void *ptr)
 {
     Node *current_node = (Node *)memory_region;
-    int run_size = current_node->num_block_used;
+    size_t run_size = current_node->num_block_used;
     for (size_t i = 0; i < run_size; i++)
 
     
@@ -402,7 +401,7 @@ void memcleanup()
     while (current_node != NULL && current_node->next != NULL)
     {
         current_node->allocated = false;
-        memset((void *)current_node->addr,0,current_node->size);
+        memset(current_node->addr,0,current_node->size);
         current_node->size = 0;
         current_node->num_block_used = 0;
         current_node = current_node->next;

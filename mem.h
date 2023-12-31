@@ -3,7 +3,7 @@
 #define MEMORY_MANAGER_H
 #include "stdbool.h"
 #include "stddef.h"
-#define MEMORY_ALLOCATION_VERBOSE_OUTPUT
+// #define MEMORY_ALLOCATION_VERBOSE_OUTPUT
 typedef struct Node {
     void* addr;           // Starting address of the memory region represented by the node
     size_t size;           // Size of the memory region represented by the node
@@ -45,7 +45,7 @@ void *sys_allocate_memory(int size);
  * Return:
  *   void
  */
-void sys_free_memory(void *addr);
+void sys_free_memory(const void *addr);
 /**
  * Function Name: sys_reallocate_memory
  * Description: Reallocates memory for a previously allocated block and updates the linked list.

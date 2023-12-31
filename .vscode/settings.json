@@ -3,5 +3,7 @@
         "stdint.h": "c",
         "time.h": "c",
         "mem.h": "c"
-    }
+    },
+    "makefile.compileCommandsPath": ".vscode/compile_commands.json",
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json"
 }
