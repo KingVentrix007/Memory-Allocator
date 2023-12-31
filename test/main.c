@@ -40,7 +40,7 @@ void test_allocate_memory() {
  * Function Name: test_store_values
  * Description: Tests storing values in the allocated memory.
  */
-void test_store_values() {
+void test_store_values() { 
     
     void *ptr1 = sys_allocate_memory(4096);
     char *string = (char *)ptr1;
