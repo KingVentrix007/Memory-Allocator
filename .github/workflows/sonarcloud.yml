@@ -19,7 +19,7 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
 
-    - name: Cache SonarCloud packages
+    - name: Cache SonarCloud packages 
       uses: actions/cache@v2
       with:
         path: |
