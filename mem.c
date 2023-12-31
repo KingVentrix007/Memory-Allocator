@@ -9,7 +9,7 @@
 void *memory_region = NULL;
 void *end_of_node_region = NULL;
 void *memory_region_end = NULL;
-
+int memory_allocation_error_code = 0;
 
 int main()
 {
@@ -395,4 +395,17 @@ size_t get_memory_size(void *ptr)
     }
     MEM_ALLOC_LOG("Failed to find Allocated memory region at %p",ptr);
     return -1;
+}
+void memcleanup()
+{
+    Node *current_node = (Node *)memory_region;
+    while (current_node != NULL && current_node->next != NULL)
+    {
+        current_node->allocated = false;
+        memset((void *)current_node->addr,0,current_node->size);
+        current_node->size = 0;
+        current_node->num_block_used = 0;
+        current_node = current_node->next;
+    }
+    
 }

@@ -1,0 +1,6 @@
+#ifndef __EXTRA_MEMORY_FUNCTION__H
+#define __EXTRA_MEMORY_FUNCTION__H
+
+
+
+#endif
