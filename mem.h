@@ -3,7 +3,7 @@
 #define MEMORY_MANAGER_H
 #include "stdbool.h"
 #include "stddef.h"
-// #define MEMORY_ALLOCATION_VERBOSE_OUTPUT
+
 typedef struct Node {
     void* addr;           // Starting address of the memory region represented by the node
     size_t size;           // Size of the memory region represented by the node

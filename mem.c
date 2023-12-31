@@ -3,7 +3,7 @@
 #include "time.h"
 #include "stdio.h"
 #include "string.h"
-// #define MEMORY_ALLOCATION_LOGGING
+
 
 void *memory_region = NULL;
 void *end_of_node_region = NULL;
