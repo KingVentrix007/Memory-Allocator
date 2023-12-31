@@ -84,4 +84,8 @@ size_t get_memory_size(void *ptr);
 #define MEM_ALLOC_LOG(fmt, ...) do { } while (0)
 #endif
 
+#ifdef AUTOMATED_TESTING_MEMORY_ALLOCATION
+main_automated_testing();
+main_automated_testing_end()
+#endif
 #endif // MEMORY_MANAGER_H

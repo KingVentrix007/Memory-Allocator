@@ -24,7 +24,7 @@ void tearDown(void) {
  */
 void test_allocate_memory() {
     
-    void *ptr1 = sys_allocate_memory(4096);
+    void const *ptr1 = sys_allocate_memory(4096);
     void *ptr2 = sys_allocate_memory(2048);
     void *ptr3 = sys_allocate_memory(8192);
 

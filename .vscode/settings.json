@@ -2,7 +2,8 @@
     "files.associations": {
         "stdint.h": "c",
         "time.h": "c",
-        "mem.h": "c"
+        "mem.h": "c",
+        "unity.h": "c"
     },
     "makefile.compileCommandsPath": ".vscode/compile_commands.json",
     "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json"
