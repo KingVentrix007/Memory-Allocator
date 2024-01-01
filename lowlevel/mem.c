@@ -153,7 +153,7 @@ void *sys_allocate_memory(int size)
  * Return:
  *   void
  */
-void sys_free_memory(const void *addr)
+void *sys_free_memory(const void *addr)
 {
     Node *current_node = (Node *)memory_region;
 
@@ -176,15 +176,17 @@ void sys_free_memory(const void *addr)
             current_node->num_block_used = 0;
             current_node->total_requested_memory = 0;
             current_node = current_node->next;
-            
         }
 
+        // Return NULL after freeing
+        return NULL;
     }
     else
     {
         MEM_ALLOC_LOG("Invalid address or memory is not allocated\n");
+        // Return the original address if not found or not allocated
+        return (void *)addr;
     }
-    addr = NULL;
 }
 
 
@@ -419,4 +421,39 @@ void memcleanup()
         current_node = current_node->next;
     }
     
+}
+
+int memory_leak_detector()
+{
+    Node *current_node = (Node *)memory_region;
+    void *ptr = NULL;
+
+    while (current_node != NULL && current_node->next != NULL)
+    {
+        if (current_node->allocated == false)
+        {
+            char temp_buffer[1028];
+            memset(temp_buffer, 0, sizeof(temp_buffer)); // Initialize temp_buffer to avoid undefined behavior
+            memcpy(temp_buffer, current_node->addr, 1024);
+
+            // Check if the memory region contains non-zero bytes
+            for (size_t i = 0; i < sizeof(temp_buffer); ++i)
+            {
+                if (temp_buffer[i] != 0)
+                {
+                    MEM_ALLOC_LOG("Possible memory leak at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
+                    return -1;
+                }
+            }
+        }
+
+        if (current_node->allocated == true)
+        {
+            ptr = current_node->addr;
+        }
+
+        current_node = current_node->next;
+    }
+
+    return 0; // No memory leak detected
 }

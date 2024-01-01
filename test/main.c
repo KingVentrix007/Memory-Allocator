@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "../mem.h"
+#include "../lowlevel/mem.h"
 #include "string.h"  
 /**   
  * Function Name: setUp
@@ -57,10 +57,10 @@ void test_store_values() {
  * Description: Tests freeing allocated memory.
  */
 void test_free_memory() {
-    void const *ptr2 = sys_allocate_memory(2048);
+    void *ptr2 = sys_allocate_memory(2048);
    
-    sys_free_memory(ptr2);
-    TEST_ASSERT_NULL(ptr2)
+    ptr2 = sys_free_memory(ptr2);
+    TEST_ASSERT_NULL(ptr2);
 }
 
 /**
@@ -129,8 +129,20 @@ void test_free_all_memory() {
     
 }
 
+/**
+ * Function Name: Test_memory_leek_detector
+ * Description: Tests memory leak detection
+ */
 
-
+void test_memory_leek_detector()
+{
+    void *ptr9  = sys_allocate_memory(1024);
+    TEST_ASSERT_NOT_NULL(ptr9);
+    // const int *value = 1;
+    memset(ptr9,1,1100);
+    int ret = memory_leak_detector();
+    TEST_ASSERT_EQUAL_INT(-1,ret);
+}
 
 
 // Add more test functions as needed
@@ -153,7 +165,9 @@ int main(void) {
     RUN_TEST(test_invalid_reallocation);
     RUN_TEST(test_reallocate_smaller_size);
     RUN_TEST(test_get_memory_size);
+    
     RUN_TEST(test_free_all_memory);
+    RUN_TEST(test_memory_leek_detector);
     UNITY_END();
 
     return 0;  // Return 0 for success

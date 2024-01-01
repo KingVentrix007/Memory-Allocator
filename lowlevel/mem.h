@@ -26,7 +26,7 @@ typedef struct
     void *ptr; // Pointer to the allocated memory region
 }MemoryAllocationInfo;
 void init_memory_allocation(void * start_addr, int size);
-void print_node_info(Node *node);
+
 
 /**
  * Function Name: sys_allocate_memory
@@ -50,7 +50,7 @@ void *sys_allocate_memory(int size);
  * Return:
  *   void
  */
-void sys_free_memory(const void *addr);
+void *sys_free_memory(const void *addr);
 /**
  * Function Name: sys_reallocate_memory
  * Description: Reallocates memory for a previously allocated block and updates the linked list.
@@ -67,7 +67,7 @@ void *sys_reallocate_memory(void *addr, int old_size, int new_size);
 void print_memory_info();
 void extend_allocation_space(void *extra_region,size_t size);
 void *init_memory_region(void *start_addr,size_t size);
-
+void print_node_info(const Node *node);
 
 /** 
  * Function Name: get_memory_size 
@@ -82,7 +82,7 @@ void *init_memory_region(void *start_addr,size_t size);
  * Return: 
  *   size_t - The size of the allocated memory block. 
  */
-size_t get_memory_size(void *ptr);
+size_t get_memory_size(const void *ptr);
 #ifdef MEMORY_ALLOCATION_VERBOSE_OUTPUT
 #define MEM_ALLOC_LOG(fmt, ...) printf(fmt, ##__VA_ARGS__)
 #else
@@ -91,4 +91,5 @@ size_t get_memory_size(void *ptr);
 
 int main_automated_testing();
 int main_automated_testing_end();
+int memory_leak_detector();
 #endif // MEMORY_MANAGER_H

@@ -2,13 +2,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION
 
 # Target: build
-build: mem.c
-	$(CC) $(CFLAGS) -o mem.out mem.c
+build: lowlevel/mem.c
+	$(CC) $(CFLAGS) -o mem.out lowlevel/*.c
 
 # Target: build-test
 build-test: CFLAGS += -DAUTOMATED_TESTING_MEMORY_ALLOCATION
-build-test: mem.c test/*.c
-	$(CC) $(CFLAGS) -o test.out mem.c test/*.c
+build-test: lowlevel/*.c test/*.c
+	$(CC) $(CFLAGS) -o test.out lowlevel/*.c test/*.c
 
 # Target: run-test
 run-test: build-test
@@ -20,7 +20,7 @@ run:
 
 # Target: clean
 clean:
-	rm -f mem test
+	rm -f mem.out test.out
 
 .PHONY: build build-test run-test clean
 
