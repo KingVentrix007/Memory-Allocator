@@ -6,6 +6,7 @@
  * Description: Set up function called before each test function.
  */
 void setUp(void) {
+    // printf("setUp() called\n");
     main_automated_testing();
 }
 
@@ -57,10 +58,13 @@ void test_store_values() {
  * Description: Tests freeing allocated memory.
  */
 void test_free_memory() {
+    
     void *ptr2 = sys_allocate_memory(2048);
-   
+    // printf("ptr2 = 0x%p",ptr2);
     ptr2 = sys_free_memory(ptr2);
+    //  printf("\n%s:%d ptr2 = 0x%p\n",__FILE__,__LINE__,ptr2);
     TEST_ASSERT_NULL(ptr2);
+   
 }
 
 /**
@@ -136,6 +140,7 @@ void test_free_all_memory() {
 
 void test_memory_leek_detector()
 {
+    
     void *ptr9  = sys_allocate_memory(1024);
     TEST_ASSERT_NOT_NULL(ptr9);
     // const int *value = 1;
@@ -156,6 +161,7 @@ void test_memory_leek_detector()
  * Return: None
  */
 int main(void) {
+    
     // Run test cases
     UNITY_BEGIN();
     RUN_TEST(test_allocate_memory);

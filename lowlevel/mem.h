@@ -7,7 +7,8 @@
 #include "stdio.h"
 #include "string.h"
 #include "stdbool.h"
-
+// Defines
+#define MAX_CASHED_ALLOCATIONS 100
 
 typedef struct Node {
     void* addr;           // Starting address of the memory region represented by the node
@@ -25,6 +26,13 @@ typedef struct
     int allocated_size; //Size of the allocated memory region in bytes, devisable by 1024(or size specfied by Node->size)
     void *ptr; // Pointer to the allocated memory region
 }MemoryAllocationInfo;
+typedef struct FreeZone
+{
+    void *start_ptr;
+    void *end_ptr;
+    size_t size;
+}FreeZone;
+
 void init_memory_allocation(void * start_addr, int size);
 
 

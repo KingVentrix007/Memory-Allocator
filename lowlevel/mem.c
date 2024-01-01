@@ -1,10 +1,11 @@
 #include "mem.h"
-
+#include "internal.h"
 void *memory_region;
 void *end_of_node_region;
 void *memory_region_end;
 int memory_allocation_error_code;
-
+FreeZone free_zones[MAX_CASHED_ALLOCATIONS] = {};
+int free_zone_count = 0;
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION
 
@@ -24,7 +25,7 @@ int main_automated_testing()
 {
     return 0;
 }
-int int main_automated_testing_end()
+int main_automated_testing_end()
 {
     return 0;
 }
@@ -33,6 +34,11 @@ int int main_automated_testing_end()
 int main_automated_testing()
 {
     memory_region = malloc(1024 * 1024 * 1024);
+    if(memory_region == NULL)
+    {
+        printf("ERROR\n");
+        return 01;
+    }
     init_memory_allocation(memory_region, 1024 * 1024 * 1024);
     return 0;
 }
@@ -126,7 +132,7 @@ void *sys_allocate_memory(int size)
                 return start_node->addr;
             }
         }
-
+ 
         // Move to the next node
         if(current_node != NULL && current_node->next != NULL)
         {
@@ -161,8 +167,12 @@ void *sys_free_memory(const void *addr)
     while (current_node != NULL && current_node->addr != addr)
     {
         current_node = current_node->next;
+        
     }
-
+    // printf("current_node->addr = 0x%p\n",current_node->addr);
+    FreeZone freezone;
+    freezone.start_ptr = current_node->addr;
+    freezone.size = get_memory_size(addr);
     // If the node is found, free the memory blocks
     if (current_node != NULL && current_node->allocated)
     {
@@ -179,11 +189,17 @@ void *sys_free_memory(const void *addr)
         }
 
         // Return NULL after freeing
+        memset(addr,0,get_memory_size(addr));
+    
+        freezone.end_ptr = current_node->addr;
+        free_zones[free_zone_count] = freezone;
+        free_zone_count++;
+        // printf("\nILNE");
         return NULL;
     }
     else
     {
-        MEM_ALLOC_LOG("Invalid address or memory is not allocated\n");
+        printf("Invalid address or memory is not allocated 0x%p\n",addr);
         // Return the original address if not found or not allocated
         return (void *)addr;
     }
