@@ -271,7 +271,7 @@ void *sys_free_memory(const void *addr)
     }
 
     FreeZone freezone;
-    if (current_node->addr != NULL)
+    if (current_node != NULL && current_node->addr != NULL)
     {
         freezone.start_ptr = current_node->addr;
     }
@@ -310,7 +310,7 @@ void *sys_free_memory(const void *addr)
 }
 
 
-//**
+/**
  * @brief Reallocates memory for a previously allocated block and updates the linked list.
  *        !! WARNING !!: This function deallocates the addr value.
  *
