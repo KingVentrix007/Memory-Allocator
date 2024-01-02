@@ -1,0 +1,33 @@
+name: SonarCloud Analysis
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build and Test
+      run: make build-test
+      # Assumes you have a Makefile with a build-test target
+
+    - name: Redirect Test Output
+      run: make run-test > test_output.txt
+      # Assumes you have a Makefile with a run-test target
+      # Redirects the output of run-test to test_output.txt
+
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@v1
+      with:
+        organization: ${{ secrets.SONAR_ORGANIZATION }}
+        token: ${{ secrets.SONARCLOUD_TOKEN }}
+        args: >
+          -Dsonar.tests=test_output.txt
+      # Specifies the test file for SonarCloud analysis
+

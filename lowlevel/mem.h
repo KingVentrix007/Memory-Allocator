@@ -91,11 +91,7 @@ void print_node_info(const Node *node);
  *   size_t - The size of the allocated memory block. 
  */
 size_t get_memory_size(const void *ptr);
-#ifdef MEMORY_ALLOCATION_VERBOSE_OUTPUT
-#define MEM_ALLOC_LOG(fmt, ...) printf(fmt, ##__VA_ARGS__)
-#else
-#define MEM_ALLOC_LOG(fmt, ...) do { } while (0)
-#endif
+#include "mem_output.h"
 
 int main_automated_testing();
 int main_automated_testing_end();

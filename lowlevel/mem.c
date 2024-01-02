@@ -13,6 +13,11 @@ int main()
 {
     // Allocate initial memory
     memory_region = malloc(1024 * 1024 * 1024);
+    if(memory_region == NULL)
+    {
+        MEM_ALLOC_LOG(0,"Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
+        return 1;
+    }
     init_memory_allocation(memory_region, 1024 * 1024 * 1024);
 
     // Run the memory allocator test suite
@@ -36,8 +41,8 @@ int main_automated_testing()
     memory_region = malloc(1024 * 1024 * 1024);
     if(memory_region == NULL)
     {
-        printf("ERROR\n");
-        return 01;
+        MEM_ALLOC_LOG(0,"Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
+        return 1;
     }
     init_memory_allocation(memory_region, 1024 * 1024 * 1024);
     return 0;
@@ -59,17 +64,18 @@ int main_automated_testing_end()
 
 void print_node_info(const Node *node)
 {
-    MEM_ALLOC_LOG("  Address: %p\n", node->addr);
-    MEM_ALLOC_LOG("  Size: %zu\n", node->size);
-    MEM_ALLOC_LOG("  Allocated: %s\n", node->allocated ? "true" : "false");
-    MEM_ALLOC_LOG("  First Block: %s\n", node->first_block ? "true" : "false");
-    MEM_ALLOC_LOG("  Num Blocks Used: %zu\n", node->num_block_used);
-    MEM_ALLOC_LOG("\n");
+    MEM_ALLOC_LOG(2,"  Address: %p\n", node->addr);
+    MEM_ALLOC_LOG(2,"  Size: %zu\n", node->size);
+    MEM_ALLOC_LOG(2,"  Allocated: %s\n", node->allocated ? "true" : "false");
+    MEM_ALLOC_LOG(2,"  First Block: %s\n", node->first_block ? "true" : "false");
+    MEM_ALLOC_LOG(2,"  Num Blocks Used: %zu\n", node->num_block_used);
+    MEM_ALLOC_LOG(2,"\n");
 }
 
 void init_memory_allocation(void *start_addr, int size)
 {
     init_memory_region(start_addr, size);
+
     // memory_allocations = (MemoryAllocationInfo *)sys_allocate_memory(sizeof(MemoryAllocationInfo) * 10);
     // Now nodes are initialized, and the available memory is divided accordingly
 }
@@ -88,14 +94,14 @@ void *sys_allocate_memory(int size)
     // Calculate the number of blocks needed
     if(size > (memory_region_end - memory_region))
     {
-        MEM_ALLOC_LOG("error");
+        MEM_ALLOC_LOG(0,"Size is to large");
         return NULL;
     }
     int num_blocks_needed = (size + 1023) / 1024; // Round up to the nearest whole block
     // MemoryAllocationInfo info;
     // info.size = size;
     // info.allocated_size = num_blocks_needed*1024;
-    MEM_ALLOC_LOG("Allocating %d blocks of memory\n", num_blocks_needed);
+    MEM_ALLOC_LOG(2,"Allocating %d blocks of memory\n", num_blocks_needed);
 
     // Find a consecutive bunch of free nodes
     Node *current_node = (Node *)memory_region;
@@ -128,7 +134,7 @@ void *sys_allocate_memory(int size)
                     current_node = current_node->next;
                 }
 
-                MEM_ALLOC_LOG("Allocated %d bytes of memory\n", size);
+                MEM_ALLOC_LOG(2,"Allocated %d bytes of memory\n", size);
                 return start_node->addr;
             }
         }
@@ -144,7 +150,7 @@ void *sys_allocate_memory(int size)
        
         
 
-    MEM_ALLOC_LOG("Failed to allocate %d bytes of memory\n", size);
+    MEM_ALLOC_LOG(0,"Failed to allocate %d bytes of memory\n", size);
     return NULL;
 }
 
@@ -199,7 +205,7 @@ void *sys_free_memory(const void *addr)
     }
     else
     {
-        printf("Invalid address or memory is not allocated 0x%p\n",addr);
+        MEM_ALLOC_LOG(0,"Invalid address or memory is not allocated 0x%p\n",addr);
         // Return the original address if not found or not allocated
         return (void *)addr;
     }
@@ -224,12 +230,12 @@ void *sys_reallocate_memory(void *addr, int old_size, int new_size)
     // Check for invalid parameters
     if (old_size >= new_size )
     {
-        MEM_ALLOC_LOG("Reallocation of memory unnecessary as the old size exceeds the new size\n");
+        MEM_ALLOC_LOG(1,"Reallocation of memory unnecessary as the old size exceeds the new size\n");
         return addr;
     }
     else if (addr == NULL || (addr < memory_region || addr > memory_region_end) )
     {
-    MEM_ALLOC_LOG("Address is NULL\n");
+    MEM_ALLOC_LOG(0,"Address is NULL\n");
         return NULL;
     }
 
@@ -249,7 +255,7 @@ void *sys_reallocate_memory(void *addr, int old_size, int new_size)
     }
     else
     {
-        MEM_ALLOC_LOG("Failed to reallocate memory. Returning original address.\n");
+        MEM_ALLOC_LOG(0,"Failed to reallocate memory. Returning original address.\n");
         return addr;
     }
 }
@@ -270,22 +276,22 @@ void print_memory_info()
 {
     Node *current_node = (Node *)memory_region;
 
-    MEM_ALLOC_LOG("Memory Information:\n");
+    MEM_ALLOC_LOG(2,"Memory Information:\n");
 
     size_t free_space = 0;
     while (current_node != NULL)
     {
-            MEM_ALLOC_LOG("  Address: %p\n", current_node->addr);
-            MEM_ALLOC_LOG("  Size: %zu\n", current_node->size);
-            MEM_ALLOC_LOG("  Allocated: %s\n", current_node->allocated ? "true" : "false");
-            MEM_ALLOC_LOG("  First Block: %s\n", current_node->first_block ? "true" : "false");
-            MEM_ALLOC_LOG("  Num Blocks Used: %zu\n", current_node->num_block_used);
-            MEM_ALLOC_LOG("\n");
+            MEM_ALLOC_LOG(2,"  Address: %p\n", current_node->addr);
+            MEM_ALLOC_LOG(2,"  Size: %zu\n", current_node->size);
+            MEM_ALLOC_LOG(2,"  Allocated: %s\n", current_node->allocated ? "true" : "false");
+            MEM_ALLOC_LOG(2,"  First Block: %s\n", current_node->first_block ? "true" : "false");
+            MEM_ALLOC_LOG(2,"  Num Blocks Used: %zu\n", current_node->num_block_used);
+            MEM_ALLOC_LOG(3,"\n");
             
             if(current_node->allocated == true)
             {
-                MEM_ALLOC_LOG("\n----------------------------------------------------------------\n");
-                MEM_ALLOC_LOG("Free space : %d\n", free_space);
+                MEM_ALLOC_LOG(3,"\n----------------------------------------------------------------\n");
+                MEM_ALLOC_LOG(2,"Free space : %d\n", free_space);
                 free_space = 0;
                 
             }
@@ -322,8 +328,8 @@ void *init_memory_region(void *start_addr,size_t size)
     // Calculate the size available for actual allocation
     // size_t bytes_available_for_allocation = size - bytes_used_by_nodes;
 
-    MEM_ALLOC_LOG("%d nodes \n", num_nodes);
-    MEM_ALLOC_LOG("%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
+    MEM_ALLOC_LOG(2,"%d nodes \n", num_nodes);
+    MEM_ALLOC_LOG(2,"%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
     // MEM_ALLOC_LOG("%d bytes are available for actual allocation\n", bytes_available_for_allocation);
 
     // Cast the start address to Node pointer
@@ -344,7 +350,7 @@ void *init_memory_region(void *start_addr,size_t size)
         if(start_of_allocation_region + i * 1024 > start_addr+size)
         {
             node1->num_block_used = i;
-            MEM_ALLOC_LOG("Bytes avlible = %ld\n", node1->num_block_used *1024);
+            MEM_ALLOC_LOG(2,"Bytes available = %ld\n", node1->num_block_used *1024);
             
             break;
         }
@@ -422,7 +428,7 @@ size_t get_memory_size(const void *ptr)
         }
         current_node = current_node->next;
     }
-    MEM_ALLOC_LOG("Failed to find Allocated memory region at %p",ptr);
+    MEM_ALLOC_LOG(0,"Failed to find Allocated memory region at %p",ptr);
     return -1;
 }
 void memcleanup()
@@ -457,7 +463,7 @@ int memory_leak_detector()
             {
                 if (temp_buffer[i] != 0)
                 {
-                    MEM_ALLOC_LOG("Possible memory leak at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
+                    MEM_ALLOC_LOG(1,"Possible memory leak at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
                     return -1;
                 }
             }
