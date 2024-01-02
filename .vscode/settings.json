@@ -13,7 +13,8 @@
         "type_traits": "c",
         "utility": "c",
         "internal.h": "c",
-        "mem_output.h": "c"
+        "mem_output.h": "c",
+        "mem_config.h": "c"
     },
     "makefile.compileCommandsPath": ".vscode/compile_commands.json",
     "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",

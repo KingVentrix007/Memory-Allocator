@@ -1,13 +1,14 @@
 // Define different logging levels
 #ifndef MEM_OUTPUT_H
 #define MEM_OUTPUT_H
+#include "mem_config.h"
 #define LOG_ERROR 0
 #define LOG_WARNING 1
 #define LOG_INFO 2
 
 // Set the default log level based on your needs
 #ifndef LOG_LEVEL
-#define LOG_LEVEL LOG_INFO
+#define LOG_LEVEL DEFAULT_LOG_LEVEL
 #endif
 
 #ifdef MEMORY_ALLOCATION_VERBOSE_OUTPUT

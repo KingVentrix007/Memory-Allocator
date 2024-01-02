@@ -7,8 +7,9 @@
 #include "stdio.h"
 #include "string.h"
 #include "stdbool.h"
+#include "mem_config.h"
 // Defines
-#define MAX_CASHED_ALLOCATIONS 100
+
 
 typedef struct Node {
     void* addr;           // Starting address of the memory region represented by the node

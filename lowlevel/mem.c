@@ -1,5 +1,20 @@
+/** 
+ * @file mem.c 
+ * @brief Memory Allocation Implementation 
+ * 
+ * This file contains the implementation of a memory allocation system. 
+ * It provides functions for allocating, freeing, and reallocating memory blocks. 
+ * The system uses a linked list of nodes to keep track of allocated and free memory blocks. 
+ * The implementation also includes functions for initializing the memory region, 
+ * extending the allocation space, printing memory information, and detecting memory leaks. 
+ * 
+ * @author Tristan Kuhn 
+ * @date 2023-09-15 
+ * @code MIT 
+ */ 
 #include "mem.h"
 #include "internal.h"
+#include "mem_config.h"
 void *memory_region;
 void *end_of_node_region;
 void *memory_region_end;
@@ -7,47 +22,104 @@ int memory_allocation_error_code;
 FreeZone free_zones[MAX_CASHED_ALLOCATIONS] = {};
 int free_zone_count = 0;
 #ifdef STANDALONE_MEMORY_ALLOCATION
+
 #ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION
 
+/**
+ * @brief Main function for standalone memory allocation.
+ *
+ * This function allocates initial memory using malloc and initializes memory allocation.
+ * It then runs the memory allocator test suite and frees the initial allocated memory.
+ *
+ * @return 0 if successful, 1 if there was a problem using malloc.
+ */
 int main()
 {
     // Allocate initial memory
-    memory_region = malloc(1024 * 1024 * 1024);
-    if(memory_region == NULL)
+    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
+    if (memory_region == NULL)
     {
-        MEM_ALLOC_LOG(0,"Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
+        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
         return 1;
     }
-    init_memory_allocation(memory_region, 1024 * 1024 * 1024);
+    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
 
     // Run the memory allocator test suite
+
     // Free the initial allocated memory
     free(memory_region);
-
     return 0;
 }
+
+/**
+ * @brief Main function for automated testing.
+ *
+ * This function is used for automated testing of memory allocation.
+ * It allocates initial memory using malloc and initializes memory allocation.
+ *
+ * @return 0 if successful, 1 if there was a problem using malloc.
+ */
 int main_automated_testing()
 {
-    return 0;
-}
-int main_automated_testing_end()
-{
-    return 0;
-}
-#else
-
-int main_automated_testing()
-{
-    memory_region = malloc(1024 * 1024 * 1024);
-    if(memory_region == NULL)
+    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
+    if (memory_region == NULL)
     {
-        MEM_ALLOC_LOG(0,"Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
+        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
         return 1;
     }
-    init_memory_allocation(memory_region, 1024 * 1024 * 1024);
+    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
     return 0;
 }
 
+/**
+ * @brief Function to clean up after automated testing.
+ *
+ * This function ensures that memory_region is initialized before freeing it.
+ * It frees the allocated memory and sets memory_region to NULL to avoid a dangling pointer.
+ *
+ * @return 0 if successful.
+ */
+int main_automated_testing_end()
+{
+    // Ensure that memory_region is initialized before using it
+    if (memory_region != NULL)
+    {
+        free(memory_region);
+        memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
+    }
+    return 0;
+}
+
+#else
+
+/**
+ * @brief Main function for automated testing.
+ *
+ * This function is used for automated testing of memory allocation.
+ * It allocates initial memory using malloc and initializes memory allocation.
+ *
+ * @return 0 if successful, 1 if there was a problem using malloc.
+ */
+int main_automated_testing()
+{
+    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
+    if (memory_region == NULL)
+    {
+        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
+        return 1;
+    }
+    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
+    return 0;
+}
+
+/**
+ * @brief Function to clean up after automated testing.
+ *
+ * This function ensures that memory_region is initialized before freeing it.
+ * It frees the allocated memory and sets memory_region to NULL to avoid a dangling pointer.
+ *
+ * @return 0 if successful.
+ */
 int main_automated_testing_end()
 {
     // Ensure that memory_region is initialized before using it
@@ -60,53 +132,74 @@ int main_automated_testing_end()
 }
 
 #endif
+
 #endif
 
+/**
+ * @brief Prints information about a given node.
+ *
+ * This function prints various information about a given node, such as its address,
+ * size, allocated status, first block status, and the number of blocks used.
+ *
+ * @param node A pointer to the node for which information needs to be printed.
+ */
 void print_node_info(const Node *node)
 {
-    MEM_ALLOC_LOG(2,"  Address: %p\n", node->addr);
-    MEM_ALLOC_LOG(2,"  Size: %zu\n", node->size);
-    MEM_ALLOC_LOG(2,"  Allocated: %s\n", node->allocated ? "true" : "false");
-    MEM_ALLOC_LOG(2,"  First Block: %s\n", node->first_block ? "true" : "false");
-    MEM_ALLOC_LOG(2,"  Num Blocks Used: %zu\n", node->num_block_used);
-    MEM_ALLOC_LOG(2,"\n");
+    MEM_ALLOC_LOG(2, "  Address: %p\n", node->addr);
+    MEM_ALLOC_LOG(2, "  Size: %zu\n", node->size);
+    MEM_ALLOC_LOG(2, "  Allocated: %s\n", node->allocated ? "true" : "false");
+    MEM_ALLOC_LOG(2, "  First Block: %s\n", node->first_block ? "true" : "false");
+    MEM_ALLOC_LOG(2, "  Num Blocks Used: %zu\n", node->num_block_used);
+    MEM_ALLOC_LOG(2, "\n");
 }
 
+/**
+ * @brief Initializes memory allocation.
+ *
+ * This function is responsible for initializing memory allocation.
+ * It takes a starting address and size as parameters.
+ * The function calls the `init_memory_region` function to initialize the memory region.
+ * Additionally, there are commented lines of code that suggest allocating memory for `memory_allocations`,
+ * but they are currently not being used.
+ *
+ * @param start_addr The starting address of the memory region.
+ * @param size The size of the memory region.
+ */
 void init_memory_allocation(void *start_addr, int size)
 {
     init_memory_region(start_addr, size);
-
     // memory_allocations = (MemoryAllocationInfo *)sys_allocate_memory(sizeof(MemoryAllocationInfo) * 10);
     // Now nodes are initialized, and the available memory is divided accordingly
 }
 /**
- * Function Name: sys_allocate_memory
- * Description: Allocates a consecutive bunch of memory blocks and updates the linked list.
+ * @brief Allocates a consecutive bunch of memory blocks and updates the linked list.
  *
- * Parameters:
- *   size (int) - The size of memory to allocate in bytes.
+ * This function is responsible for allocating a consecutive bunch of memory blocks and updating the linked list accordingly.
+ * It takes the size of memory to allocate in bytes as a parameter.
+ * The function calculates the number of blocks needed based on the size, rounds it up to the nearest whole block,
+ * and then searches for a consecutive bunch of free nodes to allocate the memory.
+ * If enough consecutive free blocks are found, they are marked as allocated in the linked list.
+ * The function returns the starting address of the allocated memory.
+ * If the allocation fails, a log message is printed, and NULL is returned.
  *
- * Return:
- *   void
+ * @param size The size of memory to allocate in bytes.
+ * @return The starting address of the allocated memory, or NULL if the allocation fails.
  */
 void *sys_allocate_memory(int size)
 {
     // Calculate the number of blocks needed
-    if(size > (memory_region_end - memory_region))
+    if (size > (memory_region_end - memory_region))
     {
-        MEM_ALLOC_LOG(0,"Size is to large");
+        MEM_ALLOC_LOG(0, "Size is too large");
         return NULL;
     }
-    int num_blocks_needed = (size + 1023) / 1024; // Round up to the nearest whole block
-    // MemoryAllocationInfo info;
-    // info.size = size;
-    // info.allocated_size = num_blocks_needed*1024;
-    MEM_ALLOC_LOG(2,"Allocating %d blocks of memory\n", num_blocks_needed);
+    int num_blocks_needed = (size + 1023) / BLOCK_SIZE; // Round up to the nearest whole block
+
+    MEM_ALLOC_LOG(2, "Allocating %d blocks of memory\n", num_blocks_needed);
 
     // Find a consecutive bunch of free nodes
     Node *current_node = (Node *)memory_region;
     current_node = current_node->next;
-
     while (current_node != NULL)
     {
         if (!current_node->allocated)
@@ -114,6 +207,7 @@ void *sys_allocate_memory(int size)
             int consecutive_free_blocks = 0;
             Node *start_node = current_node;
             start_node->total_requested_memory = size;
+
             // Check for consecutive free blocks
             while (current_node != NULL && !current_node->allocated && consecutive_free_blocks < num_blocks_needed)
             {
@@ -134,36 +228,37 @@ void *sys_allocate_memory(int size)
                     current_node = current_node->next;
                 }
 
-                MEM_ALLOC_LOG(2,"Allocated %d bytes of memory\n", size);
+                MEM_ALLOC_LOG(2, "Allocated %d bytes of memory\n", size);
                 return start_node->addr;
             }
         }
- 
+
         // Move to the next node
-        if(current_node != NULL && current_node->next != NULL)
+        if (current_node != NULL && current_node->next != NULL)
         {
-             current_node = current_node->next;
-            
+            current_node = current_node->next;
         }
+    }
 
-        }
-       
-        
-
-    MEM_ALLOC_LOG(0,"Failed to allocate %d bytes of memory\n", size);
+    MEM_ALLOC_LOG(0, "Failed to allocate %d bytes of memory\n", size);
     return NULL;
 }
-
 /**
- * Function Name: sys_free_memory
- * Description: Frees memory blocks starting from the specified address and updates the linked list.
- *              Also removes the corresponding block from the memory_allocations list and sorts it.
+ * @brief Frees memory blocks starting from the specified address and updates the linked list.
+ *        Also removes the corresponding block from the memory_allocations list and sorts it.
  *
- * Parameters:
- *   addr (void*) - The address of the memory to free.
+ * This function is responsible for freeing memory blocks starting from the specified address and updating the linked list accordingly.
+ * It takes the address of the memory to free as a parameter.
+ * The function searches for the node corresponding to the given address in the linked list.
+ * If the node is found and the memory is allocated, the function marks the memory blocks as free in the linked list.
+ * It also updates the necessary fields in the nodes.
+ * Additionally, the function creates a FreeZone structure to store information about the freed memory block,
+ * and adds it to the free_zones array.
+ * If the address is not found or the memory is not allocated, a log message is printed.
+ * The function returns NULL after freeing the memory blocks.
  *
- * Return:
- *   void
+ * @param addr The address of the memory to free.
+ * @return NULL after freeing the memory blocks, or the original address if it is not found or not allocated.
  */
 void *sys_free_memory(const void *addr)
 {
@@ -173,16 +268,15 @@ void *sys_free_memory(const void *addr)
     while (current_node != NULL && current_node->addr != addr)
     {
         current_node = current_node->next;
-        
     }
-    // printf("current_node->addr = 0x%p\n",current_node->addr);
+
     FreeZone freezone;
-    if(current_node->addr != NULL)
+    if (current_node->addr != NULL)
     {
         freezone.start_ptr = current_node->addr;
     }
-    
     freezone.size = get_memory_size(addr);
+
     // If the node is found, free the memory blocks
     if (current_node != NULL && current_node->allocated)
     {
@@ -199,47 +293,51 @@ void *sys_free_memory(const void *addr)
         }
 
         // Return NULL after freeing
-        memset(addr,0,get_memory_size(addr));
-    
+        memset(addr, 0, get_memory_size(addr));
         freezone.end_ptr = current_node->addr;
         free_zones[free_zone_count] = freezone;
         free_zone_count++;
-        // printf("\nILNE");
+
         return NULL;
     }
     else
     {
-        MEM_ALLOC_LOG(0,"Invalid address or memory is not allocated 0x%p\n",addr);
+        MEM_ALLOC_LOG(0, "Invalid address or memory is not allocated 0x%p\n", addr);
+
         // Return the original address if not found or not allocated
         return (void *)addr;
     }
 }
 
 
-/**
- * Function Name: sys_reallocate_memory
- * Description: Reallocates memory for a previously allocated block and updates the linked list.
- * !! WARNING !!: This function deallocates the addr value.
+//**
+ * @brief Reallocates memory for a previously allocated block and updates the linked list.
+ *        !! WARNING !!: This function deallocates the addr value.
  *
- * Parameters:
- *   addr (void*) - The address of the memory block to reallocate.
- *   old_size (int) - The current size of the memory block in bytes.
- *   new_size (int) - The new size to which the memory block should be reallocated.
+ * This function is responsible for reallocating memory for a previously allocated block and updating the linked list accordingly.
+ * It takes the address of the memory block to reallocate, the current size of the memory block, and the new size to which the memory block should be reallocated.
+ * The function first checks for invalid parameters, such as when the old size exceeds the new size or when the address is NULL or out of range.
+ * If the parameters are valid, the function allocates new memory using the `sys_allocate_memory` function.
+ * It then checks if the allocation was successful, and if so, it copies the data from the old memory to the new memory using `memcpy`.
+ * Finally, the function frees the old memory using the `sys_free_memory` function and returns the new address of the reallocated memory block.
+ * If the reallocation fails, a log message is printed, and the function returns the original address.
  *
- * Return:
- *   void* - The new address of the reallocated memory block.
+ * @param addr The address of the memory block to reallocate.
+ * @param old_size The current size of the memory block in bytes.
+ * @param new_size The new size to which the memory block should be reallocated.
+ * @return The new address of the reallocated memory block, or the original address if the reallocation fails.
  */
 void *sys_reallocate_memory(void *addr, int old_size, int new_size)
 {
     // Check for invalid parameters
-    if (old_size >= new_size )
+    if (old_size >= new_size)
     {
-        MEM_ALLOC_LOG(1,"Reallocation of memory unnecessary as the old size exceeds the new size\n");
+        MEM_ALLOC_LOG(1, "Reallocation of memory unnecessary as the old size exceeds the new size\n");
         return addr;
     }
-    else if (addr == NULL || (addr < memory_region || addr > memory_region_end) )
+    else if (addr == NULL || (addr < memory_region || addr > memory_region_end))
     {
-    MEM_ALLOC_LOG(0,"Address is NULL\n");
+        MEM_ALLOC_LOG(0, "Address is NULL\n");
         return NULL;
     }
 
@@ -254,135 +352,136 @@ void *sys_reallocate_memory(void *addr, int old_size, int new_size)
 
         // Free the old memory
         sys_free_memory(addr);
-
         return new_addr;
     }
     else
     {
-        MEM_ALLOC_LOG(0,"Failed to reallocate memory. Returning original address.\n");
+        MEM_ALLOC_LOG(0, "Failed to reallocate memory. Returning original address.\n");
         return addr;
     }
 }
-/** 
- * Function Name: print_memory_info 
- * Description: Prints information about the memory. 
- * 
- * !! WARNING !! 
- * None. 
- * 
- * Parameters: 
- *   print_option (int) - Determines the printing option. 
- * 
- * Return: 
- *   None. 
+/**
+ * @brief Prints information about the memory.
+ *
+ * This function is responsible for printing information about the memory.
+ * It takes a printing option as a parameter, which determines the level of detail in the output.
+ * The function iterates through the linked list of nodes and prints various details about each node,
+ * such as its address, size, allocated status, first block status, and the number of blocks used.
+ * Additionally, the function calculates and prints the amount of free space between allocated blocks.
+ * The level of detail in the output is determined by the printing option.
+ *
+ * @param print_option Determines the printing option.
+ * @return None.
  */
 void print_memory_info()
 {
     Node *current_node = (Node *)memory_region;
-
-    MEM_ALLOC_LOG(2,"Memory Information:\n");
+    MEM_ALLOC_LOG(2, "Memory Information:\n");
 
     size_t free_space = 0;
+
     while (current_node != NULL)
     {
-            MEM_ALLOC_LOG(2,"  Address: %p\n", current_node->addr);
-            MEM_ALLOC_LOG(2,"  Size: %zu\n", current_node->size);
-            MEM_ALLOC_LOG(2,"  Allocated: %s\n", current_node->allocated ? "true" : "false");
-            MEM_ALLOC_LOG(2,"  First Block: %s\n", current_node->first_block ? "true" : "false");
-            MEM_ALLOC_LOG(2,"  Num Blocks Used: %zu\n", current_node->num_block_used);
-            MEM_ALLOC_LOG(3,"\n");
-            
-            if(current_node->allocated == true)
-            {
-                MEM_ALLOC_LOG(3,"\n----------------------------------------------------------------\n");
-                MEM_ALLOC_LOG(2,"Free space : %d\n", free_space);
-                free_space = 0;
-                
-            }
-            else
-            {
-                free_space = free_space +current_node->size;
-            }
-            current_node =  current_node->next;
+        MEM_ALLOC_LOG(2, "  Address: %p\n", current_node->addr);
+        MEM_ALLOC_LOG(2, "  Size: %zu\n", current_node->size);
+        MEM_ALLOC_LOG(2, "  Allocated: %s\n", current_node->allocated ? "true" : "false");
+        MEM_ALLOC_LOG(2, "  First Block: %s\n", current_node->first_block ? "true" : "false");
+        MEM_ALLOC_LOG(2, "  Num Blocks Used: %zu\n", current_node->num_block_used);
+        MEM_ALLOC_LOG(3, "\n");
+
+        if (current_node->allocated == true)
+        {
+            MEM_ALLOC_LOG(3, "\n----------------------------------------------------------------\n");
+            MEM_ALLOC_LOG(2, "Free space: %d\n", free_space);
+            free_space = 0;
+        }
+        else
+        {
+            free_space = free_space + current_node->size;
+        }
+
+        current_node = current_node->next;
     }
 }
 
 /**
- * Function Name: init_memory_region
- * Description: Initializes the memory region for allocation.
+ * @brief Initializes the memory region for allocation.
  *
- * !! WARNING !!
- * None.
+ * This function is responsible for initializing the memory region for allocation.
+ * It takes the starting address of the memory region and the size of the memory region as parameters.
+ * The function calculates the number of nodes based on the size of each node and the total size of the memory region.
+ * It then calculates the size needed for the nodes and the size available for actual allocation.
+ * The function initializes the first node and sets the end of the node region and the start of the allocation region.
+ * It then iterates through the rest of the nodes, setting their addresses, sizes, and other fields.
+ * If the available space for allocation is exceeded, the function adjusts the number of blocks used and logs the available bytes.
+ * Finally, the function returns the end address of the node region.
  *
- * Parameters:
- *   start_addr (void*) - Starting address of the memory region.
- *   size (size_t) - Size of the memory region.
- *
- * Return:
- *   void* - End address of the node region.
+ * @param start_addr The starting address of the memory region.
+ * @param size The size of the memory region.
+ * @return The end address of the node region.
  */
-void *init_memory_region(void *start_addr,size_t size)
+void *init_memory_region(void *start_addr, size_t size)
 {
-     // Calculate the number of nodes based on the size of each node
-    size_t num_nodes = size / 1024;
-    memory_region_end = memory_region+size;
+    // Calculate the number of nodes based on the size of each node
+    size_t num_nodes = size / BLOCK_SIZE;
+    memory_region_end = memory_region + size;
+
     // Calculate the size needed for the nodes
     size_t bytes_used_by_nodes = num_nodes * sizeof(Node);
-    
+
     // Calculate the size available for actual allocation
     // size_t bytes_available_for_allocation = size - bytes_used_by_nodes;
 
-    MEM_ALLOC_LOG(2,"%d nodes \n", num_nodes);
-    MEM_ALLOC_LOG(2,"%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
+    MEM_ALLOC_LOG(2, "%d nodes \n", num_nodes);
+    MEM_ALLOC_LOG(2, "%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
     // MEM_ALLOC_LOG("%d bytes are available for actual allocation\n", bytes_available_for_allocation);
 
     // Cast the start address to Node pointer
     Node *node1 = (Node *)memory_region;
 
     // Calculate the end of the node region
-     end_of_node_region = (void *)((char *)start_addr + bytes_used_by_nodes);
+    end_of_node_region = (void *)((char *)start_addr + bytes_used_by_nodes);
 
     // Calculate the start of the allocation region
     void *start_of_allocation_region = end_of_node_region;
+
     node1->num_block_used = node1->num_block_used + num_nodes;
 
     // Initialize the rest of the nodes
     Node *current_node = (Node *)start_addr;
-
     for (int i = 1; i < num_nodes; ++i)
     {
-        if(start_of_allocation_region + i * 1024 > start_addr+size)
+        if (start_of_allocation_region + i * BLOCK_SIZE > start_addr + size)
         {
             node1->num_block_used = i;
-            MEM_ALLOC_LOG(2,"Bytes available = %ld\n", node1->num_block_used *1024);
-            
+            MEM_ALLOC_LOG(2, "Bytes available = %ld\n", node1->num_block_used * BLOCK_SIZE);
             break;
         }
-        current_node->addr = start_of_allocation_region + i * 1024;
-        current_node->size = 1024;
+        current_node->addr = start_of_allocation_region + i * BLOCK_SIZE;
+        current_node->size = BLOCK_SIZE;
         current_node->next = (i < num_nodes - 1) ? (Node *)((char *)current_node + sizeof(Node)) : NULL;
         current_node->allocated = false;
         current_node->first_block = false;
         current_node->num_block_used = 0;
-
         ++current_node;
     }
-    
+
     return end_of_node_region;
 }
-
 /**
- * Function Name: extend_allocation_space
- * Description: Extends the allocation space by initializing new nodes in the extra region.
- * !! WARNING !!
- * The function is currently broken and needs fixing.
+ * @brief Extends the allocation space by initializing new nodes in the extra region.
  *
- * Parameters:
- *   extra_region (void*) - Pointer to the extra region for extending the allocation space.
- *   size (size_t) - Size of the extra region.
+ * This function is responsible for extending the allocation space by initializing new nodes in the extra region.
+ * It takes a pointer to the extra region and the size of the extra region as parameters.
+ * The function currently has a warning indicating that it is broken and needs fixing.
+ * The logic of the function involves finding the last node in the existing list,
+ * initializing new nodes in the extended allocation space using the `init_memory_region` function,
+ * updating the next pointer of the last node to point to the first new node,
+ * and updating the end_of_node_region to the end of the extended node region.
  *
- * Return:
- *   None.
+ * @param extra_region Pointer to the extra region for extending the allocation space.
+ * @param size Size of the extra region.
+ * @return None.
  */
 void extend_allocation_space(void *extra_region, size_t size)
 {
@@ -405,50 +504,72 @@ void extend_allocation_space(void *extra_region, size_t size)
     end_of_node_region = end_of_extended_node_region;
 }
 
-/** 
- * Function Name: get_memory_size 
- * Description: Retrieves the size of the allocated memory block pointed to by ptr. 
- * 
- * !! WARNING !! 
- * None. 
- * 
- * Parameters: 
- *   ptr (void*) - Pointer to the memory block. 
- * 
- * Return: 
- *   size_t - The size of the allocated memory block. 
+/**
+ * @brief Retrieves the size of the allocated memory block pointed to by ptr.
+ *
+ * This function is responsible for retrieving the size of the allocated memory block pointed to by ptr.
+ * It takes a pointer to the memory block as a parameter.
+ * The function iterates through the linked list of nodes, comparing the addresses,
+ * and returns the size of the allocated memory block if found.
+ * If the memory block is not found or not allocated, a log message is printed, and -1 is returned.
+ *
+ * @param ptr Pointer to the memory block.
+ * @return The size of the allocated memory block, or -1 if it is not found or not allocated.
  */
 size_t get_memory_size(const void *ptr)
 {
     Node *current_node = (Node *)memory_region;
     size_t run_size = current_node->num_block_used;
-    for (size_t i = 0; i < run_size; i++)
 
-    
+    for (size_t i = 0; i < run_size; i++)
     {
-        if(current_node->addr == ptr && current_node->allocated == true)
+        if (current_node->addr == ptr && current_node->allocated == true)
         {
             return current_node->total_requested_memory;
         }
         current_node = current_node->next;
     }
-    MEM_ALLOC_LOG(0,"Failed to find Allocated memory region at %p",ptr);
+
+    MEM_ALLOC_LOG(0, "Failed to find Allocated memory region at %p", ptr);
     return -1;
 }
+
+/**
+ * @brief Cleans up the memory by resetting the allocated nodes.
+ *
+ * This function is responsible for cleaning up the memory by resetting the allocated nodes.
+ * It iterates through the linked list of nodes, sets the allocated flag to false,
+ * clears the memory of the node, sets the size and number of blocks used to 0,
+ * and moves to the next node.
+ *
+ * @return None.
+ */
 void memcleanup()
 {
     Node *current_node = (Node *)memory_region;
+
     while (current_node != NULL && current_node->next != NULL)
     {
         current_node->allocated = false;
-        memset(current_node->addr,0,current_node->size);
+        memset(current_node->addr, 0, current_node->size);
         current_node->size = 0;
         current_node->num_block_used = 0;
         current_node = current_node->next;
     }
-    
 }
 
+/**
+ * @brief Detects memory leaks by checking for non-zero bytes in the allocated memory regions.
+ *
+ * This function is responsible for detecting memory leaks by checking for non-zero bytes in the allocated memory regions.
+ * It iterates through the linked list of nodes, checks if the memory region is allocated or not,
+ * and if not, it copies the memory region to a temporary buffer and checks for non-zero bytes.
+ * If non-zero bytes are found, a log message is printed indicating a possible memory leak.
+ * The function also keeps track of the last allocated memory block pointer for reference.
+ * The logic involves iterating through the linked list, copying memory regions, and checking for non-zero bytes.
+ *
+ * @return 0 if no memory leak is detected, -1 if a possible memory leak is found.
+ */
 int memory_leak_detector()
 {
     Node *current_node = (Node *)memory_region;
@@ -460,14 +581,14 @@ int memory_leak_detector()
         {
             char temp_buffer[1028];
             memset(temp_buffer, 0, sizeof(temp_buffer)); // Initialize temp_buffer to avoid undefined behavior
-            memcpy(temp_buffer, current_node->addr, 1024);
+            memcpy(temp_buffer, current_node->addr, BLOCK_SIZE);
 
             // Check if the memory region contains non-zero bytes
             for (size_t i = 0; i < sizeof(temp_buffer); ++i)
             {
                 if (temp_buffer[i] != 0)
                 {
-                    MEM_ALLOC_LOG(1,"Possible memory leak at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
+                    MEM_ALLOC_LOG(1, "Possible memory leak at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
                     return -1;
                 }
             }

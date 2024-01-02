@@ -33,8 +33,8 @@ Provides the ability to get the size of a memory region
 
 2. **Include the Memory Allocator in Your Project:**
 
-    Include the necessary files (`mem.h` and `mem.c`) in your hobby OS project.
-
+    Include the necessary files (`mem.h` and `mem.c` and optinally "internal.c and "internal.h") in your hobby OS project.
+    **Important** mem.c and mem.h rely on memset,memcpy and other mem functions, These need to be provided or internal.c and internal.h must be included
  **Warning** In these examples `malloc` is used to simulate having a region of memory in the RAM, typically malloc would be replaced with the address of the memory region
 
 3. **Initialize Memory Allocation:**
