@@ -11,7 +11,6 @@ This repository contains a simple memory allocator designed for hobby operating 
 
 
 ## Features
-
 - **Memory Allocation**: Allocate contiguous blocks of memory.
 - **Memory Deallocation**: Free previously allocated memory.
 - **Extend Allocation Space**: Dynamically extend the allocation space by connecting to a new memory region.
