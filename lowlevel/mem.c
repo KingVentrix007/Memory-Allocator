@@ -177,7 +177,11 @@ void *sys_free_memory(const void *addr)
     }
     // printf("current_node->addr = 0x%p\n",current_node->addr);
     FreeZone freezone;
-    freezone.start_ptr = current_node->addr;
+    if(current_node->addr != NULL)
+    {
+        freezone.start_ptr = current_node->addr;
+    }
+    
     freezone.size = get_memory_size(addr);
     // If the node is found, free the memory blocks
     if (current_node != NULL && current_node->allocated)
