@@ -16,6 +16,10 @@ This repository contains a simple memory allocator designed for hobby operating 
 - **Extend Allocation Space**: Dynamically extend the allocation space by connecting to a new memory region.
 - **_msize functionality**:
 Provides the ability to get the size of a memory region
+- **Platform independent**:
+It can run on a hosted environment, or it can run as a part of an OS,
+- **Architecture Independent**:
+It uses NO architecture specific code, is fully portable
 - **And many others**
 ## Getting Started
 
