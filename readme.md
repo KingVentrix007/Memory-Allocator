@@ -110,6 +110,7 @@ you can set `USE_VERBOSE_OUTPUT` to 1 in the config file to get printed output
 make build-test
 make run-test
 ```
+Check out the [docs](docs/html/index.html) for more specifics on each function
 
 ## Contributing
 
