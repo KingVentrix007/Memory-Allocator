@@ -95,5 +95,6 @@ int ptr_is_null(void* ptr)
     { 
         MEM_ALLOC_LOG(0, "pointer is null\n"); 
         return 1; 
-    } 
+    }
+    return 0;
 }
