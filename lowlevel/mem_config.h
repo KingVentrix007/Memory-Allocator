@@ -16,7 +16,7 @@
 #define MAX_CASHED_ALLOCATIONS 100 // THe max number of cashed allocations
 #define DEFAULT_LOG_LEVEL 0 // Log level by default
 #define USE_VERBOSE_OUTPUT 0 // Use verbose output for debugging
-
+#define ALIGNMENT 16;
 #if USE_VERBOSE_OUTPUT == 1
 #define MEMORY_ALLOCATION_VERBOSE_OUTPUT
 #endif

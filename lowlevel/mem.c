@@ -421,8 +421,7 @@ void print_memory_info()
  * @param size The size of the memory region.
  * @return The end address of the node region.
  */
-void *init_memory_region(void *start_addr, size_t size)
-{
+void *init_memory_region(void *start_addr, size_t size) {
     // Calculate the number of nodes based on the size of each node
     size_t num_nodes = size / BLOCK_SIZE;
     memory_region_end = memory_region + size;
@@ -430,18 +429,22 @@ void *init_memory_region(void *start_addr, size_t size)
     // Calculate the size needed for the nodes
     size_t bytes_used_by_nodes = num_nodes * sizeof(Node);
 
+    // Ensure proper alignment for the start of the allocation region
+    size_t alignment_padding = (ALIGNMENT - ((size_t)start_addr % ALIGNMENT)) % ALIGNMENT;
+    void *aligned_start_addr = (char *)start_addr + alignment_padding;
+
     // Calculate the size available for actual allocation
-    // size_t bytes_available_for_allocation = size - bytes_used_by_nodes;
+    size_t bytes_available_for_allocation = size - bytes_used_by_nodes - alignment_padding;
 
     MEM_ALLOC_LOG(2, "%d nodes \n", num_nodes);
     MEM_ALLOC_LOG(2, "%d bytes are taken up by the nodes in memory\n", bytes_used_by_nodes);
-    // MEM_ALLOC_LOG("%d bytes are available for actual allocation\n", bytes_available_for_allocation);
+    MEM_ALLOC_LOG(2, "%d bytes are available for actual allocation\n", bytes_available_for_allocation);
 
     // Cast the start address to Node pointer
     Node *node1 = (Node *)memory_region;
 
     // Calculate the end of the node region
-    end_of_node_region = (void *)((char *)start_addr + bytes_used_by_nodes);
+    end_of_node_region = (void *)((char *)aligned_start_addr + bytes_used_by_nodes);
 
     // Calculate the start of the allocation region
     void *start_of_allocation_region = end_of_node_region;
@@ -449,11 +452,9 @@ void *init_memory_region(void *start_addr, size_t size)
     node1->num_block_used = node1->num_block_used + num_nodes;
 
     // Initialize the rest of the nodes
-    Node *current_node = (Node *)start_addr;
-    for (int i = 1; i < num_nodes; ++i)
-    {
-        if (start_of_allocation_region + i * BLOCK_SIZE > start_addr + size)
-        {
+    Node *current_node = (Node *)aligned_start_addr;
+    for (int i = 1; i < num_nodes; ++i) {
+        if (start_of_allocation_region + i * BLOCK_SIZE > aligned_start_addr + bytes_available_for_allocation) {
             node1->num_block_used = i;
             MEM_ALLOC_LOG(2, "Bytes available = %ld\n", node1->num_block_used * BLOCK_SIZE);
             break;
@@ -604,4 +605,32 @@ int buffer_overflow_detector()
     }
 
     return 0; // No  buffer overflows detected
+}
+/** 
+ * @brief Function to detect memory leaks. 
+ * 
+ * This function iterates through a linked list of memory regions and checks for memory leaks. 
+ * It logs information about allocated memory regions and their sizes. 
+ * 
+ * @return void 
+ */ 
+void memory_leak_detector() {
+    // Work in progress
+    Node *current_node = (Node *)memory_region;
+
+    while (current_node != NULL) {
+        if (current_node->allocated == true) {
+            MEM_ALLOC_LOG(2, "Memory region of size %lu is allocated", current_node->size);
+
+            // Assuming `num_block_used` is the number of blocks in the region
+            size_t num_blocks = current_node->num_block_used;
+
+            for (size_t i = 0; i < num_blocks; i++) {
+                current_node = current_node->next;
+            }
+        }
+
+        // Move to the next node
+        current_node = current_node->next;
+    }
 }
