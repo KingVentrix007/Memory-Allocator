@@ -1,22 +1,31 @@
+/** 
+ * @file internal.c 
+ * @brief Internal functions for memory allocation
+ * @author Tristan Kuhn 
+ * @copyright Tristan Kuhn
+ * @date 2023-09-15 
+ * @version 1.0
+ */ 
+ 
+
 #include "internal.h"
 #include <stddef.h>
 #include "mem_output.h"
 /**
- * Function Name: internal_memcmp
- * Description: Compares the first n bytes of memory areas s1 and s2.
+ * @brief Compares the first n bytes of memory areas s1 and s2.
  *
- * Parameters:
- *   s1 (const void*) - Pointer to the first memory area.
- *   s2 (const void*) - Pointer to the second memory area.
- *   n  (size_t)      - Number of bytes to be compared.
+ * This function compares the content of two memory areas, s1 and s2, up to the specified number of bytes (n).
+ * It uses a byte-by-byte comparison and returns the difference between the first differing byte.
  *
- * Return:
- *   (int) - 0 if the memory areas are equal, < 0 if s1 is less than s2, > 0 if s1 is greater than s2.
+ * @param s1 (const void*) - Pointer to the first memory area.
+ * @param s2 (const void*) - Pointer to the second memory area.
+ * @param n  (size_t)      - Number of bytes to be compared.
+ *
+ * @return (int) - 0 if the memory areas are equal, < 0 if s1 is less than s2, > 0 if s1 is greater than s2.
  */
 int internal_memcmp(const void* s1, const void* s2, size_t n) {
     const unsigned char* p1 = s1;
     const unsigned char* p2 = s2;
-
     while (n-- > 0) {
         if (*p1 != *p2) {
             return (*p1 - *p2);
@@ -24,20 +33,20 @@ int internal_memcmp(const void* s1, const void* s2, size_t n) {
         p1++;
         p2++;
     }
-
     return 0; // Memory areas are equal
 }
+
 /**
- * Function Name: internal_memcpy
- * Description: Copies n bytes from memory area src to memory area dest.
+ * @brief Copies n bytes from memory area src to memory area dest.
  *
- * Parameters:
- *   dest (void*) - Pointer to the destination memory area.
- *   src  (const void*) - Pointer to the source memory area.
- *   n    (size_t) - Number of bytes to be copied.
+ * This function copies the content of the source memory area (src) to the destination memory area (dest)
+ * up to the specified number of bytes (n). It uses a byte-by-byte copy.
  *
- * Return:
- *   (void*) - Pointer to the destination memory area dest.
+ * @param dest (void*)        - Pointer to the destination memory area.
+ * @param src  (const void*)  - Pointer to the source memory area.
+ * @param n    (size_t)       - Number of bytes to be copied.
+ *
+ * @return (void*) - Pointer to the destination memory area (dest).
  */
 void* internal_memcpy(void* dest, const void* src, size_t n) {
     unsigned char* d = dest;
@@ -47,19 +56,19 @@ void* internal_memcpy(void* dest, const void* src, size_t n) {
     }
     return dest;
 }
-/**
- * Function Name: internal_memset
- * Description: Custom implementation of memset.
- *
- * Parameters:
- *   s (void*) - Pointer to the memory to set.
- *   c (int) - Value to set. Should be an unsigned char cast to int.
- *   n (size_t) - Number of bytes to set.
- *
- * Return:
- *   (void*) - Pointer to the memory area s.
- */
 
+/**
+ * @brief Custom implementation of memset.
+ *
+ * This function sets the value of each byte in the specified memory area (s) to the given value (c)
+ * up to the specified number of bytes (n). It uses a byte-by-byte assignment.
+ *
+ * @param s (void*)  - Pointer to the memory to set.
+ * @param c (int)    - Value to set. Should be an unsigned char cast to int.
+ * @param n (size_t) - Number of bytes to set.
+ *
+ * @return (void*) - Pointer to the memory area (s).
+ */
 void* internal_memset(void* s, int c, size_t n) {
     unsigned char* p = (unsigned char *)s;
     while (n-- > 0) {
@@ -68,13 +77,14 @@ void* internal_memset(void* s, int c, size_t n) {
     return s;
 }
 
-
 /** 
  * @brief Checks if a pointer is null. 
  * 
  * This function checks if the provided pointer (ptr) is null. 
  * If the pointer is null, it logs a message indicating that the pointer is null. 
- * 
+ *
+ * @note This function assumes the existence of a macro MEM_ALLOC_LOG for logging messages.
+ *
  * @param ptr (void*) - Pointer to be checked. 
  * 
  * @return void 

@@ -1,16 +1,9 @@
 /** 
  * @file mem.c 
  * @brief Memory Allocation Implementation 
- * 
- * This file contains the implementation of a memory allocation system. 
- * It provides functions for allocating, freeing, and reallocating memory blocks. 
- * The system uses a linked list of nodes to keep track of allocated and free memory blocks. 
- * The implementation also includes functions for initializing the memory region, 
- * extending the allocation space, printing memory information, and detecting  buffer overflowss. 
- * 
  * @author Tristan Kuhn 
+ * @copyright Tristan Kuhn
  * @date 2023-09-15 
- * @code MIT 
  * @version 1.0
  */ 
 #include "mem.h"
@@ -166,15 +159,6 @@ void init_memory_allocation(void *start_addr, int size)
 }
 /**
  * @brief Allocates a consecutive bunch of memory blocks and updates the linked list.
- *
- * This function is responsible for allocating a consecutive bunch of memory blocks and updating the linked list accordingly.
- * It takes the size of memory to allocate in bytes as a parameter.
- * The function calculates the number of blocks needed based on the size, rounds it up to the nearest whole block,
- * and then searches for a consecutive bunch of free nodes to allocate the memory.
- * If enough consecutive free blocks are found, they are marked as allocated in the linked list.
- * The function returns the starting address of the allocated memory.
- * If the allocation fails, a log message is printed, and NULL is returned.
- *
  * @param size The size of memory to allocate in bytes.
  * @return The starting address of the allocated memory, or NULL if the allocation fails.
  */

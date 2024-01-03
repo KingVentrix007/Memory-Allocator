@@ -1,0 +1,136 @@
+\hypertarget{internal_8c}{}\doxysection{lowlevel/internal.c File Reference}
+\label{internal_8c}\index{lowlevel/internal.c@{lowlevel/internal.c}}
+
+
+Internal functions for memory allocation.  
+
+
+{\ttfamily \#include \char`\"{}internal.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}mem\+\_\+output.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{internal_8c_af2424e34fbf37623b5020c11f50b4895}{internal\+\_\+memcmp}} (const void $\ast$s1, const void $\ast$s2, size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Compares the first n bytes of memory areas s1 and s2. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{internal_8c_aadb9d5aa083dd16617e1c815983d0ced}{internal\+\_\+memcpy}} (void $\ast$dest, const void $\ast$src, size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Copies n bytes from memory area src to memory area dest. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{internal_8c_ac1a558281cc4d8e6001984cd0847ce4f}{internal\+\_\+memset}} (void $\ast$s, int c, size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Custom implementation of memset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{internal_8c_ad0cfc2f7d6578686228bb9c99d3c2307}{ptr\+\_\+is\+\_\+null}} (void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Checks if a pointer is null. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal functions for memory allocation. 
+
+\begin{DoxyAuthor}{Author}
+Tristan Kuhn 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Tristan Kuhn 
+\end{DoxyCopyright}
+\begin{DoxyDate}{Date}
+2023-\/09-\/15 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{internal_8c_af2424e34fbf37623b5020c11f50b4895}\label{internal_8c_af2424e34fbf37623b5020c11f50b4895}} 
+\index{internal.c@{internal.c}!internal\_memcmp@{internal\_memcmp}}
+\index{internal\_memcmp@{internal\_memcmp}!internal.c@{internal.c}}
+\doxysubsubsection{\texorpdfstring{internal\_memcmp()}{internal\_memcmp()}}
+{\footnotesize\ttfamily int internal\+\_\+memcmp (\begin{DoxyParamCaption}\item[{const void $\ast$}]{s1,  }\item[{const void $\ast$}]{s2,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Compares the first n bytes of memory areas s1 and s2. 
+
+This function compares the content of two memory areas, s1 and s2, up to the specified number of bytes (n). It uses a byte-\/by-\/byte comparison and returns the difference between the first differing byte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & (const void$\ast$) -\/ Pointer to the first memory area. \\
+\hline
+{\em s2} & (const void$\ast$) -\/ Pointer to the second memory area. \\
+\hline
+{\em n} & (size\+\_\+t) -\/ Number of bytes to be compared.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(int) -\/ 0 if the memory areas are equal, $<$ 0 if s1 is less than s2, $>$ 0 if s1 is greater than s2. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{internal_8c_aadb9d5aa083dd16617e1c815983d0ced}\label{internal_8c_aadb9d5aa083dd16617e1c815983d0ced}} 
+\index{internal.c@{internal.c}!internal\_memcpy@{internal\_memcpy}}
+\index{internal\_memcpy@{internal\_memcpy}!internal.c@{internal.c}}
+\doxysubsubsection{\texorpdfstring{internal\_memcpy()}{internal\_memcpy()}}
+{\footnotesize\ttfamily void$\ast$ internal\+\_\+memcpy (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Copies n bytes from memory area src to memory area dest. 
+
+This function copies the content of the source memory area (src) to the destination memory area (dest) up to the specified number of bytes (n). It uses a byte-\/by-\/byte copy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & (void$\ast$) -\/ Pointer to the destination memory area. \\
+\hline
+{\em src} & (const void$\ast$) -\/ Pointer to the source memory area. \\
+\hline
+{\em n} & (size\+\_\+t) -\/ Number of bytes to be copied.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(void$\ast$) -\/ Pointer to the destination memory area (dest). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{internal_8c_ac1a558281cc4d8e6001984cd0847ce4f}\label{internal_8c_ac1a558281cc4d8e6001984cd0847ce4f}} 
+\index{internal.c@{internal.c}!internal\_memset@{internal\_memset}}
+\index{internal\_memset@{internal\_memset}!internal.c@{internal.c}}
+\doxysubsubsection{\texorpdfstring{internal\_memset()}{internal\_memset()}}
+{\footnotesize\ttfamily void$\ast$ internal\+\_\+memset (\begin{DoxyParamCaption}\item[{void $\ast$}]{s,  }\item[{int}]{c,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Custom implementation of memset. 
+
+This function sets the value of each byte in the specified memory area (s) to the given value (c) up to the specified number of bytes (n). It uses a byte-\/by-\/byte assignment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & (void$\ast$) -\/ Pointer to the memory to set. \\
+\hline
+{\em c} & (int) -\/ Value to set. Should be an unsigned char cast to int. \\
+\hline
+{\em n} & (size\+\_\+t) -\/ Number of bytes to set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(void$\ast$) -\/ Pointer to the memory area (s). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{internal_8c_ad0cfc2f7d6578686228bb9c99d3c2307}\label{internal_8c_ad0cfc2f7d6578686228bb9c99d3c2307}} 
+\index{internal.c@{internal.c}!ptr\_is\_null@{ptr\_is\_null}}
+\index{ptr\_is\_null@{ptr\_is\_null}!internal.c@{internal.c}}
+\doxysubsubsection{\texorpdfstring{ptr\_is\_null()}{ptr\_is\_null()}}
+{\footnotesize\ttfamily void ptr\+\_\+is\+\_\+null (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+
+
+Checks if a pointer is null. 
+
+This function checks if the provided pointer (ptr) is null. If the pointer is null, it logs a message indicating that the pointer is null.
+
+\begin{DoxyNote}{Note}
+This function assumes the existence of a macro MEM\+\_\+\+ALLOC\+\_\+\+LOG for logging messages.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & (void$\ast$) -\/ Pointer to be checked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

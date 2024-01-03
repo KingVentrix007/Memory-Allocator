@@ -1,0 +1,93 @@
+\href{https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator}{\texttt{ }} \href{https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator}{\texttt{ }} \href{https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator}{\texttt{ }} \href{https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator}{\texttt{ }}\hypertarget{md_readme_autotoc_md5}{}\doxysection{Overview}\label{md_readme_autotoc_md5}
+This repository contains a simple memory allocator designed for hobby operating systems. It provides basic functionality for managing memory regions using a linked list data structure.\hypertarget{md_readme_autotoc_md6}{}\doxysection{Features}\label{md_readme_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Memory Allocation}}\+: Allocate contiguous blocks of memory.
+\item {\bfseries{Memory Deallocation}}\+: Free previously allocated memory.
+\item {\bfseries{Extend Allocation Space}}\+: Dynamically extend the allocation space by connecting to a new memory region.
+\item $\ast$$\ast$\+\_\+msize functionality$\ast$$\ast$\+: Provides the ability to get the size of a memory region
+\item {\bfseries{Platform independent}}\+: It can run on a hosted environment, or it can run as a part of an OS,
+\item {\bfseries{Architecture Independent}}\+: It uses NO architecture specific code, is fully portable
+\item {\bfseries{And many others}}
+\end{DoxyItemize}\hypertarget{md_readme_autotoc_md7}{}\doxysection{Getting Started}\label{md_readme_autotoc_md7}
+\hypertarget{md_readme_autotoc_md8}{}\doxysubsection{Prerequisites}\label{md_readme_autotoc_md8}
+
+\begin{DoxyItemize}
+\item An OS that can boot, and get information about memory from somewhere
+\end{DoxyItemize}\hypertarget{md_readme_autotoc_md9}{}\doxysubsection{Usage(\+In OS)}\label{md_readme_autotoc_md9}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone the Repository\+:}}
+
+\`{}\`{}\`{}bash git clone \href{https://github.com/KingVentrix007/Memory-Allocator.git}{\texttt{ https\+://github.\+com/\+King\+Ventrix007/\+Memory-\/\+Allocator.\+git}} \`{}\`{}\`{}
+\item {\bfseries{Include the Memory Allocator in Your Project\+:}}
+
+Include the necessary files ({\ttfamily \mbox{\hyperlink{mem_8h_source}{mem.\+h}}} and {\ttfamily \mbox{\hyperlink{mem_8c}{mem.\+c}}} and optinally {\ttfamily \mbox{\hyperlink{internal_8c}{internal.\+c}}} and {\ttfamily \mbox{\hyperlink{internal_8h_source}{internal.\+h}}}) in your hobby OS project. {\bfseries{Important}} \mbox{\hyperlink{mem_8c}{mem.\+c}} and \mbox{\hyperlink{mem_8h_source}{mem.\+h}} rely on memset,memcpy and other mem functions, These need to be provided or \mbox{\hyperlink{internal_8c}{internal.\+c}} and \mbox{\hyperlink{internal_8h_source}{internal.\+h}} must be included
+\item {\bfseries{Initialize Memory Allocation\+:}}
+
+\`{}\`{}\`{}c \#include \char`\"{}mem.\+h\char`\"{}
+
+void $\ast$memory\+\_\+region = NULL;
+
+int main() \{ // Allocate initial memory memory\+\_\+region = (void$\ast$)start\+\_\+of\+\_\+open\+\_\+memory; init\+\_\+memory\+\_\+allocation(memory\+\_\+region, \mbox{[}size of start\+\_\+of\+\_\+open\+\_\+memory\mbox{]});
+
+// Your code here
+
+return 0; \} \`{}\`{}\`{}
+\item {\bfseries{Allocate and Free Memory\+:}}
+
+\`{}\`{}\`{}c // Allocate memory void $\ast$ptr = sys\+\_\+allocate\+\_\+memory(\mbox{[}size\mbox{]});
+
+// Your code here
+
+// Free memory sys\+\_\+free\+\_\+memory(ptr); \`{}\`{}\`{}
+\item {\bfseries{Extend Allocation Space\+:}} {\bfseries{CURRENTLY NOT WORKING. IS IN PROGRESS}}
+
+\`{}\`{}\`{}c void $\ast$new\+\_\+region = (void $\ast$)start\+\_\+of\+\_\+open\+\_\+memory\+\_\+2; extend\+\_\+allocation\+\_\+space(new\+\_\+region, \mbox{[}size of start\+\_\+of\+\_\+open\+\_\+memory\+\_\+2\mbox{]}); \`{}\`{}\`{}
+\end{DoxyEnumerate}
+
+See \href{/docs/examples/basic.md\#basic-memory-allocation-and-deallocation}{\texttt{ Examples}} for more.\hypertarget{md_readme_autotoc_md10}{}\doxysubsection{Usage(\+Stand Alone)}\label{md_readme_autotoc_md10}
+
+\begin{DoxyEnumerate}
+\item Clone repository
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone https://github.com/KingVentrix007/Memory-\/Allocator.git}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Edit \mbox{\hyperlink{mem__config_8h_source}{mem\+\_\+config.\+h}}
+
+Set your desired parameters
+\item Run Normal version
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make build}
+\DoxyCodeLine{make run}
+
+\end{DoxyCode}
+
+
+you can set {\ttfamily USE\+\_\+\+VERBOSE\+\_\+\+OUTPUT} to 1 in the config file to get printed output
+
+
+\begin{DoxyEnumerate}
+\item Run tests
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make build-\/test}
+\DoxyCodeLine{make run-\/test}
+
+\end{DoxyCode}
+\hypertarget{md_readme_autotoc_md11}{}\doxysection{Contributing}\label{md_readme_autotoc_md11}
+If you have suggestions or improvements, feel free to open an issue or create a pull request.\hypertarget{md_readme_autotoc_md12}{}\doxysection{License}\label{md_readme_autotoc_md12}
+This project is licensed under the \href{https://opensource.org/license/mit/}{\texttt{ MIT}} -\/ see the \mbox{[}LICENSE\mbox{]}(LICENSE) file for details. 

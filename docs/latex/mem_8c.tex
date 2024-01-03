@@ -1,0 +1,325 @@
+\hypertarget{mem_8c}{}\doxysection{lowlevel/mem.c File Reference}
+\label{mem_8c}\index{lowlevel/mem.c@{lowlevel/mem.c}}
+
+
+Memory Allocation Implementation.  
+
+
+{\ttfamily \#include \char`\"{}mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}internal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mem\+\_\+config.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mem_8c_a53bcc9c1f4fe098b102b72a97af1cb38}{print\+\_\+node\+\_\+info}} (const \mbox{\hyperlink{structNode}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Prints information about a given node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\+\_\+memory\+\_\+allocation}} (void $\ast$start\+\_\+addr, int size)
+\begin{DoxyCompactList}\small\item\em Initializes memory allocation. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{mem_8c_a7b9a0e78f9993c8f45e8ccaea7f14dd5}{sys\+\_\+allocate\+\_\+memory}} (int size)
+\begin{DoxyCompactList}\small\item\em Allocates a consecutive bunch of memory blocks and updates the linked list. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\+\_\+free\+\_\+memory}} (const void $\ast$addr)
+\begin{DoxyCompactList}\small\item\em Frees memory blocks starting from the specified address and updates the linked list. Also removes the corresponding block from the memory\+\_\+allocations list and sorts it. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{mem_8c_aa2cb60350e8b0887063d3976054b6769}{sys\+\_\+reallocate\+\_\+memory}} (void $\ast$addr, int old\+\_\+size, int new\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Reallocates memory for a previously allocated block and updates the linked list. !! WARNING !!\+: This function deallocates the addr value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8c_a18e1848dd1f6ac2ef3a214ef6b157af2}{print\+\_\+memory\+\_\+info}} ()
+\begin{DoxyCompactList}\small\item\em Prints information about the memory. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{mem_8c_a350fdfeaa16470a038585904910c0973}{init\+\_\+memory\+\_\+region}} (void $\ast$start\+\_\+addr, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Initializes the memory region for allocation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8c_a6edaee3ea2b783507029f348655a1374}{extend\+\_\+allocation\+\_\+space}} (void $\ast$extra\+\_\+region, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Extends the allocation space by initializing new nodes in the extra region. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{mem_8c_afcde9dfb4a3501997defaf0629f3729f}{get\+\_\+memory\+\_\+size}} (const void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Retrieves the size of the allocated memory block pointed to by ptr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8c_a65400312383b6112b13d348f3e6516e0}{memcleanup}} ()
+\begin{DoxyCompactList}\small\item\em Cleans up the memory by resetting the allocated nodes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{mem_8c_a528f68e26e73ebabf3a07b18274948a8}{buffer\+\_\+overflow\+\_\+detector}} ()
+\begin{DoxyCompactList}\small\item\em Detects buffer overflows by checking for non-\/zero bytes in the allocated memory regions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8c_a66e9408db729538ad41becff1dfefeee}{memory\+\_\+leak\+\_\+detector}} ()
+\begin{DoxyCompactList}\small\item\em Function to detect memory leaks. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{mem_8c_a675d7a0529f784a7c298b19a64e7d08e}{find\+\_\+dangling\+\_\+pointer}} ()
+\begin{DoxyCompactList}\small\item\em Finds potential dangling pointers by checking for non-\/zero data in memory regions that do not border an allocated region. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mem_8c_a1e0067276a6f470f8744cde11001611b}\label{mem_8c_a1e0067276a6f470f8744cde11001611b}} 
+int $\ast$ {\bfseries run\+\_\+checks} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}\label{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}} 
+void $\ast$ {\bfseries memory\+\_\+region}
+\item 
+\mbox{\Hypertarget{mem_8c_a4e782bcef4eab440683366fe6438b980}\label{mem_8c_a4e782bcef4eab440683366fe6438b980}} 
+void $\ast$ {\bfseries end\+\_\+of\+\_\+node\+\_\+region}
+\item 
+\mbox{\Hypertarget{mem_8c_ab6b2a6f19301c47e33923a1e6c9eee1a}\label{mem_8c_ab6b2a6f19301c47e33923a1e6c9eee1a}} 
+void $\ast$ {\bfseries memory\+\_\+region\+\_\+end}
+\item 
+\mbox{\Hypertarget{mem_8c_a39ec70fceae7136c5845681ca15efba4}\label{mem_8c_a39ec70fceae7136c5845681ca15efba4}} 
+int {\bfseries memory\+\_\+allocation\+\_\+error\+\_\+code}
+\item 
+\mbox{\Hypertarget{mem_8c_a13d0831f9ba96575fe7e9e4bd0b906ed}\label{mem_8c_a13d0831f9ba96575fe7e9e4bd0b906ed}} 
+\mbox{\hyperlink{structFreeZone}{Free\+Zone}} {\bfseries free\+\_\+zones} \mbox{[}MAX\+\_\+\+CASHED\+\_\+\+ALLOCATIONS\mbox{]} = \{\}
+\item 
+\mbox{\Hypertarget{mem_8c_a14a4a881a56a62ab9c5d60bc975165b0}\label{mem_8c_a14a4a881a56a62ab9c5d60bc975165b0}} 
+int {\bfseries free\+\_\+zone\+\_\+count} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Memory Allocation Implementation. 
+
+\begin{DoxyAuthor}{Author}
+Tristan Kuhn 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Tristan Kuhn 
+\end{DoxyCopyright}
+\begin{DoxyDate}{Date}
+2023-\/09-\/15 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mem_8c_a528f68e26e73ebabf3a07b18274948a8}\label{mem_8c_a528f68e26e73ebabf3a07b18274948a8}} 
+\index{mem.c@{mem.c}!buffer\_overflow\_detector@{buffer\_overflow\_detector}}
+\index{buffer\_overflow\_detector@{buffer\_overflow\_detector}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_overflow\_detector()}{buffer\_overflow\_detector()}}
+{\footnotesize\ttfamily int buffer\+\_\+overflow\+\_\+detector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Detects buffer overflows by checking for non-\/zero bytes in the allocated memory regions. 
+
+This function is responsible for detecting buffer overflowss by checking for non-\/zero bytes in the allocated memory regions. It iterates through the linked list of nodes, checks if the memory region is allocated or not, and if not, it copies the memory region to a temporary buffer and checks for non-\/zero bytes. If non-\/zero bytes are found, a log message is printed indicating a possible buffer overflows. The function also keeps track of the last allocated memory block pointer for reference. The logic involves iterating through the linked list, copying memory regions, and checking for non-\/zero bytes.
+
+\begin{DoxyReturn}{Returns}
+0 if no buffer overflows is detected, -\/1 if a possible buffer overflows is found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a6edaee3ea2b783507029f348655a1374}\label{mem_8c_a6edaee3ea2b783507029f348655a1374}} 
+\index{mem.c@{mem.c}!extend\_allocation\_space@{extend\_allocation\_space}}
+\index{extend\_allocation\_space@{extend\_allocation\_space}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{extend\_allocation\_space()}{extend\_allocation\_space()}}
+{\footnotesize\ttfamily void extend\+\_\+allocation\+\_\+space (\begin{DoxyParamCaption}\item[{void $\ast$}]{extra\+\_\+region,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Extends the allocation space by initializing new nodes in the extra region. 
+
+This function is responsible for extending the allocation space by initializing new nodes in the extra region. It takes a pointer to the extra region and the size of the extra region as parameters. The function currently has a warning indicating that it is broken and needs fixing. The logic of the function involves finding the last node in the existing list, initializing new nodes in the extended allocation space using the {\ttfamily init\+\_\+memory\+\_\+region} function, updating the next pointer of the last node to point to the first new node, and updating the end\+\_\+of\+\_\+node\+\_\+region to the end of the extended node region.
+
+
+\begin{DoxyParams}{Parameters}
+{\em extra\+\_\+region} & Pointer to the extra region for extending the allocation space. \\
+\hline
+{\em size} & Size of the extra region. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None. 
+\end{DoxyReturn}
+CURRENTLY BROKEN\mbox{\Hypertarget{mem_8c_a675d7a0529f784a7c298b19a64e7d08e}\label{mem_8c_a675d7a0529f784a7c298b19a64e7d08e}} 
+\index{mem.c@{mem.c}!find\_dangling\_pointer@{find\_dangling\_pointer}}
+\index{find\_dangling\_pointer@{find\_dangling\_pointer}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{find\_dangling\_pointer()}{find\_dangling\_pointer()}}
+{\footnotesize\ttfamily int find\+\_\+dangling\+\_\+pointer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Finds potential dangling pointers by checking for non-\/zero data in memory regions that do not border an allocated region. 
+
+This function iterates through the linked list of nodes, checks if the memory region is allocated or not, and if not, it checks for non-\/zero bytes in the memory region. If non-\/zero bytes are found and the memory region does not border an allocated region, it logs a message indicating a potential dangling pointer.
+
+\begin{DoxyReturn}{Returns}
+0 if no potential dangling pointers are found, -\/1 if potential issues are detected. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_afcde9dfb4a3501997defaf0629f3729f}\label{mem_8c_afcde9dfb4a3501997defaf0629f3729f}} 
+\index{mem.c@{mem.c}!get\_memory\_size@{get\_memory\_size}}
+\index{get\_memory\_size@{get\_memory\_size}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{get\_memory\_size()}{get\_memory\_size()}}
+{\footnotesize\ttfamily size\+\_\+t get\+\_\+memory\+\_\+size (\begin{DoxyParamCaption}\item[{const void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+
+
+Retrieves the size of the allocated memory block pointed to by ptr. 
+
+This function is responsible for retrieving the size of the allocated memory block pointed to by ptr. It takes a pointer to the memory block as a parameter. The function iterates through the linked list of nodes, comparing the addresses, and returns the size of the allocated memory block if found. If the memory block is not found or not allocated, a log message is printed, and -\/1 is returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Pointer to the memory block. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size of the allocated memory block, or -\/1 if it is not found or not allocated. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a4c501aea02a6ff74414bba87cd076113}\label{mem_8c_a4c501aea02a6ff74414bba87cd076113}} 
+\index{mem.c@{mem.c}!init\_memory\_allocation@{init\_memory\_allocation}}
+\index{init\_memory\_allocation@{init\_memory\_allocation}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{init\_memory\_allocation()}{init\_memory\_allocation()}}
+{\footnotesize\ttfamily void init\+\_\+memory\+\_\+allocation (\begin{DoxyParamCaption}\item[{void $\ast$}]{start\+\_\+addr,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Initializes memory allocation. 
+
+This function is responsible for initializing memory allocation. It takes a starting address and size as parameters. The function calls the {\ttfamily init\+\_\+memory\+\_\+region} function to initialize the memory region. Additionally, there are commented lines of code that suggest allocating memory for {\ttfamily memory\+\_\+allocations}, but they are currently not being used.
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+addr} & The starting address of the memory region. \\
+\hline
+{\em size} & The size of the memory region. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mem_8c_a350fdfeaa16470a038585904910c0973}\label{mem_8c_a350fdfeaa16470a038585904910c0973}} 
+\index{mem.c@{mem.c}!init\_memory\_region@{init\_memory\_region}}
+\index{init\_memory\_region@{init\_memory\_region}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{init\_memory\_region()}{init\_memory\_region()}}
+{\footnotesize\ttfamily void$\ast$ init\+\_\+memory\+\_\+region (\begin{DoxyParamCaption}\item[{void $\ast$}]{start\+\_\+addr,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Initializes the memory region for allocation. 
+
+This function is responsible for initializing the memory region for allocation. It takes the starting address of the memory region and the size of the memory region as parameters. The function calculates the number of nodes based on the size of each node and the total size of the memory region. It then calculates the size needed for the nodes and the size available for actual allocation. The function initializes the first node and sets the end of the node region and the start of the allocation region. It then iterates through the rest of the nodes, setting their addresses, sizes, and other fields. If the available space for allocation is exceeded, the function adjusts the number of blocks used and logs the available bytes. Finally, the function returns the end address of the node region.
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+addr} & The starting address of the memory region. \\
+\hline
+{\em size} & The size of the memory region. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The end address of the node region. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a65400312383b6112b13d348f3e6516e0}\label{mem_8c_a65400312383b6112b13d348f3e6516e0}} 
+\index{mem.c@{mem.c}!memcleanup@{memcleanup}}
+\index{memcleanup@{memcleanup}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{memcleanup()}{memcleanup()}}
+{\footnotesize\ttfamily void memcleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cleans up the memory by resetting the allocated nodes. 
+
+This function is responsible for cleaning up the memory by resetting the allocated nodes. It iterates through the linked list of nodes, sets the allocated flag to false, clears the memory of the node, sets the size and number of blocks used to 0, and moves to the next node.
+
+\begin{DoxyReturn}{Returns}
+None. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a66e9408db729538ad41becff1dfefeee}\label{mem_8c_a66e9408db729538ad41becff1dfefeee}} 
+\index{mem.c@{mem.c}!memory\_leak\_detector@{memory\_leak\_detector}}
+\index{memory\_leak\_detector@{memory\_leak\_detector}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{memory\_leak\_detector()}{memory\_leak\_detector()}}
+{\footnotesize\ttfamily void memory\+\_\+leak\+\_\+detector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to detect memory leaks. 
+
+This function iterates through a linked list of memory regions and checks for memory leaks. It logs information about allocated memory regions and their sizes.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a18e1848dd1f6ac2ef3a214ef6b157af2}\label{mem_8c_a18e1848dd1f6ac2ef3a214ef6b157af2}} 
+\index{mem.c@{mem.c}!print\_memory\_info@{print\_memory\_info}}
+\index{print\_memory\_info@{print\_memory\_info}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{print\_memory\_info()}{print\_memory\_info()}}
+{\footnotesize\ttfamily void print\+\_\+memory\+\_\+info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints information about the memory. 
+
+This function is responsible for printing information about the memory. It takes a printing option as a parameter, which determines the level of detail in the output. The function iterates through the linked list of nodes and prints various details about each node, such as its address, size, allocated status, first block status, and the number of blocks used. Additionally, the function calculates and prints the amount of free space between allocated blocks. The level of detail in the output is determined by the printing option.
+
+
+\begin{DoxyParams}{Parameters}
+{\em print\+\_\+option} & Determines the printing option. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a53bcc9c1f4fe098b102b72a97af1cb38}\label{mem_8c_a53bcc9c1f4fe098b102b72a97af1cb38}} 
+\index{mem.c@{mem.c}!print\_node\_info@{print\_node\_info}}
+\index{print\_node\_info@{print\_node\_info}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{print\_node\_info()}{print\_node\_info()}}
+{\footnotesize\ttfamily void print\+\_\+node\+\_\+info (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structNode}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Prints information about a given node. 
+
+This function prints various information about a given node, such as its address, size, allocated status, first block status, and the number of blocks used.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & A pointer to the node for which information needs to be printed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mem_8c_a7b9a0e78f9993c8f45e8ccaea7f14dd5}\label{mem_8c_a7b9a0e78f9993c8f45e8ccaea7f14dd5}} 
+\index{mem.c@{mem.c}!sys\_allocate\_memory@{sys\_allocate\_memory}}
+\index{sys\_allocate\_memory@{sys\_allocate\_memory}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{sys\_allocate\_memory()}{sys\_allocate\_memory()}}
+{\footnotesize\ttfamily void$\ast$ sys\+\_\+allocate\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a consecutive bunch of memory blocks and updates the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size of memory to allocate in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The starting address of the allocated memory, or NULL if the allocation fails. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_a406fd90a3f95c858165853e109fe7271}\label{mem_8c_a406fd90a3f95c858165853e109fe7271}} 
+\index{mem.c@{mem.c}!sys\_free\_memory@{sys\_free\_memory}}
+\index{sys\_free\_memory@{sys\_free\_memory}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{sys\_free\_memory()}{sys\_free\_memory()}}
+{\footnotesize\ttfamily void$\ast$ sys\+\_\+free\+\_\+memory (\begin{DoxyParamCaption}\item[{const void $\ast$}]{addr }\end{DoxyParamCaption})}
+
+
+
+Frees memory blocks starting from the specified address and updates the linked list. Also removes the corresponding block from the memory\+\_\+allocations list and sorts it. 
+
+This function is responsible for freeing memory blocks starting from the specified address and updating the linked list accordingly. It takes the address of the memory to free as a parameter. The function searches for the node corresponding to the given address in the linked list. If the node is found and the memory is allocated, the function marks the memory blocks as free in the linked list. It also updates the necessary fields in the nodes. Additionally, the function creates a \mbox{\hyperlink{structFreeZone}{Free\+Zone}} structure to store information about the freed memory block, and adds it to the free\+\_\+zones array. If the address is not found or the memory is not allocated, a log message is printed. The function returns NULL after freeing the memory blocks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address of the memory to free. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NULL after freeing the memory blocks, or the original address if it is not found or not allocated. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mem_8c_aa2cb60350e8b0887063d3976054b6769}\label{mem_8c_aa2cb60350e8b0887063d3976054b6769}} 
+\index{mem.c@{mem.c}!sys\_reallocate\_memory@{sys\_reallocate\_memory}}
+\index{sys\_reallocate\_memory@{sys\_reallocate\_memory}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{sys\_reallocate\_memory()}{sys\_reallocate\_memory()}}
+{\footnotesize\ttfamily void$\ast$ sys\+\_\+reallocate\+\_\+memory (\begin{DoxyParamCaption}\item[{void $\ast$}]{addr,  }\item[{int}]{old\+\_\+size,  }\item[{int}]{new\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Reallocates memory for a previously allocated block and updates the linked list. !! WARNING !!\+: This function deallocates the addr value. 
+
+This function is responsible for reallocating memory for a previously allocated block and updating the linked list accordingly. It takes the address of the memory block to reallocate, the current size of the memory block, and the new size to which the memory block should be reallocated. The function first checks for invalid parameters, such as when the old size exceeds the new size or when the address is NULL or out of range. If the parameters are valid, the function allocates new memory using the {\ttfamily sys\+\_\+allocate\+\_\+memory} function. It then checks if the allocation was successful, and if so, it copies the data from the old memory to the new memory using {\ttfamily memcpy}. Finally, the function frees the old memory using the {\ttfamily sys\+\_\+free\+\_\+memory} function and returns the new address of the reallocated memory block. If the reallocation fails, a log message is printed, and the function returns the original address.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address of the memory block to reallocate. \\
+\hline
+{\em old\+\_\+size} & The current size of the memory block in bytes. \\
+\hline
+{\em new\+\_\+size} & The new size to which the memory block should be reallocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new address of the reallocated memory block, or the original address if the reallocation fails. 
+\end{DoxyReturn}
