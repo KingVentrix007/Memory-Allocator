@@ -686,7 +686,7 @@ int find_dangling_pointer() {
 
 int* run_checks()
 {
-    int rets[2];
+    static int rets[2];
     rets[0] = buffer_overflow_detector();
     rets[1] = find_dangling_pointer();
     return rets;
