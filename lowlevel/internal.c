@@ -1,5 +1,6 @@
 #include "internal.h"
 #include <stddef.h>
+#include "mem_output.h"
 /**
  * Function Name: internal_memcmp
  * Description: Compares the first n bytes of memory areas s1 and s2.
@@ -65,4 +66,24 @@ void* internal_memset(void* s, int c, size_t n) {
         *p++ = (unsigned char)c;
     }
     return s;
+}
+
+
+/** 
+ * @brief Checks if a pointer is null. 
+ * 
+ * This function checks if the provided pointer (ptr) is null. 
+ * If the pointer is null, it logs a message indicating that the pointer is null. 
+ * 
+ * @param ptr (void*) - Pointer to be checked. 
+ * 
+ * @return void 
+ */ 
+void ptr_is_null(void* ptr) 
+{ 
+    if (ptr == NULL) 
+    { 
+        MEM_ALLOC_LOG(0, "pointer is null\n"); 
+        return 1; 
+    } 
 }

@@ -38,11 +38,7 @@ int main()
 {
     // Allocate initial memory
     memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    if (memory_region == NULL)
-    {
-        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
-        return 1;
-    }
+    ptr_is_null(memory_region);
     init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
 
     // Run the memory allocator test suite
@@ -63,11 +59,7 @@ int main()
 int main_automated_testing()
 {
     memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    if (memory_region == NULL)
-    {
-        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
-        return 1;
-    }
+    ptr_is_null(memory_region);
     init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
     return 0;
 }
@@ -188,6 +180,10 @@ void init_memory_allocation(void *start_addr, int size)
  */
 void *sys_allocate_memory(int size)
 {
+    #if RUN_CHECKS_ON_ALLOCATE == 1
+    run_checks();
+
+    #endif
     // Calculate the number of blocks needed
     if (size > (memory_region_end - memory_region))
     {
@@ -263,6 +259,10 @@ void *sys_allocate_memory(int size)
  */
 void *sys_free_memory(const void *addr)
 {
+    #if RUN_CHECKS_ON_FREE == 1
+    run_checks();
+
+    #endif
     Node *current_node = (Node *)memory_region;
 
     // Find the node corresponding to the given address
@@ -633,4 +633,53 @@ void memory_leak_detector() {
         // Move to the next node
         current_node = current_node->next;
     }
+}
+/**
+ * @brief Finds potential dangling pointers by checking for non-zero data
+ *        in memory regions that do not border an allocated region.
+ *
+ * This function iterates through the linked list of nodes, checks if the memory
+ * region is allocated or not, and if not, it checks for non-zero bytes in the memory
+ * region. If non-zero bytes are found and the memory region does not border an allocated
+ * region, it logs a message indicating a potential dangling pointer.
+ *
+ * @return 0 if no potential dangling pointers are found, -1 if potential issues are detected.
+ */
+int find_dangling_pointer() {
+    Node *current_node = (Node *)memory_region;
+    void *ptr = NULL;
+
+    while (current_node != NULL && current_node->next != NULL) {
+        if (current_node->allocated == false) {
+            // Check if the memory region contains non-zero bytes
+            for (size_t i = 0; i < current_node->size; ++i) {
+                if (*((char *)(current_node->addr) + i) != 0) {
+                    // Check if the memory region borders an allocated region
+                    if ((current_node->next == NULL || current_node->next->allocated == false) &&
+                        (current_node->next == NULL || current_node->next->allocated == false)) {
+                        MEM_ALLOC_LOG(1, "Potential dangling pointer at 0x%p", current_node->addr);
+                        return -1;
+                    }
+                }
+            }
+        }
+
+        if (current_node->allocated == true) {
+            ptr = current_node->addr;
+        }
+
+        // Move to the next node
+        current_node = current_node->next;
+    }
+
+    return 0; // No potential dangling pointers detected
+}
+
+
+int* run_checks()
+{
+    int rets[2];
+    rets[0] = buffer_overflow_detector();
+    rets[1] = find_dangling_pointer();
+    return rets;
 }

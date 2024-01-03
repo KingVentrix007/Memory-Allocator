@@ -73,11 +73,23 @@ void *sys_free_memory(const void *addr);
  *   void* - The new address of the reallocated memory block.
  */
 void *sys_reallocate_memory(void *addr, int old_size, int new_size);
+/**
+ * @brief Finds potential dangling pointers by checking for non-zero data
+ *        in memory regions that do not border an allocated region.
+ *
+ * This function iterates through the linked list of nodes, checks if the memory
+ * region is allocated or not, and if not, it checks for non-zero bytes in the memory
+ * region. If non-zero bytes are found and the memory region does not border an allocated
+ * region, it logs a message indicating a potential dangling pointer.
+ *
+ * @return 0 if no potential dangling pointers are found, -1 if potential issues are detected.
+ */
+int find_dangling_pointer();
 void print_memory_info();
 void extend_allocation_space(void *extra_region,size_t size);
 void *init_memory_region(void *start_addr,size_t size);
 void print_node_info(const Node *node);
-
+int* run_checks();
 /** 
  * Function Name: get_memory_size 
  * Description: Retrieves the size of the allocated memory block pointed to by ptr. 
@@ -96,5 +108,17 @@ size_t get_memory_size(const void *ptr);
 
 int main_automated_testing();
 int main_automated_testing_end();
+/**
+ * @brief Detects buffer overflows by checking for non-zero bytes in the allocated memory regions.
+ *
+ * This function is responsible for detecting  buffer overflowss by checking for non-zero bytes in the allocated memory regions.
+ * It iterates through the linked list of nodes, checks if the memory region is allocated or not,
+ * and if not, it copies the memory region to a temporary buffer and checks for non-zero bytes.
+ * If non-zero bytes are found, a log message is printed indicating a possible  buffer overflows.
+ * The function also keeps track of the last allocated memory block pointer for reference.
+ * The logic involves iterating through the linked list, copying memory regions, and checking for non-zero bytes.
+ *
+ * @return 0 if no  buffer overflows is detected, -1 if a possible  buffer overflows is found.
+ */
 int buffer_overflow_detector();
 #endif // MEMORY_MANAGER_H

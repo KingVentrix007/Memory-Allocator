@@ -41,4 +41,15 @@ void* internal_memcpy(void* dest, const void* src, size_t n);
  */
 int internal_memcmp(const void* s1, const void* s2, size_t n);
 
+/** 
+ * @brief Checks if a pointer is null. 
+ * 
+ * This function checks if the provided pointer (ptr) is null. 
+ * If the pointer is null, it logs a message indicating that the pointer is null. 
+ * 
+ * @param ptr (void*) - Pointer to be checked. 
+ * 
+ * @return void 
+ */ 
+void ptr_is_null(void* ptr);
 #endif
