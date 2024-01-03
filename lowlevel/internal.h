@@ -46,10 +46,12 @@ int internal_memcmp(const void* s1, const void* s2, size_t n);
  * 
  * This function checks if the provided pointer (ptr) is null. 
  * If the pointer is null, it logs a message indicating that the pointer is null. 
- * 
+ *
+ * @note This function assumes the existence of a macro MEM_ALLOC_LOG for logging messages.
+ *
  * @param ptr (void*) - Pointer to be checked. 
  * 
- * @return void 
+ * @return int 
  */ 
-void ptr_is_null(void* ptr);
+int ptr_is_null(void* ptr);
 #endif

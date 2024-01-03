@@ -87,9 +87,9 @@ void* internal_memset(void* s, int c, size_t n) {
  *
  * @param ptr (void*) - Pointer to be checked. 
  * 
- * @return void 
+ * @return int 
  */ 
-void ptr_is_null(void* ptr) 
+int ptr_is_null(void* ptr) 
 { 
     if (ptr == NULL) 
     { 
