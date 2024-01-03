@@ -4,7 +4,7 @@
  * @author Tristan Kuhn 
  * @copyright Tristan Kuhn
  * @date 2023-09-15 
- * @version 1.0
+ * @version 1.0  
  */ 
 #include "mem.h"
 #include "internal.h"
