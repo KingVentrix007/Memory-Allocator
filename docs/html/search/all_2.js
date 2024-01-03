@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['find_5fdangling_5fpointer_2',['find_dangling_pointer',['../mem_8c.html#a675d7a0529f784a7c298b19a64e7d08e',1,'mem.c']]],
-  ['freezone_3',['FreeZone',['../structFreeZone.html',1,'']]]
+  ['default_5flog_5flevel_6',['DEFAULT_LOG_LEVEL',['../mem__config_8h.html#afb19ed665807eb04101898b6548a614e',1,'mem_config.h']]]
 ];

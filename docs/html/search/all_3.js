@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['get_5fmemory_5fsize_4',['get_memory_size',['../mem_8c.html#afcde9dfb4a3501997defaf0629f3729f',1,'mem.c']]]
+  ['end_5fof_5fnode_5fregion_7',['end_of_node_region',['../mem_8c.html#a4e782bcef4eab440683366fe6438b980',1,'mem.c']]],
+  ['end_5fptr_8',['end_ptr',['../structFreeZone.html#ad7e703a43d263a8a9746000041f252e0',1,'FreeZone']]],
+  ['extend_5fallocation_5fspace_9',['extend_allocation_space',['../mem_8c.html#a6edaee3ea2b783507029f348655a1374',1,'extend_allocation_space(void *extra_region, size_t size):&#160;mem.c'],['../mem_8h.html#a6edaee3ea2b783507029f348655a1374',1,'extend_allocation_space(void *extra_region, size_t size):&#160;mem.c']]]
 ];

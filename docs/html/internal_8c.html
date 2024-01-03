@@ -74,9 +74,9 @@ $(function() {
 
 <p>Internal functions for memory allocation.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;internal.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="internal_8h_source.html">internal.h</a>&quot;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &quot;mem_output.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="mem__output_8h_source.html">mem_output.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -89,9 +89,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac1a558281cc4d8e6001984cd0847ce4f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal_8c.html#ac1a558281cc4d8e6001984cd0847ce4f">internal_memset</a> (void *s, int c, size_t n)</td></tr>
 <tr class="memdesc:ac1a558281cc4d8e6001984cd0847ce4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom implementation of memset.  <a href="internal_8c.html#ac1a558281cc4d8e6001984cd0847ce4f">More...</a><br /></td></tr>
 <tr class="separator:ac1a558281cc4d8e6001984cd0847ce4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0cfc2f7d6578686228bb9c99d3c2307"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal_8c.html#ad0cfc2f7d6578686228bb9c99d3c2307">ptr_is_null</a> (void *ptr)</td></tr>
-<tr class="memdesc:ad0cfc2f7d6578686228bb9c99d3c2307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a pointer is null.  <a href="internal_8c.html#ad0cfc2f7d6578686228bb9c99d3c2307">More...</a><br /></td></tr>
-<tr class="separator:ad0cfc2f7d6578686228bb9c99d3c2307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce3a4684c563d4684aaa5fc42ac7452"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal_8c.html#a9ce3a4684c563d4684aaa5fc42ac7452">ptr_is_null</a> (void *ptr)</td></tr>
+<tr class="memdesc:a9ce3a4684c563d4684aaa5fc42ac7452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a pointer is null.  <a href="internal_8c.html#a9ce3a4684c563d4684aaa5fc42ac7452">More...</a><br /></td></tr>
+<tr class="separator:a9ce3a4684c563d4684aaa5fc42ac7452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal functions for memory allocation. </p>
@@ -238,14 +238,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad0cfc2f7d6578686228bb9c99d3c2307"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0cfc2f7d6578686228bb9c99d3c2307">&#9670;&nbsp;</a></span>ptr_is_null()</h2>
+<a id="a9ce3a4684c563d4684aaa5fc42ac7452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce3a4684c563d4684aaa5fc42ac7452">&#9670;&nbsp;</a></span>ptr_is_null()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ptr_is_null </td>
+          <td class="memname">int ptr_is_null </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ptr</em></td><td>)</td>
@@ -263,7 +263,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>

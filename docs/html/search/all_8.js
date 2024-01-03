@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sys_5fallocate_5fmemory_20',['sys_allocate_memory',['../mem_8c.html#a7b9a0e78f9993c8f45e8ccaea7f14dd5',1,'mem.c']]],
-  ['sys_5ffree_5fmemory_21',['sys_free_memory',['../mem_8c.html#a406fd90a3f95c858165853e109fe7271',1,'mem.c']]],
-  ['sys_5freallocate_5fmemory_22',['sys_reallocate_memory',['../mem_8c.html#aa2cb60350e8b0887063d3976054b6769',1,'mem.c']]]
+  ['next_37',['next',['../structNode.html#af67b110ca1a258b793bf69d306929b22',1,'Node']]],
+  ['node_38',['Node',['../structNode.html',1,'Node'],['../mem_8h.html#a3b09f37e675bcd48a01bf22155996872',1,'Node():&#160;mem.h']]],
+  ['num_5fblock_5fused_39',['num_block_used',['../structNode.html#a3cb2fa70b6986cc8a606fc86d4e14ede',1,'Node']]]
 ];

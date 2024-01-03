@@ -94,12 +94,12 @@ Usage(In OS)</h2>
 <p class="startli">```bash git clone <a href="https://github.com/KingVentrix007/Memory-Allocator.git">https://github.com/KingVentrix007/Memory-Allocator.git</a> ```</p>
 </li>
 <li><p class="startli"><b>Include the Memory Allocator in Your Project:</b></p>
-<p class="startli">Include the necessary files (<code><a class="el" href="mem_8h_source.html">mem.h</a></code> and <code><a class="el" href="mem_8c.html" title="Memory Allocation Implementation.">mem.c</a></code> and optinally <code><a class="el" href="internal_8c.html" title="Internal functions for memory allocation.">internal.c</a></code> and <code><a class="el" href="internal_8h_source.html">internal.h</a></code>) in your hobby OS project. <b>Important</b> <a class="el" href="mem_8c.html" title="Memory Allocation Implementation.">mem.c</a> and <a class="el" href="mem_8h_source.html">mem.h</a> rely on memset,memcpy and other mem functions, These need to be provided or <a class="el" href="internal_8c.html" title="Internal functions for memory allocation.">internal.c</a> and <a class="el" href="internal_8h_source.html">internal.h</a> must be included</p>
+<p class="startli">Include the necessary files (<code><a class="el" href="mem_8h.html" title="Memory Allocation Implementation Definitions.">mem.h</a></code> and <code><a class="el" href="mem_8c.html" title="Memory Allocation Implementation.">mem.c</a></code> and optinally <code><a class="el" href="internal_8c.html" title="Internal functions for memory allocation.">internal.c</a></code> and <code><a class="el" href="internal_8h.html" title="Internal functions for memory allocation definitions.">internal.h</a></code>) in your hobby OS project. <b>Important</b> <a class="el" href="mem_8c.html" title="Memory Allocation Implementation.">mem.c</a> and <a class="el" href="mem_8h.html" title="Memory Allocation Implementation Definitions.">mem.h</a> rely on memset,memcpy and other mem functions, These need to be provided or <a class="el" href="internal_8c.html" title="Internal functions for memory allocation.">internal.c</a> and <a class="el" href="internal_8h.html" title="Internal functions for memory allocation definitions.">internal.h</a> must be included</p>
 </li>
 <li><p class="startli"><b>Initialize Memory Allocation:</b></p>
 <p class="startli">```c #include "mem.h"</p>
 <p class="startli">void *memory_region = NULL;</p>
-<p class="startli">int main() { // Allocate initial memory memory_region = (void*)start_of_open_memory; init_memory_allocation(memory_region, [size of start_of_open_memory]);</p>
+<p class="startli">int <a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main function that runs all the test functions.">main()</a> { // Allocate initial memory memory_region = (void*)start_of_open_memory; init_memory_allocation(memory_region, [size of start_of_open_memory]);</p>
 <p class="startli">// Your code here</p>
 <p class="startli">return 0; } ```</p>
 </li>
@@ -120,7 +120,7 @@ Usage(Stand Alone)</h2>
 </ol>
 <div class="fragment"><div class="line">git clone https://github.com/KingVentrix007/Memory-Allocator.git</div>
 </div><!-- fragment --><ol type="1">
-<li><p class="startli">Edit <a class="el" href="mem__config_8h_source.html">mem_config.h</a></p>
+<li><p class="startli">Edit <a class="el" href="mem__config_8h.html" title="Configuration settings for memory management.">mem_config.h</a></p>
 <p class="startli">Set your desired parameters</p>
 </li>
 <li>Run Normal version</li>

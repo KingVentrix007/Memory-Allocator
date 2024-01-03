@@ -1,3 +1,11 @@
+/** 
+ * @file internal.h
+ * @brief Internal functions for memory allocation definitions
+ * @author Tristan Kuhn 
+ * @copyright Tristan Kuhn
+ * @date 2023-09-15 
+ * @version 1.0
+ */ 
 #ifndef __INTERNAL__MEMORY_ALLOATION__H
 #define __INTERNAL__MEMORY_ALLOATION__H
 #include <stddef.h>

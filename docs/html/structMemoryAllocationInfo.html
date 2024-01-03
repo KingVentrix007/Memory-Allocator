@@ -68,19 +68,74 @@ $(function() {
 <div class="title">MemoryAllocationInfo Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure for representing memory allocation information.  
+ <a href="structMemoryAllocationInfo.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="mem_8h_source.html">mem.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7a5c24a9444a0605d8d4b48a997960de"><td class="memItemLeft" align="right" valign="top"><a id="a7a5c24a9444a0605d8d4b48a997960de"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
+<tr class="memitem:a7a5c24a9444a0605d8d4b48a997960de"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMemoryAllocationInfo.html#a7a5c24a9444a0605d8d4b48a997960de">size</a></td></tr>
 <tr class="separator:a7a5c24a9444a0605d8d4b48a997960de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb3e919afbcbb2dc1e664ecf94a803a2"><td class="memItemLeft" align="right" valign="top"><a id="aeb3e919afbcbb2dc1e664ecf94a803a2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>allocated_size</b></td></tr>
+<tr class="memitem:aeb3e919afbcbb2dc1e664ecf94a803a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMemoryAllocationInfo.html#aeb3e919afbcbb2dc1e664ecf94a803a2">allocated_size</a></td></tr>
 <tr class="separator:aeb3e919afbcbb2dc1e664ecf94a803a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5be71f88d8adef44b454f5a8e3e1c89"><td class="memItemLeft" align="right" valign="top"><a id="ac5be71f88d8adef44b454f5a8e3e1c89"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>ptr</b></td></tr>
+<tr class="memitem:ac5be71f88d8adef44b454f5a8e3e1c89"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMemoryAllocationInfo.html#ac5be71f88d8adef44b454f5a8e3e1c89">ptr</a></td></tr>
 <tr class="separator:ac5be71f88d8adef44b454f5a8e3e1c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure for representing memory allocation information. </p>
+<p>This structure represents memory allocation information and contains the following fields:</p><ul>
+<li>size: Size of the allocation in bytes. This is the exact number of bytes requested.</li>
+<li>allocated_size: Size of the allocated memory region in bytes. This is the size of the memory region rounded to the nearest 1024 (or the size specified by Node-&gt;size).</li>
+<li>ptr: Pointer to the allocated memory region. </li>
+</ul>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="aeb3e919afbcbb2dc1e664ecf94a803a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb3e919afbcbb2dc1e664ecf94a803a2">&#9670;&nbsp;</a></span>allocated_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MemoryAllocationInfo::allocated_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Size of the allocated memory region in bytes. </p>
+
+</div>
+</div>
+<a id="ac5be71f88d8adef44b454f5a8e3e1c89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5be71f88d8adef44b454f5a8e3e1c89">&#9670;&nbsp;</a></span>ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* MemoryAllocationInfo::ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to the allocated memory region. </p>
+
+</div>
+</div>
+<a id="a7a5c24a9444a0605d8d4b48a997960de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a5c24a9444a0605d8d4b48a997960de">&#9670;&nbsp;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MemoryAllocationInfo::size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Size of the allocation in bytes. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>lowlevel/<a class="el" href="mem_8h_source.html">mem.h</a></li>
 </ul>

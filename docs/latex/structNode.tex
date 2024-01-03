@@ -1,31 +1,102 @@
 \hypertarget{structNode}{}\doxysection{Node Struct Reference}
 \label{structNode}\index{Node@{Node}}
+
+
+\mbox{\hyperlink{structNode}{Node}} structure for representing a memory region. ~\newline
+  
+
+
+
+
+{\ttfamily \#include $<$mem.\+h$>$}
+
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structNode_a5d5bd5e5d7d09e57262f8a3672e0248d}\label{structNode_a5d5bd5e5d7d09e57262f8a3672e0248d}} 
-void $\ast$ {\bfseries addr}
+void $\ast$ \mbox{\hyperlink{structNode_a5d5bd5e5d7d09e57262f8a3672e0248d}{addr}}
 \item 
-\mbox{\Hypertarget{structNode_aeda96509e2e7bbcbb3c35c498b4f7d3a}\label{structNode_aeda96509e2e7bbcbb3c35c498b4f7d3a}} 
-size\+\_\+t {\bfseries size}
+size\+\_\+t \mbox{\hyperlink{structNode_aeda96509e2e7bbcbb3c35c498b4f7d3a}{size}}
 \item 
-\mbox{\Hypertarget{structNode_af67b110ca1a258b793bf69d306929b22}\label{structNode_af67b110ca1a258b793bf69d306929b22}} 
-struct \mbox{\hyperlink{structNode}{Node}} $\ast$ {\bfseries next}
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}}
 \item 
-\mbox{\Hypertarget{structNode_a085a38a4ec52a1417c33151edddaba50}\label{structNode_a085a38a4ec52a1417c33151edddaba50}} 
-bool {\bfseries allocated}
+bool \mbox{\hyperlink{structNode_a085a38a4ec52a1417c33151edddaba50}{allocated}}
 \item 
-\mbox{\Hypertarget{structNode_aa048aae0307099740c369d3766e02414}\label{structNode_aa048aae0307099740c369d3766e02414}} 
-bool {\bfseries first\+\_\+block}
+bool \mbox{\hyperlink{structNode_aa048aae0307099740c369d3766e02414}{first\+\_\+block}}
 \item 
-\mbox{\Hypertarget{structNode_a3cb2fa70b6986cc8a606fc86d4e14ede}\label{structNode_a3cb2fa70b6986cc8a606fc86d4e14ede}} 
-size\+\_\+t {\bfseries num\+\_\+block\+\_\+used}
+size\+\_\+t \mbox{\hyperlink{structNode_a3cb2fa70b6986cc8a606fc86d4e14ede}{num\+\_\+block\+\_\+used}}
 \item 
-\mbox{\Hypertarget{structNode_af27582df8e3b170d686ec6957cb68e20}\label{structNode_af27582df8e3b170d686ec6957cb68e20}} 
-size\+\_\+t {\bfseries total\+\_\+requested\+\_\+memory}
+size\+\_\+t \mbox{\hyperlink{structNode_af27582df8e3b170d686ec6957cb68e20}{total\+\_\+requested\+\_\+memory}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structNode}{Node}} structure for representing a memory region. ~\newline
+ 
+
+This structure represents a memory region and contains the following fields\+: ~\newline
+
+\begin{DoxyItemize}
+\item addr\+: Starting address of the memory region. ~\newline
+
+\item size\+: Size of the memory region. ~\newline
+
+\item next\+: Pointer to the next node in the linked list. ~\newline
+
+\item allocated\+: Boolean flag indicating whether this region is currently allocated. ~\newline
+
+\item first\+\_\+block\+: Boolean flag indicating if this is the first block in the memory region. ~\newline
+
+\item num\+\_\+block\+\_\+used\+: Number of blocks used (will be 0 if first\+\_\+block is false). ~\newline
+
+\item total\+\_\+requested\+\_\+memory\+: Total requested memory for this block of list, not rounded to the nearest 1024. ~\newline
+ 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structNode_a5d5bd5e5d7d09e57262f8a3672e0248d}\label{structNode_a5d5bd5e5d7d09e57262f8a3672e0248d}} 
+\index{Node@{Node}!addr@{addr}}
+\index{addr@{addr}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{addr}{addr}}
+{\footnotesize\ttfamily void$\ast$ Node\+::addr}
+
+Starting address of the memory region. \mbox{\Hypertarget{structNode_a085a38a4ec52a1417c33151edddaba50}\label{structNode_a085a38a4ec52a1417c33151edddaba50}} 
+\index{Node@{Node}!allocated@{allocated}}
+\index{allocated@{allocated}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{allocated}{allocated}}
+{\footnotesize\ttfamily bool Node\+::allocated}
+
+Boolean flag indicating whether this region is currently allocated. \mbox{\Hypertarget{structNode_aa048aae0307099740c369d3766e02414}\label{structNode_aa048aae0307099740c369d3766e02414}} 
+\index{Node@{Node}!first\_block@{first\_block}}
+\index{first\_block@{first\_block}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{first\_block}{first\_block}}
+{\footnotesize\ttfamily bool Node\+::first\+\_\+block}
+
+Boolean flag indicating if this is the first block in the memory region. \mbox{\Hypertarget{structNode_af67b110ca1a258b793bf69d306929b22}\label{structNode_af67b110ca1a258b793bf69d306929b22}} 
+\index{Node@{Node}!next@{next}}
+\index{next@{next}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ Node\+::next}
+
+Pointer to the next node in the linked list. \mbox{\Hypertarget{structNode_a3cb2fa70b6986cc8a606fc86d4e14ede}\label{structNode_a3cb2fa70b6986cc8a606fc86d4e14ede}} 
+\index{Node@{Node}!num\_block\_used@{num\_block\_used}}
+\index{num\_block\_used@{num\_block\_used}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{num\_block\_used}{num\_block\_used}}
+{\footnotesize\ttfamily size\+\_\+t Node\+::num\+\_\+block\+\_\+used}
+
+Number of blocks used (will be 0 if first\+\_\+block is false). \mbox{\Hypertarget{structNode_aeda96509e2e7bbcbb3c35c498b4f7d3a}\label{structNode_aeda96509e2e7bbcbb3c35c498b4f7d3a}} 
+\index{Node@{Node}!size@{size}}
+\index{size@{size}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily size\+\_\+t Node\+::size}
+
+Size of the memory region. \mbox{\Hypertarget{structNode_af27582df8e3b170d686ec6957cb68e20}\label{structNode_af27582df8e3b170d686ec6957cb68e20}} 
+\index{Node@{Node}!total\_requested\_memory@{total\_requested\_memory}}
+\index{total\_requested\_memory@{total\_requested\_memory}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{total\_requested\_memory}{total\_requested\_memory}}
+{\footnotesize\ttfamily size\+\_\+t Node\+::total\+\_\+requested\+\_\+memory}
+
+Total requested memory for this block of list, not rounded to the nearest 1024. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-lowlevel/mem.\+h\end{DoxyCompactItemize}
+lowlevel/\mbox{\hyperlink{mem_8h}{mem.\+h}}\end{DoxyCompactItemize}

@@ -75,9 +75,9 @@ $(function() {
 
 <p>Memory Allocation Implementation.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;mem.h&quot;</code><br />
-<code>#include &quot;internal.h&quot;</code><br />
-<code>#include &quot;mem_config.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="mem_8h_source.html">mem.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="internal_8h_source.html">internal.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mem__config_8h_source.html">mem_config.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -127,22 +127,28 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>run_checks</b> ()</t
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aca28c5c6565ca8703cf66b756b53b7ee"><td class="memItemLeft" align="right" valign="top"><a id="aca28c5c6565ca8703cf66b756b53b7ee"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>memory_region</b></td></tr>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a></td></tr>
+<tr class="memdesc:aca28c5c6565ca8703cf66b756b53b7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the start of the memory region. <br /></td></tr>
 <tr class="separator:aca28c5c6565ca8703cf66b756b53b7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e782bcef4eab440683366fe6438b980"><td class="memItemLeft" align="right" valign="top"><a id="a4e782bcef4eab440683366fe6438b980"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>end_of_node_region</b></td></tr>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem_8c.html#a4e782bcef4eab440683366fe6438b980">end_of_node_region</a></td></tr>
+<tr class="memdesc:a4e782bcef4eab440683366fe6438b980"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the end of the node region. <br /></td></tr>
 <tr class="separator:a4e782bcef4eab440683366fe6438b980"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6b2a6f19301c47e33923a1e6c9eee1a"><td class="memItemLeft" align="right" valign="top"><a id="ab6b2a6f19301c47e33923a1e6c9eee1a"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>memory_region_end</b></td></tr>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem_8c.html#ab6b2a6f19301c47e33923a1e6c9eee1a">memory_region_end</a></td></tr>
+<tr class="memdesc:ab6b2a6f19301c47e33923a1e6c9eee1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the end of the memory region. <br /></td></tr>
 <tr class="separator:ab6b2a6f19301c47e33923a1e6c9eee1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39ec70fceae7136c5845681ca15efba4"><td class="memItemLeft" align="right" valign="top"><a id="a39ec70fceae7136c5845681ca15efba4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>memory_allocation_error_code</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem_8c.html#a39ec70fceae7136c5845681ca15efba4">memory_allocation_error_code</a></td></tr>
+<tr class="memdesc:a39ec70fceae7136c5845681ca15efba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code for memory allocation. <br /></td></tr>
 <tr class="separator:a39ec70fceae7136c5845681ca15efba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13d0831f9ba96575fe7e9e4bd0b906ed"><td class="memItemLeft" align="right" valign="top"><a id="a13d0831f9ba96575fe7e9e4bd0b906ed"></a>
-<a class="el" href="structFreeZone.html">FreeZone</a>&#160;</td><td class="memItemRight" valign="bottom"><b>free_zones</b> [MAX_CASHED_ALLOCATIONS] = {}</td></tr>
-<tr class="separator:a13d0831f9ba96575fe7e9e4bd0b906ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071440f538671d3d18717b979c520cee"><td class="memItemLeft" align="right" valign="top"><a id="a071440f538671d3d18717b979c520cee"></a>
+<a class="el" href="structFreeZone.html">FreeZone</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem_8c.html#a071440f538671d3d18717b979c520cee">free_zones</a> [<a class="el" href="mem__config_8h.html#a758a6c4f227e0f328c9b9db46cf40c8c">MAX_CACHED_ALLOCATIONS</a>] = {}</td></tr>
+<tr class="memdesc:a071440f538671d3d18717b979c520cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of free memory zones. <br /></td></tr>
+<tr class="separator:a071440f538671d3d18717b979c520cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14a4a881a56a62ab9c5d60bc975165b0"><td class="memItemLeft" align="right" valign="top"><a id="a14a4a881a56a62ab9c5d60bc975165b0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>free_zone_count</b> = 0</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem_8c.html#a14a4a881a56a62ab9c5d60bc975165b0">free_zone_count</a> = 0</td></tr>
+<tr class="memdesc:a14a4a881a56a62ab9c5d60bc975165b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of free memory zones. <br /></td></tr>
 <tr class="separator:a14a4a881a56a62ab9c5d60bc975165b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -150,7 +156,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>free_zone_count</b> = 
 <dl class="section author"><dt>Author</dt><dd>Tristan Kuhn </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Tristan Kuhn </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-09-15 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 <br  />
+ </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a528f68e26e73ebabf3a07b18274948a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a528f68e26e73ebabf3a07b18274948a8">&#9670;&nbsp;</a></span>buffer_overflow_detector()</h2>
@@ -479,7 +486,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>free_zone_count</b> = 
 </div><div class="memdoc">
 
 <p>Frees memory blocks starting from the specified address and updates the linked list. Also removes the corresponding block from the memory_allocations list and sorts it. </p>
-<p>This function is responsible for freeing memory blocks starting from the specified address and updating the linked list accordingly. It takes the address of the memory to free as a parameter. The function searches for the node corresponding to the given address in the linked list. If the node is found and the memory is allocated, the function marks the memory blocks as free in the linked list. It also updates the necessary fields in the nodes. Additionally, the function creates a <a class="el" href="structFreeZone.html">FreeZone</a> structure to store information about the freed memory block, and adds it to the free_zones array. If the address is not found or the memory is not allocated, a log message is printed. The function returns NULL after freeing the memory blocks.</p>
+<p>This function is responsible for freeing memory blocks starting from the specified address and updating the linked list accordingly. It takes the address of the memory to free as a parameter. The function searches for the node corresponding to the given address in the linked list. If the node is found and the memory is allocated, the function marks the memory blocks as free in the linked list. It also updates the necessary fields in the nodes. Additionally, the function creates a <a class="el" href="structFreeZone.html" title="Structure for representing a free memory zone.">FreeZone</a> structure to store information about the freed memory block, and adds it to the free_zones array. If the address is not found or the memory is not allocated, a log message is printed. The function returns NULL after freeing the memory blocks.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>The address of the memory to free. </td></tr>

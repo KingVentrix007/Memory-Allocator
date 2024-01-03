@@ -1,13 +1,13 @@
 \hypertarget{md_docs_examples_basic_autotoc_md1}{}\doxysubsection{Basic Memory Allocation and Deallocation}\label{md_docs_examples_basic_autotoc_md1}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}mem.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{mem_8h}{mem.h}}"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} main() \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}}() \{}
 \DoxyCodeLine{    \textcolor{comment}{// Allocate initial memory}}
-\DoxyCodeLine{    \textcolor{keywordtype}{void} *memory\_region = malloc([initial\_memory\_size]);}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(memory\_region, [initial\_memory\_size]);}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} *\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}} = malloc([initial\_memory\_size]);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}}, [initial\_memory\_size]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Allocate memory}}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} *ptr1 = \mbox{\hyperlink{mem_8c_a7b9a0e78f9993c8f45e8ccaea7f14dd5}{sys\_allocate\_memory}}([size1]);}
@@ -21,7 +21,7 @@
 \DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\_free\_memory}}(ptr1);}
 \DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\_free\_memory}}(ptr2);}
 \DoxyCodeLine{}
-\DoxyCodeLine{    free(memory\_region);}
+\DoxyCodeLine{    free(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}});}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{``````}
@@ -29,13 +29,13 @@
 \DoxyCodeLine{\textcolor{preprocessor}{\#\#\# Extend Allocation Space (Currently In Progress)}}
 \DoxyCodeLine{}
 \DoxyCodeLine{```c}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}mem.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{mem_8h}{mem.h}}"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} main() \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}}() \{}
 \DoxyCodeLine{    \textcolor{comment}{// Allocate initial memory}}
-\DoxyCodeLine{    \textcolor{keywordtype}{void} *memory\_region = malloc([initial\_memory\_size]);}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(memory\_region, [initial\_memory\_size]);}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} *\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}} = malloc([initial\_memory\_size]);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}}, [initial\_memory\_size]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Extend allocation space}}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} *new\_region = malloc([extra\_memory\_size]);}
@@ -43,7 +43,7 @@
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Your code here}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    free(memory\_region);}
+\DoxyCodeLine{    free(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}});}
 \DoxyCodeLine{    free(new\_region);}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\}}
@@ -52,7 +52,7 @@
 \DoxyCodeLine{\textcolor{preprocessor}{\#\#\# Buffer Overflow Drection}}
 \DoxyCodeLine{}
 \DoxyCodeLine{```c}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}mem.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{mem_8h}{mem.h}}"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int} detect\_buffer\_overflow() \{}
@@ -69,10 +69,10 @@
 \DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} main() \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}}() \{}
 \DoxyCodeLine{    \textcolor{comment}{// Allocate initial memory}}
-\DoxyCodeLine{    \textcolor{keywordtype}{void} *memory\_region = malloc([initial\_memory\_size]);}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(memory\_region, [initial\_memory\_size]);}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} *\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}} = malloc([initial\_memory\_size]);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}}, [initial\_memory\_size]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Your code here}}
 \DoxyCodeLine{}
@@ -83,7 +83,7 @@
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Free memory}}
-\DoxyCodeLine{    free(memory\_region);}
+\DoxyCodeLine{    free(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}});}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\}}
 
@@ -91,26 +91,26 @@
 \hypertarget{md_docs_examples_basic_autotoc_md2}{}\doxysubsection{Reallocate Memory}\label{md_docs_examples_basic_autotoc_md2}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}mem.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{mem_8h}{mem.h}}"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} main() \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}}() \{}
 \DoxyCodeLine{    \textcolor{comment}{// Allocate initial memory}}
-\DoxyCodeLine{    \textcolor{keywordtype}{void} *memory\_region = malloc([initial\_memory\_size]);}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(memory\_region, [initial\_memory\_size]);}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} *\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}} = malloc([initial\_memory\_size]);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}}, [initial\_memory\_size]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Your code here}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Reallocate memory to a new size}}
 \DoxyCodeLine{    \textcolor{keywordtype}{size\_t} new\_size = [new\_memory\_size];}
-\DoxyCodeLine{    \textcolor{keywordtype}{void} *new\_memory\_region = \mbox{\hyperlink{mem_8c_aa2cb60350e8b0887063d3976054b6769}{sys\_reallocate\_memory}}(memory\_region, new\_size);}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} *new\_memory\_region = \mbox{\hyperlink{mem_8c_aa2cb60350e8b0887063d3976054b6769}{sys\_reallocate\_memory}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}}, new\_size);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{if} (new\_memory\_region != NULL) \{}
 \DoxyCodeLine{        \textcolor{comment}{// Memory reallocation successful}}
 \DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}Memory reallocated successfully to \%zu bytes.\(\backslash\)n"{}}, new\_size);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        \textcolor{comment}{// Update the memory region pointer to the new location}}
-\DoxyCodeLine{        memory\_region = new\_memory\_region;}
+\DoxyCodeLine{        \mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}} = new\_memory\_region;}
 \DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
 \DoxyCodeLine{        \textcolor{comment}{// Memory reallocation failed}}
 \DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}Memory reallocation failed.\(\backslash\)n"{}});}
@@ -119,7 +119,7 @@
 \DoxyCodeLine{    \textcolor{comment}{// Your code here}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Free the allocated memory when done}}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\_free\_memory}}(memory\_region);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\_free\_memory}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\}}
@@ -128,24 +128,24 @@
 \hypertarget{md_docs_examples_basic_autotoc_md3}{}\doxysubsection{Get Memory Size}\label{md_docs_examples_basic_autotoc_md3}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}mem.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{mem_8h}{mem.h}}"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} main() \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}}() \{}
 \DoxyCodeLine{    \textcolor{comment}{// Allocate initial memory}}
-\DoxyCodeLine{    \textcolor{keywordtype}{void} *memory\_region = malloc([initial\_memory\_size]);}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(memory\_region, [initial\_memory\_size]);}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} *\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}} = malloc([initial\_memory\_size]);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\_memory\_allocation}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}}, [initial\_memory\_size]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Your code here}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Get the size of the allocated memory}}
-\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} allocated\_size = \mbox{\hyperlink{mem_8c_afcde9dfb4a3501997defaf0629f3729f}{get\_memory\_size}}(memory\_region);}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} allocated\_size = \mbox{\hyperlink{mem_8c_afcde9dfb4a3501997defaf0629f3729f}{get\_memory\_size}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}});}
 \DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Size of allocated memory: \%zu bytes.\(\backslash\)n"{}}, allocated\_size);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Your code here}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Free the allocated memory when done}}
-\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\_free\_memory}}(memory\_region);}
+\DoxyCodeLine{    \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\_free\_memory}}(\mbox{\hyperlink{mem_8c_aca28c5c6565ca8703cf66b756b53b7ee}{memory\_region}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\}}

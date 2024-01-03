@@ -1,19 +1,56 @@
 \hypertarget{structMemoryAllocationInfo}{}\doxysection{Memory\+Allocation\+Info Struct Reference}
 \label{structMemoryAllocationInfo}\index{MemoryAllocationInfo@{MemoryAllocationInfo}}
+
+
+Structure for representing memory allocation information.  
+
+
+
+
+{\ttfamily \#include $<$mem.\+h$>$}
+
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structMemoryAllocationInfo_a7a5c24a9444a0605d8d4b48a997960de}\label{structMemoryAllocationInfo_a7a5c24a9444a0605d8d4b48a997960de}} 
-int {\bfseries size}
+int \mbox{\hyperlink{structMemoryAllocationInfo_a7a5c24a9444a0605d8d4b48a997960de}{size}}
 \item 
-\mbox{\Hypertarget{structMemoryAllocationInfo_aeb3e919afbcbb2dc1e664ecf94a803a2}\label{structMemoryAllocationInfo_aeb3e919afbcbb2dc1e664ecf94a803a2}} 
-int {\bfseries allocated\+\_\+size}
+int \mbox{\hyperlink{structMemoryAllocationInfo_aeb3e919afbcbb2dc1e664ecf94a803a2}{allocated\+\_\+size}}
 \item 
-\mbox{\Hypertarget{structMemoryAllocationInfo_ac5be71f88d8adef44b454f5a8e3e1c89}\label{structMemoryAllocationInfo_ac5be71f88d8adef44b454f5a8e3e1c89}} 
-void $\ast$ {\bfseries ptr}
+void $\ast$ \mbox{\hyperlink{structMemoryAllocationInfo_ac5be71f88d8adef44b454f5a8e3e1c89}{ptr}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Structure for representing memory allocation information. 
+
+This structure represents memory allocation information and contains the following fields\+:
+\begin{DoxyItemize}
+\item size\+: Size of the allocation in bytes. This is the exact number of bytes requested.
+\item allocated\+\_\+size\+: Size of the allocated memory region in bytes. This is the size of the memory region rounded to the nearest 1024 (or the size specified by Node-\/$>$size).
+\item ptr\+: Pointer to the allocated memory region. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structMemoryAllocationInfo_aeb3e919afbcbb2dc1e664ecf94a803a2}\label{structMemoryAllocationInfo_aeb3e919afbcbb2dc1e664ecf94a803a2}} 
+\index{MemoryAllocationInfo@{MemoryAllocationInfo}!allocated\_size@{allocated\_size}}
+\index{allocated\_size@{allocated\_size}!MemoryAllocationInfo@{MemoryAllocationInfo}}
+\doxysubsubsection{\texorpdfstring{allocated\_size}{allocated\_size}}
+{\footnotesize\ttfamily int Memory\+Allocation\+Info\+::allocated\+\_\+size}
+
+Size of the allocated memory region in bytes. \mbox{\Hypertarget{structMemoryAllocationInfo_ac5be71f88d8adef44b454f5a8e3e1c89}\label{structMemoryAllocationInfo_ac5be71f88d8adef44b454f5a8e3e1c89}} 
+\index{MemoryAllocationInfo@{MemoryAllocationInfo}!ptr@{ptr}}
+\index{ptr@{ptr}!MemoryAllocationInfo@{MemoryAllocationInfo}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily void$\ast$ Memory\+Allocation\+Info\+::ptr}
+
+Pointer to the allocated memory region. \mbox{\Hypertarget{structMemoryAllocationInfo_a7a5c24a9444a0605d8d4b48a997960de}\label{structMemoryAllocationInfo_a7a5c24a9444a0605d8d4b48a997960de}} 
+\index{MemoryAllocationInfo@{MemoryAllocationInfo}!size@{size}}
+\index{size@{size}!MemoryAllocationInfo@{MemoryAllocationInfo}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Memory\+Allocation\+Info\+::size}
+
+Size of the allocation in bytes. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-lowlevel/mem.\+h\end{DoxyCompactItemize}
+lowlevel/\mbox{\hyperlink{mem_8h}{mem.\+h}}\end{DoxyCompactItemize}

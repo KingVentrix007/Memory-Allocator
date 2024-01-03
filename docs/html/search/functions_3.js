@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_5fmemory_5fsize_34',['get_memory_size',['../mem_8c.html#afcde9dfb4a3501997defaf0629f3729f',1,'mem.c']]]
+  ['get_5fmemory_5fsize_78',['get_memory_size',['../mem_8c.html#afcde9dfb4a3501997defaf0629f3729f',1,'get_memory_size(const void *ptr):&#160;mem.c'],['../mem_8h.html#afcde9dfb4a3501997defaf0629f3729f',1,'get_memory_size(const void *ptr):&#160;mem.c']]]
 ];

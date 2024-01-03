@@ -17,7 +17,7 @@ void $\ast$ \mbox{\hyperlink{internal_8c_aadb9d5aa083dd16617e1c815983d0ced}{inte
 \begin{DoxyCompactList}\small\item\em Copies n bytes from memory area src to memory area dest. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{internal_8c_ac1a558281cc4d8e6001984cd0847ce4f}{internal\+\_\+memset}} (void $\ast$s, int c, size\+\_\+t n)
 \begin{DoxyCompactList}\small\item\em Custom implementation of memset. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{internal_8c_ad0cfc2f7d6578686228bb9c99d3c2307}{ptr\+\_\+is\+\_\+null}} (void $\ast$ptr)
+int \mbox{\hyperlink{internal_8c_a9ce3a4684c563d4684aaa5fc42ac7452}{ptr\+\_\+is\+\_\+null}} (void $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Checks if a pointer is null. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -111,11 +111,11 @@ This function sets the value of each byte in the specified memory area (s) to th
 \begin{DoxyReturn}{Returns}
 (void$\ast$) -\/ Pointer to the memory area (s). 
 \end{DoxyReturn}
-\mbox{\Hypertarget{internal_8c_ad0cfc2f7d6578686228bb9c99d3c2307}\label{internal_8c_ad0cfc2f7d6578686228bb9c99d3c2307}} 
+\mbox{\Hypertarget{internal_8c_a9ce3a4684c563d4684aaa5fc42ac7452}\label{internal_8c_a9ce3a4684c563d4684aaa5fc42ac7452}} 
 \index{internal.c@{internal.c}!ptr\_is\_null@{ptr\_is\_null}}
 \index{ptr\_is\_null@{ptr\_is\_null}!internal.c@{internal.c}}
 \doxysubsubsection{\texorpdfstring{ptr\_is\_null()}{ptr\_is\_null()}}
-{\footnotesize\ttfamily void ptr\+\_\+is\+\_\+null (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ptr\+\_\+is\+\_\+null (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
 
 
 
@@ -132,5 +132,5 @@ This function assumes the existence of a macro MEM\+\_\+\+ALLOC\+\_\+\+LOG for l
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-void 
+int 
 \end{DoxyReturn}

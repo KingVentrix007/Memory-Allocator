@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['extend_5fallocation_5fspace_1',['extend_allocation_space',['../mem_8c.html#a6edaee3ea2b783507029f348655a1374',1,'mem.c']]]
+  ['block_5fsize_4',['BLOCK_SIZE',['../mem__config_8h.html#ad51ded0bbd705f02f73fc60c0b721ced',1,'mem_config.h']]],
+  ['buffer_5foverflow_5fdetector_5',['buffer_overflow_detector',['../mem_8c.html#a528f68e26e73ebabf3a07b18274948a8',1,'buffer_overflow_detector():&#160;mem.c'],['../mem_8h.html#a528f68e26e73ebabf3a07b18274948a8',1,'buffer_overflow_detector():&#160;mem.c']]]
 ];

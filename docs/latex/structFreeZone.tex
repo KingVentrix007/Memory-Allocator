@@ -1,19 +1,56 @@
 \hypertarget{structFreeZone}{}\doxysection{Free\+Zone Struct Reference}
 \label{structFreeZone}\index{FreeZone@{FreeZone}}
+
+
+Structure for representing a free memory zone.  
+
+
+
+
+{\ttfamily \#include $<$mem.\+h$>$}
+
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structFreeZone_a6df3024102b1c99886bcf475a1b2954d}\label{structFreeZone_a6df3024102b1c99886bcf475a1b2954d}} 
-void $\ast$ {\bfseries start\+\_\+ptr}
+void $\ast$ \mbox{\hyperlink{structFreeZone_a6df3024102b1c99886bcf475a1b2954d}{start\+\_\+ptr}}
 \item 
-\mbox{\Hypertarget{structFreeZone_ad7e703a43d263a8a9746000041f252e0}\label{structFreeZone_ad7e703a43d263a8a9746000041f252e0}} 
-void $\ast$ {\bfseries end\+\_\+ptr}
+void $\ast$ \mbox{\hyperlink{structFreeZone_ad7e703a43d263a8a9746000041f252e0}{end\+\_\+ptr}}
 \item 
-\mbox{\Hypertarget{structFreeZone_a23cf239d3b4184cc0b84c1b0fc6e4e23}\label{structFreeZone_a23cf239d3b4184cc0b84c1b0fc6e4e23}} 
-size\+\_\+t {\bfseries size}
+size\+\_\+t \mbox{\hyperlink{structFreeZone_a23cf239d3b4184cc0b84c1b0fc6e4e23}{size}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Structure for representing a free memory zone. 
+
+This structure represents a free memory zone and contains the following fields\+:
+\begin{DoxyItemize}
+\item start\+\_\+ptr\+: Pointer to the start of the free memory zone.
+\item end\+\_\+ptr\+: Pointer to the end of the free memory zone.
+\item size\+: Size of the free memory zone in bytes. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structFreeZone_ad7e703a43d263a8a9746000041f252e0}\label{structFreeZone_ad7e703a43d263a8a9746000041f252e0}} 
+\index{FreeZone@{FreeZone}!end\_ptr@{end\_ptr}}
+\index{end\_ptr@{end\_ptr}!FreeZone@{FreeZone}}
+\doxysubsubsection{\texorpdfstring{end\_ptr}{end\_ptr}}
+{\footnotesize\ttfamily void$\ast$ Free\+Zone\+::end\+\_\+ptr}
+
+Pointer to the end of the free memory zone. \mbox{\Hypertarget{structFreeZone_a23cf239d3b4184cc0b84c1b0fc6e4e23}\label{structFreeZone_a23cf239d3b4184cc0b84c1b0fc6e4e23}} 
+\index{FreeZone@{FreeZone}!size@{size}}
+\index{size@{size}!FreeZone@{FreeZone}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily size\+\_\+t Free\+Zone\+::size}
+
+Size of the free memory zone in bytes. \mbox{\Hypertarget{structFreeZone_a6df3024102b1c99886bcf475a1b2954d}\label{structFreeZone_a6df3024102b1c99886bcf475a1b2954d}} 
+\index{FreeZone@{FreeZone}!start\_ptr@{start\_ptr}}
+\index{start\_ptr@{start\_ptr}!FreeZone@{FreeZone}}
+\doxysubsubsection{\texorpdfstring{start\_ptr}{start\_ptr}}
+{\footnotesize\ttfamily void$\ast$ Free\+Zone\+::start\+\_\+ptr}
+
+Pointer to the start of the free memory zone. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-lowlevel/mem.\+h\end{DoxyCompactItemize}
+lowlevel/\mbox{\hyperlink{mem_8h}{mem.\+h}}\end{DoxyCompactItemize}

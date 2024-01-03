@@ -1,26 +1,44 @@
-/*
- * File: mem_config.h
- * Language: C
- * 
- * Summary:
- * This header file defines the configuration settings for memory management.
- * It defines constants for the block size, maximum number of cached allocations,
- * default log level, and whether to use verbose output. If USE_VERBOSE_OUTPUT
- * is set to 1, the MEMORY_ALLOCATION_VERBOSE_OUTPUT macro is also defined.
+/**
+ * @file mem_config.h
+ * @brief Configuration settings for memory management.
  */
 
-#ifndef __MEM_CONFIG__H
-#define __MEM_CONFIG__H
+#ifndef MEM_CONFIG_H
+#define MEM_CONFIG_H
 
-#define BLOCK_SIZE 1024 // The Block Size that each node will have
-#define MAX_CASHED_ALLOCATIONS 100 // THe max number of cashed allocations
-#define DEFAULT_LOG_LEVEL 0 // Log level by default
-#define USE_VERBOSE_OUTPUT 0 // Use verbose output for debugging
-#define ALIGNMENT 16 // The memory alignment
-#define RUN_CHECKS_ON_ALLOCATE 0 //Wether or not to run checks on memory allocation 0=false, 1=true
-#define RUN_CHECKS_ON_FREE 0 //Wether or not to run checks on free memory 0=false, 1=true
+/**
+ * @brief Block size for memory management.
+ */
+#define BLOCK_SIZE 1024
+
+/**
+ * @brief Maximum number of cached allocations.
+ */
+#define MAX_CACHED_ALLOCATIONS 100
+
+/**
+ * @brief Alignment of teh memory region in bytes
+ * 
+ */
+
+#define ALIGNMENT 16
+/**
+ * @brief Default log level for memory management.
+ */
+#define DEFAULT_LOG_LEVEL 2
+
+/**
+ * @brief Use verbose output for memory management.
+ *
+ * If USE_VERBOSE_OUTPUT is set to 1, the MEMORY_ALLOCATION_VERBOSE_OUTPUT macro is also defined.
+ */
+#define USE_VERBOSE_OUTPUT 0
+
 #if USE_VERBOSE_OUTPUT == 1
+/**
+ * @brief Macro for verbose output in memory management.
+ */
 #define MEMORY_ALLOCATION_VERBOSE_OUTPUT
 #endif
 
-#endif
+#endif /* MEM_CONFIG_H */

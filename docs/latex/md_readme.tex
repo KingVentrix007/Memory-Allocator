@@ -22,14 +22,14 @@ This repository contains a simple memory allocator designed for hobby operating 
 \`{}\`{}\`{}bash git clone \href{https://github.com/KingVentrix007/Memory-Allocator.git}{\texttt{ https\+://github.\+com/\+King\+Ventrix007/\+Memory-\/\+Allocator.\+git}} \`{}\`{}\`{}
 \item {\bfseries{Include the Memory Allocator in Your Project\+:}}
 
-Include the necessary files ({\ttfamily \mbox{\hyperlink{mem_8h_source}{mem.\+h}}} and {\ttfamily \mbox{\hyperlink{mem_8c}{mem.\+c}}} and optinally {\ttfamily \mbox{\hyperlink{internal_8c}{internal.\+c}}} and {\ttfamily \mbox{\hyperlink{internal_8h_source}{internal.\+h}}}) in your hobby OS project. {\bfseries{Important}} \mbox{\hyperlink{mem_8c}{mem.\+c}} and \mbox{\hyperlink{mem_8h_source}{mem.\+h}} rely on memset,memcpy and other mem functions, These need to be provided or \mbox{\hyperlink{internal_8c}{internal.\+c}} and \mbox{\hyperlink{internal_8h_source}{internal.\+h}} must be included
+Include the necessary files ({\ttfamily \mbox{\hyperlink{mem_8h}{mem.\+h}}} and {\ttfamily \mbox{\hyperlink{mem_8c}{mem.\+c}}} and optinally {\ttfamily \mbox{\hyperlink{internal_8c}{internal.\+c}}} and {\ttfamily \mbox{\hyperlink{internal_8h}{internal.\+h}}}) in your hobby OS project. {\bfseries{Important}} \mbox{\hyperlink{mem_8c}{mem.\+c}} and \mbox{\hyperlink{mem_8h}{mem.\+h}} rely on memset,memcpy and other mem functions, These need to be provided or \mbox{\hyperlink{internal_8c}{internal.\+c}} and \mbox{\hyperlink{internal_8h}{internal.\+h}} must be included
 \item {\bfseries{Initialize Memory Allocation\+:}}
 
 \`{}\`{}\`{}c \#include \char`\"{}mem.\+h\char`\"{}
 
 void $\ast$memory\+\_\+region = NULL;
 
-int main() \{ // Allocate initial memory memory\+\_\+region = (void$\ast$)start\+\_\+of\+\_\+open\+\_\+memory; init\+\_\+memory\+\_\+allocation(memory\+\_\+region, \mbox{[}size of start\+\_\+of\+\_\+open\+\_\+memory\mbox{]});
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}} \{ // Allocate initial memory memory\+\_\+region = (void$\ast$)start\+\_\+of\+\_\+open\+\_\+memory; init\+\_\+memory\+\_\+allocation(memory\+\_\+region, \mbox{[}size of start\+\_\+of\+\_\+open\+\_\+memory\mbox{]});
 
 // Your code here
 
@@ -61,7 +61,7 @@ See \href{/docs/examples/basic.md\#basic-memory-allocation-and-deallocation}{\te
 
 
 \begin{DoxyEnumerate}
-\item Edit \mbox{\hyperlink{mem__config_8h_source}{mem\+\_\+config.\+h}}
+\item Edit \mbox{\hyperlink{mem__config_8h}{mem\+\_\+config.\+h}}
 
 Set your desired parameters
 \item Run Normal version

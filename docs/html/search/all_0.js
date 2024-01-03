@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['buffer_5foverflow_5fdetector_0',['buffer_overflow_detector',['../mem_8c.html#a528f68e26e73ebabf3a07b18274948a8',1,'mem.c']]]
+  ['addr_0',['addr',['../structNode.html#a5d5bd5e5d7d09e57262f8a3672e0248d',1,'Node']]],
+  ['alignment_1',['ALIGNMENT',['../mem__config_8h.html#a450f9d8af07bfe2f313dbe3a78738a5e',1,'mem_config.h']]],
+  ['allocated_2',['allocated',['../structNode.html#a085a38a4ec52a1417c33151edddaba50',1,'Node']]],
+  ['allocated_5fsize_3',['allocated_size',['../structMemoryAllocationInfo.html#aeb3e919afbcbb2dc1e664ecf94a803a2',1,'MemoryAllocationInfo']]]
 ];

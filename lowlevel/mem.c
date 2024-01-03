@@ -9,12 +9,36 @@
 #include "mem.h"
 #include "internal.h"
 #include "mem_config.h"
-void *memory_region;
-void *end_of_node_region;
-void *memory_region_end;
+/**
+ * @brief Pointer to the start of the memory region.
+ */
+void* memory_region;
+
+/**
+ * @brief Pointer to the end of the node region.
+ */
+void* end_of_node_region;
+
+/**
+ * @brief Pointer to the end of the memory region.
+ */
+void* memory_region_end;
+
+/**
+ * @brief Error code for memory allocation.
+ */
 int memory_allocation_error_code;
-FreeZone free_zones[MAX_CASHED_ALLOCATIONS] = {};
+
+/**
+ * @brief Array of free memory zones.
+ */
+FreeZone free_zones[MAX_CACHED_ALLOCATIONS] = {};
+
+/**
+ * @brief Number of free memory zones.
+ */
 int free_zone_count = 0;
+
 #ifdef STANDALONE_MEMORY_ALLOCATION
 
 #ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION

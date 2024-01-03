@@ -1,0 +1,78 @@
+\hypertarget{main_8c}{}\doxysection{test/main.c File Reference}
+\label{main_8c}\index{test/main.c@{test/main.c}}
+
+
+Unit tests for memory allocation and management functions.  
+
+
+{\ttfamily \#include \char`\"{}unity.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../lowlevel/mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_a95c834d6178047ce9e1bce7cbfea2836}\label{main_8c_a95c834d6178047ce9e1bce7cbfea2836}} 
+void \mbox{\hyperlink{main_8c_a95c834d6178047ce9e1bce7cbfea2836}{set\+Up}} (void)
+\begin{DoxyCompactList}\small\item\em Set up function called before each test function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a9909011e5fea0c018842eec4d93d0662}\label{main_8c_a9909011e5fea0c018842eec4d93d0662}} 
+void \mbox{\hyperlink{main_8c_a9909011e5fea0c018842eec4d93d0662}{tear\+Down}} (void)
+\begin{DoxyCompactList}\small\item\em Tear down function called after each test function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_aa839d6685b628c53b26af121af40d99b}\label{main_8c_aa839d6685b628c53b26af121af40d99b}} 
+void \mbox{\hyperlink{main_8c_aa839d6685b628c53b26af121af40d99b}{test\+\_\+allocate\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Tests the allocation of memory using sys\+\_\+allocate\+\_\+memory function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a31f46598ca0e5deba6eece821cc1be2a}\label{main_8c_a31f46598ca0e5deba6eece821cc1be2a}} 
+void \mbox{\hyperlink{main_8c_a31f46598ca0e5deba6eece821cc1be2a}{test\+\_\+store\+\_\+values}} ()
+\begin{DoxyCompactList}\small\item\em Tests storing values in the allocated memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_ab9ece4e9e1bac9aaf0f746cde20a514f}\label{main_8c_ab9ece4e9e1bac9aaf0f746cde20a514f}} 
+void \mbox{\hyperlink{main_8c_ab9ece4e9e1bac9aaf0f746cde20a514f}{test\+\_\+free\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Tests freeing allocated memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a28f3610187f1ec42f78864d78170e4f9}\label{main_8c_a28f3610187f1ec42f78864d78170e4f9}} 
+void \mbox{\hyperlink{main_8c_a28f3610187f1ec42f78864d78170e4f9}{test\+\_\+reallocate\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Tests reallocating memory using sys\+\_\+reallocate\+\_\+memory function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a638acc2bd4b643d4da5f62b9aa57d7df}\label{main_8c_a638acc2bd4b643d4da5f62b9aa57d7df}} 
+void \mbox{\hyperlink{main_8c_a638acc2bd4b643d4da5f62b9aa57d7df}{test\+\_\+invalid\+\_\+reallocation}} ()
+\begin{DoxyCompactList}\small\item\em Tests error handling for invalid parameters in reallocating memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a7a382ff243a1f95fa51660998bbc16d4}\label{main_8c_a7a382ff243a1f95fa51660998bbc16d4}} 
+void \mbox{\hyperlink{main_8c_a7a382ff243a1f95fa51660998bbc16d4}{test\+\_\+reallocate\+\_\+smaller\+\_\+size}} ()
+\begin{DoxyCompactList}\small\item\em Tests error handling for reallocating to smaller or equal size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a08dc2eb4bbb110b4f50cde85a7983138}\label{main_8c_a08dc2eb4bbb110b4f50cde85a7983138}} 
+void \mbox{\hyperlink{main_8c_a08dc2eb4bbb110b4f50cde85a7983138}{test\+\_\+get\+\_\+memory\+\_\+size}} ()
+\begin{DoxyCompactList}\small\item\em Tests getting the size of allocated memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a5c6158d888d3635bb99db07a4794ec14}\label{main_8c_a5c6158d888d3635bb99db07a4794ec14}} 
+void \mbox{\hyperlink{main_8c_a5c6158d888d3635bb99db07a4794ec14}{test\+\_\+free\+\_\+all\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Tests freeing all remaining allocated memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_ae7e4b1d29b86bbebdd1e5e879c19151e}\label{main_8c_ae7e4b1d29b86bbebdd1e5e879c19151e}} 
+void \mbox{\hyperlink{main_8c_ae7e4b1d29b86bbebdd1e5e879c19151e}{test\+\_\+buffer\+\_\+overflow\+\_\+detector}} ()
+\begin{DoxyCompactList}\small\item\em Tests buffer overflows detection. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Main function that runs all the test functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Unit tests for memory allocation and management functions. 
+
+This file contains unit tests for functions related to memory allocation, deallocation, reallocation, and memory size retrieval. \begin{DoxyAuthor}{Author}
+King\+Ventrix007 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+02/01/2024 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Main function that runs all the test functions. 
+
+\begin{DoxyReturn}{Returns}
+0 for success 
+\end{DoxyReturn}

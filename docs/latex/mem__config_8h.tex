@@ -1,0 +1,43 @@
+\hypertarget{mem__config_8h}{}\doxysection{lowlevel/mem\+\_\+config.h File Reference}
+\label{mem__config_8h}\index{lowlevel/mem\_config.h@{lowlevel/mem\_config.h}}
+
+
+Configuration settings for memory management.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mem__config_8h_ad51ded0bbd705f02f73fc60c0b721ced}\label{mem__config_8h_ad51ded0bbd705f02f73fc60c0b721ced}} 
+\#define \mbox{\hyperlink{mem__config_8h_ad51ded0bbd705f02f73fc60c0b721ced}{BLOCK\+\_\+\+SIZE}}~1024
+\begin{DoxyCompactList}\small\item\em Block size for memory management. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mem__config_8h_a758a6c4f227e0f328c9b9db46cf40c8c}\label{mem__config_8h_a758a6c4f227e0f328c9b9db46cf40c8c}} 
+\#define \mbox{\hyperlink{mem__config_8h_a758a6c4f227e0f328c9b9db46cf40c8c}{MAX\+\_\+\+CACHED\+\_\+\+ALLOCATIONS}}~100
+\begin{DoxyCompactList}\small\item\em Maximum number of cached allocations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mem__config_8h_a450f9d8af07bfe2f313dbe3a78738a5e}\label{mem__config_8h_a450f9d8af07bfe2f313dbe3a78738a5e}} 
+\#define \mbox{\hyperlink{mem__config_8h_a450f9d8af07bfe2f313dbe3a78738a5e}{ALIGNMENT}}~16
+\begin{DoxyCompactList}\small\item\em Alignment of teh memory region in bytes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mem__config_8h_afb19ed665807eb04101898b6548a614e}\label{mem__config_8h_afb19ed665807eb04101898b6548a614e}} 
+\#define \mbox{\hyperlink{mem__config_8h_afb19ed665807eb04101898b6548a614e}{DEFAULT\+\_\+\+LOG\+\_\+\+LEVEL}}~2
+\begin{DoxyCompactList}\small\item\em Default log level for memory management. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{mem__config_8h_a573e12d6733b1adbeaadb5d3b52d799f}{USE\+\_\+\+VERBOSE\+\_\+\+OUTPUT}}~0
+\begin{DoxyCompactList}\small\item\em Use verbose output for memory management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration settings for memory management. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mem__config_8h_a573e12d6733b1adbeaadb5d3b52d799f}\label{mem__config_8h_a573e12d6733b1adbeaadb5d3b52d799f}} 
+\index{mem\_config.h@{mem\_config.h}!USE\_VERBOSE\_OUTPUT@{USE\_VERBOSE\_OUTPUT}}
+\index{USE\_VERBOSE\_OUTPUT@{USE\_VERBOSE\_OUTPUT}!mem\_config.h@{mem\_config.h}}
+\doxysubsubsection{\texorpdfstring{USE\_VERBOSE\_OUTPUT}{USE\_VERBOSE\_OUTPUT}}
+{\footnotesize\ttfamily \#define USE\+\_\+\+VERBOSE\+\_\+\+OUTPUT~0}
+
+
+
+Use verbose output for memory management. 
+
+If USE\+\_\+\+VERBOSE\+\_\+\+OUTPUT is set to 1, the MEMORY\+\_\+\+ALLOCATION\+\_\+\+VERBOSE\+\_\+\+OUTPUT macro is also defined. 

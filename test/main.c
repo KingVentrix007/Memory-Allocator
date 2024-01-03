@@ -1,11 +1,10 @@
 /**
- * @file main_test.c
+ * @file main.c
  * @brief Unit tests for memory allocation and management functions.
  * @details This file contains unit tests for functions related to memory allocation,
  *          deallocation, reallocation, and memory size retrieval.
  * @author KingVentrix007
  * @date 02/01/2024
- * @code MIT
  * @version 1.0
  */
 

@@ -69,32 +69,24 @@ $(function() {
 <div class="title">mem_config.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * File: mem_config.h</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Language: C</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Summary:</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * This header file defines the configuration settings for memory management.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * It defines constants for the block size, maximum number of cached allocations,</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * default log level, and whether to use verbose output. If USE_VERBOSE_OUTPUT</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * is set to 1, the MEMORY_ALLOCATION_VERBOSE_OUTPUT macro is also defined.</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef __MEM_CONFIG__H</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define __MEM_CONFIG__H</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define BLOCK_SIZE 1024 </span><span class="comment">// The Block Size that each node will have</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define MAX_CASHED_ALLOCATIONS 100 </span><span class="comment">// THe max number of cashed allocations</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define DEFAULT_LOG_LEVEL 0 </span><span class="comment">// Log level by default</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define USE_VERBOSE_OUTPUT 0 </span><span class="comment">// Use verbose output for debugging</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define ALIGNMENT 16 </span><span class="comment">// The memory alignment</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define RUN_CHECKS_ON_ALLOCATE 0 </span><span class="comment">//Wether or not to run checks on memory allocation 0=false, 1=true</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define RUN_CHECKS_ON_FREE 0 </span><span class="comment">//Wether or not to run checks on free memory 0=false, 1=true</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#if USE_VERBOSE_OUTPUT == 1</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define MEMORY_ALLOCATION_VERBOSE_OUTPUT</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
+<a href="mem__config_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef MEM_CONFIG_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define MEM_CONFIG_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="mem__config_8h.html#ad51ded0bbd705f02f73fc60c0b721ced">   12</a></span>&#160;<span class="preprocessor">#define BLOCK_SIZE 1024</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="mem__config_8h.html#a758a6c4f227e0f328c9b9db46cf40c8c">   17</a></span>&#160;<span class="preprocessor">#define MAX_CACHED_ALLOCATIONS 100</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="mem__config_8h.html#a450f9d8af07bfe2f313dbe3a78738a5e">   24</a></span>&#160;<span class="preprocessor">#define ALIGNMENT 16</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="mem__config_8h.html#afb19ed665807eb04101898b6548a614e">   28</a></span>&#160;<span class="preprocessor">#define DEFAULT_LOG_LEVEL 2</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="mem__config_8h.html#a573e12d6733b1adbeaadb5d3b52d799f">   35</a></span>&#160;<span class="preprocessor">#define USE_VERBOSE_OUTPUT 0</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#if USE_VERBOSE_OUTPUT == 1</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define MEMORY_ALLOCATION_VERBOSE_OUTPUT</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MEM_CONFIG_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
