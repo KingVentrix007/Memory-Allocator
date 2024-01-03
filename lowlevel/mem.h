@@ -96,5 +96,5 @@ size_t get_memory_size(const void *ptr);
 
 int main_automated_testing();
 int main_automated_testing_end();
-int memory_leak_detector();
+int buffer_overflow_detector();
 #endif // MEMORY_MANAGER_H

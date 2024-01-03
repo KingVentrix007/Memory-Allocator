@@ -1,4 +1,5 @@
 # Memory Allocator for Hobby OS
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=alert_status)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=security_rating)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=bugs)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
@@ -11,6 +12,7 @@ This repository contains a simple memory allocator designed for hobby operating 
 
 
 ## Features
+
 - **Memory Allocation**: Allocate contiguous blocks of memory.
 - **Memory Deallocation**: Free previously allocated memory.
 - **Extend Allocation Space**: Dynamically extend the allocation space by connecting to a new memory region.
@@ -21,13 +23,14 @@ It can run on a hosted environment, or it can run as a part of an OS,
 - **Architecture Independent**:
 It uses NO architecture specific code, is fully portable
 - **And many others**
+
 ## Getting Started
 
 ### Prerequisites
 
 - An OS that can boot, and get information about memory from somewhere
 
-### Usage
+### Usage(In OS)
 
 1. **Clone the Repository:**
 
@@ -39,7 +42,6 @@ It uses NO architecture specific code, is fully portable
 
     Include the necessary files (`mem.h` and `mem.c` and optinally `internal.c` and `internal.h`) in your hobby OS project.
     **Important** mem.c and mem.h rely on memset,memcpy and other mem functions, These need to be provided or internal.c and internal.h must be included
- **Warning** In these examples `malloc` is used to simulate having a region of memory in the RAM, typically malloc would be replaced with the address of the memory region
 
 3. **Initialize Memory Allocation:**
 
@@ -50,8 +52,8 @@ It uses NO architecture specific code, is fully portable
 
     int main() {
         // Allocate initial memory
-        memory_region = malloc([initial_memory_size]);
-        init_memory_allocation(memory_region, [initial_memory_size]);
+        memory_region = (void*)start_of_open_memory;
+        init_memory_allocation(memory_region, [size of start_of_open_memory]);
 
         // Your code here
 
@@ -73,10 +75,41 @@ It uses NO architecture specific code, is fully portable
 
 5. **Extend Allocation Space:**
     **CURRENTLY NOT WORKING. IS IN PROGRESS**
+
     ```c
-    void *new_region = malloc([extra_memory_size]);
-    extend_allocation_space(new_region, [extra_memory_size]);
+    void *new_region = (void *)start_of_open_memory_2;
+    extend_allocation_space(new_region, [size of start_of_open_memory_2]);
     ```
+
+See [Examples](/docs/examples/basic.md#basic-memory-allocation-and-deallocation) for more.
+
+### Usage(Stand Alone)
+
+1. Clone repository
+
+```bash
+git clone https://github.com/KingVentrix007/Memory-Allocator.git
+```
+
+2. Edit mem_config.h
+
+    Set your desired parameters
+
+3. Run Normal version
+
+```bash
+make build
+make run
+```
+
+you can set `USE_VERBOSE_OUTPUT` to 1 in the config file to get printed output
+
+4. Run tests
+
+```bash
+make build-test
+make run-test
+```
 
 ## Contributing
 
@@ -84,4 +117,4 @@ If you have suggestions or improvements, feel free to open an issue or create a 
 
 ## License
 
-This project is licensed under the [MIT] - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT](https://opensource.org/license/mit/) - see the [LICENSE](LICENSE) file for details.

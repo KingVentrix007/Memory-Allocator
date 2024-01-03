@@ -1,7 +1,7 @@
 [
     {
-        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -o mem.out lowlevel/*.c",
-        "directory": "/home/king/AthenXDev/projects/memaroy_allction",
-        "file": "/home/king/AthenXDev/projects/memaroy_allction/lowlevel/*.c"
+        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -o mem.out lowlevel/*.c",
+        "directory": "/home/king/projects/memory_allocation",
+        "file": "/home/king/projects/memory_allocation/lowlevel/*.c"
     }
 ]

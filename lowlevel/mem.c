@@ -6,11 +6,12 @@
  * It provides functions for allocating, freeing, and reallocating memory blocks. 
  * The system uses a linked list of nodes to keep track of allocated and free memory blocks. 
  * The implementation also includes functions for initializing the memory region, 
- * extending the allocation space, printing memory information, and detecting memory leaks. 
+ * extending the allocation space, printing memory information, and detecting  buffer overflowss. 
  * 
  * @author Tristan Kuhn 
  * @date 2023-09-15 
  * @code MIT 
+ * @version 1.0
  */ 
 #include "mem.h"
 #include "internal.h"
@@ -559,18 +560,18 @@ void memcleanup()
 }
 
 /**
- * @brief Detects memory leaks by checking for non-zero bytes in the allocated memory regions.
+ * @brief Detects buffer overflows by checking for non-zero bytes in the allocated memory regions.
  *
- * This function is responsible for detecting memory leaks by checking for non-zero bytes in the allocated memory regions.
+ * This function is responsible for detecting  buffer overflowss by checking for non-zero bytes in the allocated memory regions.
  * It iterates through the linked list of nodes, checks if the memory region is allocated or not,
  * and if not, it copies the memory region to a temporary buffer and checks for non-zero bytes.
- * If non-zero bytes are found, a log message is printed indicating a possible memory leak.
+ * If non-zero bytes are found, a log message is printed indicating a possible  buffer overflows.
  * The function also keeps track of the last allocated memory block pointer for reference.
  * The logic involves iterating through the linked list, copying memory regions, and checking for non-zero bytes.
  *
- * @return 0 if no memory leak is detected, -1 if a possible memory leak is found.
+ * @return 0 if no  buffer overflows is detected, -1 if a possible  buffer overflows is found.
  */
-int memory_leak_detector()
+int buffer_overflow_detector()
 {
     Node *current_node = (Node *)memory_region;
     void *ptr = NULL;
@@ -588,7 +589,7 @@ int memory_leak_detector()
             {
                 if (temp_buffer[i] != 0)
                 {
-                    MEM_ALLOC_LOG(1, "Possible memory leak at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
+                    MEM_ALLOC_LOG(1, "Possible  buffer overflows at 0x%p. Possibly caused by allocation at 0x%p", current_node->addr, ptr);
                     return -1;
                 }
             }
@@ -602,5 +603,5 @@ int memory_leak_detector()
         current_node = current_node->next;
     }
 
-    return 0; // No memory leak detected
+    return 0; // No  buffer overflows detected
 }
