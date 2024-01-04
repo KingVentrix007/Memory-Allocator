@@ -9,6 +9,13 @@
 #include "mem.h"
 #include "internal.h"
 #include "mem_config.h"
+#ifdef STANDALONE_MEMORY_ALLOCATION
+#include <time.h>
+ double elapsed_times_allocate[10000];
+ int num_samples_alloc = 0;
+  double elapsed_times_free[10000];
+  int num_samples_free = 0;
+#endif
 /**
  * @brief Pointer to the start of the memory region.
  */
@@ -39,111 +46,7 @@ FreeZone free_zones[MAX_CACHED_ALLOCATIONS] = {};
  */
 int free_zone_count = 0;
 
-#ifdef STANDALONE_MEMORY_ALLOCATION
 
-#ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION
-
-/**
- * @brief Main function for standalone memory allocation.
- *
- * This function allocates initial memory using malloc and initializes memory allocation.
- * It then runs the memory allocator test suite and frees the initial allocated memory.
- *
- * @return 0 if successful, 1 if there was a problem using malloc.
- */
-int main()
-{
-    // Allocate initial memory
-    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    ptr_is_null(memory_region);
-    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-
-    // Run the memory allocator test suite
-
-    // Free the initial allocated memory
-    free(memory_region);
-    return 0;
-}
-
-/**
- * @brief Main function for automated testing.
- *
- * This function is used for automated testing of memory allocation.
- * It allocates initial memory using malloc and initializes memory allocation.
- *
- * @return 0 if successful, 1 if there was a problem using malloc.
- */
-int main_automated_testing()
-{
-    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    ptr_is_null(memory_region);
-    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    return 0;
-}
-
-/**
- * @brief Function to clean up after automated testing.
- *
- * This function ensures that memory_region is initialized before freeing it.
- * It frees the allocated memory and sets memory_region to NULL to avoid a dangling pointer.
- *
- * @return 0 if successful.
- */
-int main_automated_testing_end()
-{
-    // Ensure that memory_region is initialized before using it
-    if (memory_region != NULL)
-    {
-        free(memory_region);
-        memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
-    }
-    return 0;
-}
-
-#else
-
-/**
- * @brief Main function for automated testing.
- *
- * This function is used for automated testing of memory allocation.
- * It allocates initial memory using malloc and initializes memory allocation.
- *
- * @return 0 if successful, 1 if there was a problem using malloc.
- */
-int main_automated_testing()
-{
-    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    if (memory_region == NULL)
-    {
-        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
-        return 1;
-    }
-    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    return 0;
-}
-
-/**
- * @brief Function to clean up after automated testing.
- *
- * This function ensures that memory_region is initialized before freeing it.
- * It frees the allocated memory and sets memory_region to NULL to avoid a dangling pointer.
- *
- * @return 0 if successful.
- */
-int main_automated_testing_end()
-{
-    // Ensure that memory_region is initialized before using it
-    if (memory_region != NULL)
-    {
-        free(memory_region);
-        memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
-    }
-    return 0;
-}
-
-#endif
-
-#endif
 
 /**
  * @brief Prints information about a given node.
@@ -175,8 +78,9 @@ void print_node_info(const Node *node)
  * @param start_addr The starting address of the memory region.
  * @param size The size of the memory region.
  */
-void init_memory_allocation(void *start_addr, int size)
+void init_memory_allocation(void *start_addr, size_t size)
 {
+    printf("size = %d\n", size);
     init_memory_region(start_addr, size);
     // memory_allocations = (MemoryAllocationInfo *)sys_allocate_memory(sizeof(MemoryAllocationInfo) * 10);
     // Now nodes are initialized, and the available memory is divided accordingly
@@ -188,10 +92,14 @@ void init_memory_allocation(void *start_addr, int size)
  */
 void *sys_allocate_memory(int size)
 {
+    #ifdef STANDALONE_MEMORY_ALLOCATION
+    clock_t start_time = clock();
+    #endif
     #if RUN_CHECKS_ON_ALLOCATE == 1
     run_checks();
 
     #endif
+    
     // Calculate the number of blocks needed
     if (size > (memory_region_end - memory_region))
     {
@@ -234,6 +142,13 @@ void *sys_allocate_memory(int size)
                 }
 
                 MEM_ALLOC_LOG(2, "Allocated %d bytes of memory\n", size);
+                #ifdef STANDALONE_MEMORY_ALLOCATION
+                 clock_t end_time = clock();
+                 double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+                //  printf("Elapsed Time: %f seconds to allocate %lu bytes of memory\n", elapsed_time,size);
+                    elapsed_times_allocate[num_samples_alloc] = elapsed_time;
+                    num_samples_alloc++;
+                #endif
                 return start_node->addr;
             }
         }
@@ -267,6 +182,9 @@ void *sys_allocate_memory(int size)
  */
 void *sys_free_memory(const void *addr)
 {
+     #ifdef STANDALONE_MEMORY_ALLOCATION
+    clock_t start_time = clock();
+    #endif
     #if RUN_CHECKS_ON_FREE == 1
     run_checks();
 
@@ -303,10 +221,16 @@ void *sys_free_memory(const void *addr)
 
         // Return NULL after freeing
         memset(addr, 0, get_memory_size(addr));
-        freezone.end_ptr = current_node->addr;
-        free_zones[free_zone_count] = freezone;
-        free_zone_count++;
-
+        // freezone.end_ptr = current_node->addr;
+        // free_zones[free_zone_count] = freezone;
+        // free_zone_count++;
+        #ifdef STANDALONE_MEMORY_ALLOCATION
+        clock_t end_time = clock();
+        double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+        // printf("Elapsed Time: %f seconds to free\n", elapsed_time);
+        elapsed_times_free[num_samples_free] = elapsed_time;
+        num_samples_free++;
+        #endif
         return NULL;
     }
     else
@@ -430,7 +354,8 @@ void print_memory_info()
  * @return The end address of the node region.
  */
 void *init_memory_region(void *start_addr, size_t size) {
-    // Calculate the number of nodes based on the size of each node
+    // Calculate the number of nodes based on the size of each nodememory_region
+    memory_region = start_addr;
     size_t num_nodes = size / BLOCK_SIZE;
     memory_region_end = memory_region + size;
 
@@ -691,3 +616,29 @@ int* run_checks()
     rets[1] = find_dangling_pointer();
     return rets;
 }
+
+#ifdef STANDALONE_MEMORY_ALLOCATION
+double get_average_allocation_time()
+{
+    double total_time = 0.0;
+
+    for (size_t i = 0; i < num_samples_alloc; ++i)
+    {
+        total_time += elapsed_times_allocate[i];
+    }
+
+    return (num_samples_alloc > 0) ? total_time / num_samples_alloc : 0.0;
+}
+
+double get_average_free_time()
+{
+    double total_time = 0.0;
+
+    for (size_t i = 0; i < num_samples_free; ++i)
+    {
+        total_time += elapsed_times_free[i];
+    }
+
+    return (num_samples_free > 0) ? total_time / num_samples_free : 0.0;
+}
+#endif

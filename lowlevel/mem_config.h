@@ -40,5 +40,32 @@
  */
 #define MEMORY_ALLOCATION_VERBOSE_OUTPUT
 #endif
+/**
+ * @brief The Size of a block in the physical memory manager
+ * 
+ */
+
+
+/**
+ * Header File: my_header_file.h
+ * Description: This header file defines PMM_BLOCK_SIZE_BYTES based on the architecture.
+ */
+
+// Check if ARCHTURE is defined
+#define ARCH_X86
+  // Check for specific architectures and set PMM_BLOCK_SIZE_BYTES accordingly
+  #if defined(ARCH_X86)
+    #define PMM_BLOCK_SIZE_BYTES 4096 // Set to the correct value for x86 architecture
+  #elif defined(ARCH_ARM)
+    #define PMM_BLOCK_SIZE_BYTES 8192 // Set to the correct value for ARM architecture
+  #elif defined(ARCH_MIPS)
+    #define PMM_BLOCK_SIZE_BYTES 8192 // Set to the correct value for MIPS architecture
+  #else
+    #error "Unsupported architecture" // Display an error for unsupported architectures
+  #endif
+
+
+
+
 
 #endif /* MEM_CONFIG_H */

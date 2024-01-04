@@ -9,9 +9,11 @@
 #ifndef MEMORY_MANAGER_H
 #define MEMORY_MANAGER_H
 #include <stddef.h> // Include for size_t
+#ifdef STANDALONE_MEMORY_ALLOCATION
 #include "stdlib.h"
 #include "time.h"
 #include "stdio.h"
+#endif
 #include "string.h"
 #include "stdbool.h"
 #include "mem_config.h"
@@ -78,7 +80,7 @@ typedef struct FreeZone {
  * @param start_addr The starting address of the memory region.
  * @param size The size of the memory region.
  */
-void init_memory_allocation(void * start_addr, int size);
+void init_memory_allocation(void * start_addr, size_t size);
 
 
 /**
@@ -219,4 +221,8 @@ int main_automated_testing_end();
  * @return 0 if no  buffer overflows is detected, -1 if a possible  buffer overflows is found.
  */
 int buffer_overflow_detector();
+#ifdef STANDALONE_MEMORY_ALLOCATION
+double get_average_allocation_time();
+double get_average_free_time();
+#endif
 #endif // MEMORY_MANAGER_H

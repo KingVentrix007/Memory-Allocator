@@ -23,6 +23,10 @@ It can run on a hosted environment, or it can run as a part of an OS,
 - **Architecture Independent**:
 It uses NO architecture specific code, is fully portable
 - **And many others**
+- **Library Option**:
+It can be compiled as a static library.
+- **Examples**:
+There are examples to help get you started
 
 ## Getting Started
 
@@ -111,7 +115,7 @@ make build-test
 make run-test
 ```
 Check out the [docs](docs/html/index.html) for more specifics on each function
-
+Check out the examples
 ## Contributing
 
 If you have suggestions or improvements, feel free to open an issue or create a pull request.

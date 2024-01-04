@@ -14,7 +14,10 @@
         "utility": "c",
         "internal.h": "c",
         "mem_output.h": "c",
-        "mem_config.h": "c"
+        "mem_config.h": "c",
+        "pmm.h": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     },
     "makefile.compileCommandsPath": ".vscode/compile_commands.json",
     "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",

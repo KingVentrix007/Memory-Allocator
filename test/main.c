@@ -127,7 +127,37 @@ void test_buffer_overflow_detector() {
 }
 
 // Add more test functions as needed
+/**
+ * Function Name: simulate_memory_operations
+ * Description: Simulates running 1000 iterations of allocating and freeing memory.
+ *
+ * Parameters:
+ *   None
+ *
+ * Return:
+ *   void
+ */
+void simulate_memory_operations() {
+    srand(time(NULL));  // Seed for random number generation
 
+    for (int i = 0; i < 1000; ++i) {
+        // Generate a random size above 1000 for memory allocation
+        int allocation_size = rand() % 4001 + 1001;
+
+        // // Call sys_allocate_memory with the generated size
+        void* allocated_memory = sys_allocate_memory(allocation_size);
+        if(allocated_memory == NULL)
+        {
+            printf("NULL");
+            return;
+        }
+        // // Call sys_free_memory with the pointer from the allocation
+        sys_free_memory(allocated_memory);
+    }
+    printf("Allocating memory time average %f seconds\n",get_average_allocation_time());
+    printf("Freeing memory time average %f seconds\n",get_average_free_time()); 
+    
+}
 /**
  * @brief Main function that runs all the test functions.
  *
@@ -145,6 +175,7 @@ int main(void) {
     RUN_TEST(test_get_memory_size);
     RUN_TEST(test_free_all_memory);
     RUN_TEST(test_buffer_overflow_detector);
+    RUN_TEST(simulate_memory_operations);
     UNITY_END();
     return 0;  // Return 0 for success
 }
