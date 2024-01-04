@@ -9,6 +9,13 @@
 #include "mem.h"
 #include "internal.h"
 #include "mem_config.h"
+#ifdef STANDALONE_MEMORY_ALLOCATION
+#include <time.h>
+ double elapsed_times_allocate[100];
+ int num_samples_alloc = 0;
+  double elapsed_times_free[100];
+  int num_samples_free = 0;
+#endif
 /**
  * @brief Pointer to the start of the memory region.
  */
@@ -84,10 +91,14 @@ void init_memory_allocation(void *start_addr, int size)
  */
 void *sys_allocate_memory(int size)
 {
+    #ifdef STANDALONE_MEMORY_ALLOCATION
+    clock_t start_time = clock();
+    #endif
     #if RUN_CHECKS_ON_ALLOCATE == 1
     run_checks();
 
     #endif
+    
     // Calculate the number of blocks needed
     if (size > (memory_region_end - memory_region))
     {
@@ -130,6 +141,13 @@ void *sys_allocate_memory(int size)
                 }
 
                 MEM_ALLOC_LOG(2, "Allocated %d bytes of memory\n", size);
+                #ifdef STANDALONE_MEMORY_ALLOCATION
+                 clock_t end_time = clock();
+                 double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+                 printf("Elapsed Time: %f seconds to allocate %lu bytes of memory\n", elapsed_time,size);
+                    elapsed_times_allocate[num_samples_alloc] = elapsed_time;
+                    num_samples_alloc++;
+                #endif
                 return start_node->addr;
             }
         }
@@ -163,6 +181,9 @@ void *sys_allocate_memory(int size)
  */
 void *sys_free_memory(const void *addr)
 {
+     #ifdef STANDALONE_MEMORY_ALLOCATION
+    clock_t start_time = clock();
+    #endif
     #if RUN_CHECKS_ON_FREE == 1
     run_checks();
 
@@ -202,7 +223,13 @@ void *sys_free_memory(const void *addr)
         freezone.end_ptr = current_node->addr;
         free_zones[free_zone_count] = freezone;
         free_zone_count++;
-
+        #ifdef STANDALONE_MEMORY_ALLOCATION
+        clock_t end_time = clock();
+        double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+        printf("Elapsed Time: %f seconds to free\n", elapsed_time);
+            elapsed_times_free[num_samples_free] = elapsed_time;
+            num_samples_free++;
+        #endif
         return NULL;
     }
     else

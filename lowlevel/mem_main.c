@@ -1,5 +1,7 @@
 #include "pmm.h"
 #include "mem.h"
+#define ARCH_X86
+#include "mem_config.h"
 int mem_main(void *free_region_start_address,size_t size);
 #ifdef STANDALONE_MEMORY_ALLOCATION
 
@@ -105,6 +107,7 @@ int main_automated_testing_end()
 
 int mem_main(void *free_region_start_address,size_t size)
 {
+    // printf("Block SIZE %d",PMM_BLOCK_SIZE_BYTES);
     init_pmm(free_region_start_address,size);
     void *allocation_region = allocate_pmm_block(10*PMM_BLOCK_SIZE_BYTES);
     init_memory_allocation(allocation_region,size);

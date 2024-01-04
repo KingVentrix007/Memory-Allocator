@@ -1,6 +1,6 @@
 #ifndef __PMM__H
 #define __PMM__H
-#define PMM_BLOCK_SIZE_BYTES 4096
+
 #include "stdint.h"
 #include "stddef.h"
 /**
