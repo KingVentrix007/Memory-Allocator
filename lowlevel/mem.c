@@ -11,9 +11,9 @@
 #include "mem_config.h"
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #include <time.h>
- double elapsed_times_allocate[100];
+ double elapsed_times_allocate[10000];
  int num_samples_alloc = 0;
-  double elapsed_times_free[100];
+  double elapsed_times_free[10000];
   int num_samples_free = 0;
 #endif
 /**
@@ -78,8 +78,9 @@ void print_node_info(const Node *node)
  * @param start_addr The starting address of the memory region.
  * @param size The size of the memory region.
  */
-void init_memory_allocation(void *start_addr, int size)
+void init_memory_allocation(void *start_addr, size_t size)
 {
+    printf("size = %d\n", size);
     init_memory_region(start_addr, size);
     // memory_allocations = (MemoryAllocationInfo *)sys_allocate_memory(sizeof(MemoryAllocationInfo) * 10);
     // Now nodes are initialized, and the available memory is divided accordingly
@@ -144,7 +145,7 @@ void *sys_allocate_memory(int size)
                 #ifdef STANDALONE_MEMORY_ALLOCATION
                  clock_t end_time = clock();
                  double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-                 printf("Elapsed Time: %f seconds to allocate %lu bytes of memory\n", elapsed_time,size);
+                //  printf("Elapsed Time: %f seconds to allocate %lu bytes of memory\n", elapsed_time,size);
                     elapsed_times_allocate[num_samples_alloc] = elapsed_time;
                     num_samples_alloc++;
                 #endif
@@ -220,15 +221,15 @@ void *sys_free_memory(const void *addr)
 
         // Return NULL after freeing
         memset(addr, 0, get_memory_size(addr));
-        freezone.end_ptr = current_node->addr;
-        free_zones[free_zone_count] = freezone;
-        free_zone_count++;
+        // freezone.end_ptr = current_node->addr;
+        // free_zones[free_zone_count] = freezone;
+        // free_zone_count++;
         #ifdef STANDALONE_MEMORY_ALLOCATION
         clock_t end_time = clock();
         double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-        printf("Elapsed Time: %f seconds to free\n", elapsed_time);
-            elapsed_times_free[num_samples_free] = elapsed_time;
-            num_samples_free++;
+        // printf("Elapsed Time: %f seconds to free\n", elapsed_time);
+        elapsed_times_free[num_samples_free] = elapsed_time;
+        num_samples_free++;
         #endif
         return NULL;
     }
@@ -615,3 +616,29 @@ int* run_checks()
     rets[1] = find_dangling_pointer();
     return rets;
 }
+
+#ifdef STANDALONE_MEMORY_ALLOCATION
+double get_average_allocation_time()
+{
+    double total_time = 0.0;
+
+    for (size_t i = 0; i < num_samples_alloc; ++i)
+    {
+        total_time += elapsed_times_allocate[i];
+    }
+
+    return (num_samples_alloc > 0) ? total_time / num_samples_alloc : 0.0;
+}
+
+double get_average_free_time()
+{
+    double total_time = 0.0;
+
+    for (size_t i = 0; i < num_samples_free; ++i)
+    {
+        total_time += elapsed_times_free[i];
+    }
+
+    return (num_samples_free > 0) ? total_time / num_samples_free : 0.0;
+}
+#endif

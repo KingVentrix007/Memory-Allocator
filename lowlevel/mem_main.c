@@ -15,6 +15,7 @@ int mem_main(void *free_region_start_address,size_t size);
  *
  * @return 0 if successful, 1 if there was a problem using malloc.
  */
+#ifndef EXAMPLE_BUILD
 int main()
 {
     // Allocate initial memory
@@ -28,7 +29,7 @@ int main()
     free(region_to_use);
     return 0;
 }
-
+#endif
 /**
  * @brief Main function for automated testing.
  *
@@ -76,7 +77,7 @@ int main_automated_testing_end()
  */
 int main_automated_testing()
 {
-     void *region_to_use = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
+    void *region_to_use = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
     ptr_is_null(region_to_use);
     mem_main(region_to_use, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
     return 0;
@@ -107,10 +108,10 @@ int main_automated_testing_end()
 
 int mem_main(void *free_region_start_address,size_t size)
 {
-    // printf("Block SIZE %d",PMM_BLOCK_SIZE_BYTES);
+    printf("Block SIZE %d",PMM_BLOCK_SIZE_BYTES);
     init_pmm(free_region_start_address,size);
-    void *allocation_region = allocate_pmm_block(10*PMM_BLOCK_SIZE_BYTES);
-    init_memory_allocation(allocation_region,size);
+    const void *allocation_region = allocate_pmm_block(100*PMM_BLOCK_SIZE_BYTES);
+    init_memory_allocation(allocation_region,100*PMM_BLOCK_SIZE_BYTES);
 }
 
 void *kmalloc(size_t size)
