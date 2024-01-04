@@ -39,111 +39,7 @@ FreeZone free_zones[MAX_CACHED_ALLOCATIONS] = {};
  */
 int free_zone_count = 0;
 
-#ifdef STANDALONE_MEMORY_ALLOCATION
 
-#ifndef AUTOMATED_TESTING_MEMORY_ALLOCATION
-
-/**
- * @brief Main function for standalone memory allocation.
- *
- * This function allocates initial memory using malloc and initializes memory allocation.
- * It then runs the memory allocator test suite and frees the initial allocated memory.
- *
- * @return 0 if successful, 1 if there was a problem using malloc.
- */
-int main()
-{
-    // Allocate initial memory
-    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    ptr_is_null(memory_region);
-    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-
-    // Run the memory allocator test suite
-
-    // Free the initial allocated memory
-    free(memory_region);
-    return 0;
-}
-
-/**
- * @brief Main function for automated testing.
- *
- * This function is used for automated testing of memory allocation.
- * It allocates initial memory using malloc and initializes memory allocation.
- *
- * @return 0 if successful, 1 if there was a problem using malloc.
- */
-int main_automated_testing()
-{
-    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    ptr_is_null(memory_region);
-    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    return 0;
-}
-
-/**
- * @brief Function to clean up after automated testing.
- *
- * This function ensures that memory_region is initialized before freeing it.
- * It frees the allocated memory and sets memory_region to NULL to avoid a dangling pointer.
- *
- * @return 0 if successful.
- */
-int main_automated_testing_end()
-{
-    // Ensure that memory_region is initialized before using it
-    if (memory_region != NULL)
-    {
-        free(memory_region);
-        memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
-    }
-    return 0;
-}
-
-#else
-
-/**
- * @brief Main function for automated testing.
- *
- * This function is used for automated testing of memory allocation.
- * It allocates initial memory using malloc and initializes memory allocation.
- *
- * @return 0 if successful, 1 if there was a problem using malloc.
- */
-int main_automated_testing()
-{
-    memory_region = malloc(BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    if (memory_region == NULL)
-    {
-        MEM_ALLOC_LOG(0, "Problem using malloc, you can try a smaller amount OR use an array of char:\ne.g.\tchar fixed_size[size]\n");
-        return 1;
-    }
-    init_memory_allocation(memory_region, BLOCK_SIZE * BLOCK_SIZE * BLOCK_SIZE);
-    return 0;
-}
-
-/**
- * @brief Function to clean up after automated testing.
- *
- * This function ensures that memory_region is initialized before freeing it.
- * It frees the allocated memory and sets memory_region to NULL to avoid a dangling pointer.
- *
- * @return 0 if successful.
- */
-int main_automated_testing_end()
-{
-    // Ensure that memory_region is initialized before using it
-    if (memory_region != NULL)
-    {
-        free(memory_region);
-        memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
-    }
-    return 0;
-}
-
-#endif
-
-#endif
 
 /**
  * @brief Prints information about a given node.
@@ -430,7 +326,8 @@ void print_memory_info()
  * @return The end address of the node region.
  */
 void *init_memory_region(void *start_addr, size_t size) {
-    // Calculate the number of nodes based on the size of each node
+    // Calculate the number of nodes based on the size of each nodememory_region
+    memory_region = start_addr;
     size_t num_nodes = size / BLOCK_SIZE;
     memory_region_end = memory_region + size;
 
