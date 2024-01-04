@@ -3,25 +3,5 @@
         "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -o mem.out lowlevel/*.c",
         "directory": "/home/king/projects/OS-helper/memory_allocation",
         "file": "/home/king/projects/OS-helper/memory_allocation/lowlevel/*.c"
-    },
-    {
-        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -c lowlevel/internal.c -o internal.o",
-        "directory": "/home/king/projects/OS-helper/memory_allocation",
-        "file": "/home/king/projects/OS-helper/memory_allocation/lowlevel/internal.c"
-    },
-    {
-        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -c lowlevel/mem.c -o mem.o",
-        "directory": "/home/king/projects/OS-helper/memory_allocation",
-        "file": "/home/king/projects/OS-helper/memory_allocation/lowlevel/mem.c"
-    },
-    {
-        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -c lowlevel/mem_main.c -o mem_main.o",
-        "directory": "/home/king/projects/OS-helper/memory_allocation",
-        "file": "/home/king/projects/OS-helper/memory_allocation/lowlevel/mem_main.c"
-    },
-    {
-        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -c lowlevel/pmm.c -o pmm.o",
-        "directory": "/home/king/projects/OS-helper/memory_allocation",
-        "file": "/home/king/projects/OS-helper/memory_allocation/lowlevel/pmm.c"
     }
 ]
