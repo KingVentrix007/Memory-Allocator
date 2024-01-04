@@ -9,9 +9,11 @@
 #ifndef MEMORY_MANAGER_H
 #define MEMORY_MANAGER_H
 #include <stddef.h> // Include for size_t
+#ifdef STANDALONE_MEMORY_ALLOCATION
 #include "stdlib.h"
 #include "time.h"
 #include "stdio.h"
+#endif
 #include "string.h"
 #include "stdbool.h"
 #include "mem_config.h"
