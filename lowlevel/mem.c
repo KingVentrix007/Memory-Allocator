@@ -93,9 +93,7 @@ void init_memory_allocation(void *start_addr, size_t size)
  */
 void *sys_allocate_memory(int size)
 {
-    #ifdef STANDALONE_MEMORY_ALLOCATION
-    clock_t start_time = clock();
-    #endif
+    
     #if RUN_CHECKS_ON_ALLOCATE == 1
     run_checks();
 
@@ -115,13 +113,7 @@ void *sys_allocate_memory(int size)
     Node *current_node = (Node *)memory_region;
     current_node = current_node->next;
     return find_free_zone(current_node,size,num_blocks_needed);
-    #ifdef STANDALONE_MEMORY_ALLOCATION
-    clock_t end_time = clock();
-    long double elapsed_time = ((long double)(end_time - start_time)) / CLOCKS_PER_SEC;
-    // printf("Elapsed Time: %Lf seconds to free\n", elapsed_time);
-    elapsed_times_allocate[num_samples_alloc] = elapsed_time;
-    num_samples_alloc++;
-        #endif
+    
     MEM_ALLOC_LOG(0, "Failed to allocate %d bytes of memory\n", size);
     return NULL;
 }

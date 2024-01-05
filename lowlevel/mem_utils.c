@@ -18,6 +18,9 @@
  */
 void *find_free_zone(Node *current_node, size_t size,int num_blocks_needed)
 {
+    #ifdef STANDALONE_MEMORY_ALLOCATION
+        clock_t start_time = clock();
+    #endif
     while (current_node != NULL)
     {
         if (!current_node->allocated)
@@ -44,6 +47,13 @@ void *find_free_zone(Node *current_node, size_t size,int num_blocks_needed)
                     current_node = current_node->next;
                 }
                 MEM_ALLOC_LOG(2, "Allocated %d bytes of memory\n", size);
+                #ifdef STANDALONE_MEMORY_ALLOCATION
+                    clock_t end_time = clock();
+                    long double elapsed_time = ((long double)(end_time - start_time)) / CLOCKS_PER_SEC;
+                    // printf("Elapsed Time: %Lf seconds to free\n", elapsed_time);
+                    elapsed_times_allocate[num_samples_alloc] = elapsed_time;
+                    num_samples_alloc++;
+                #endif
                 return start_node->addr;
             }
         }
@@ -53,5 +63,6 @@ void *find_free_zone(Node *current_node, size_t size,int num_blocks_needed)
             current_node = current_node->next;
         }
     }
+
     return NULL;
 }
