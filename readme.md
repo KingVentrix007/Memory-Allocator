@@ -4,6 +4,7 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=security_rating)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=bugs)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=KingVentrix007_Memory-Allocator&metric=ncloc)](https://sonarcloud.io/dashboard?id=KingVentrix007_Memory-Allocator)
+[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 
 ## Overview

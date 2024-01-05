@@ -10,6 +10,8 @@
 
 #include "unity.h"
 #include "../lowlevel/mem.h"
+#include "../lowlevel/mem_utils.h"
+
 #include "string.h"
 
 /**   

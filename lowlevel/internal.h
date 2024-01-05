@@ -34,7 +34,7 @@ void* internal_memset(const void* s, int c, size_t n);
  * Return:
  *   (void*) - Pointer to the destination memory area dest.
  */
-void* internal_memcpy(void* dest, const void* src, size_t n);
+void* internal_memcpy(const void* dest, const void* src, size_t n);
 /**
  * Function Name: internal_memcmp
  * Description: Compares the first n bytes of memory areas s1 and s2.

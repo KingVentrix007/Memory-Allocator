@@ -2,3 +2,6 @@ mem.out
 test.out
 tempCodeRunnerFile.c
 .github/workflows/sonarcloud.yml 
+/*.o
+build/mem_utils.o
+build/mem.o

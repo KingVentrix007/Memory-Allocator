@@ -565,17 +565,7 @@ int* run_checks()
 }
 
 #ifdef STANDALONE_MEMORY_ALLOCATION
-long double get_average_allocation_time()
-{
-    long double total_time = 0.0;
 
-    for (size_t i = 0; i < num_samples_alloc; ++i)
-    {
-        total_time += elapsed_times_allocate[i];
-    }
-
-    return (num_samples_alloc > 0) ? total_time / num_samples_alloc : 0.0;
-}
 
 long double get_average_free_time()
 {

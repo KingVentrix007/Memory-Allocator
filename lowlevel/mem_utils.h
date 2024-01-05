@@ -8,4 +8,7 @@
  * @return A pointer to the start of the allocated memory.
  */
 void *find_free_zone(Node *current_node, size_t size,int num_blocks_needed);
+#ifdef STANDALONE_MEMORY_ALLOCATION
+long double get_average_allocation_time();
+#endif
 #endif

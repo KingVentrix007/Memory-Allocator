@@ -69,7 +69,7 @@ void* internal_memcpy(const void* dest, const void* src, size_t n) {
  *
  * @return (void*) - Pointer to the memory area (s).
  */
-void* internal_memset(void* s, int c, size_t n) {
+void* internal_memset(const void* s, int c, size_t n) {
     unsigned char* p = (unsigned char *)s;
     while (n-- > 0) {
         *p++ = (unsigned char)c;
