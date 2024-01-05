@@ -17,6 +17,7 @@
 #include "string.h"
 #include "stdbool.h"
 #include "mem_config.h"
+#include "mem_output.h"
 // Defines
 
 
@@ -204,7 +205,7 @@ int* run_checks();
  *   size_t - The size of the allocated memory block. 
  */
 size_t get_memory_size(const void *ptr);
-#include "mem_output.h"
+
 
 int main_automated_testing();
 int main_automated_testing_end();

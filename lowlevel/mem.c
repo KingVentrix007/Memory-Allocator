@@ -189,7 +189,7 @@ void *sys_free_memory(const void *addr)
         MEM_ALLOC_LOG(0, "Invalid address or memory is not allocated 0x%p\n", addr);
 
         // Return the original address if not found or not allocated
-        return (const void *)addr;
+        return addr;
     }
 }
 
@@ -538,7 +538,7 @@ int find_dangling_pointer() {
             // Check if the memory region contains non-zero bytes
            for (size_t i = 0; i < current_node->size; ++i) {
             if (*((char *)(current_node->addr) + i) != 0 && 
-                ((current_node->next == NULL || !current_node->next->allocated))) {
+                (current_node->next == NULL || !current_node->next->allocated)) {
                 // Check if the memory region borders an allocated region
                 MEM_ALLOC_LOG(1, "Potential dangling pointer at 0x%p", current_node->addr);
                 return -1;
@@ -547,9 +547,7 @@ int find_dangling_pointer() {
 
         }
 
-        if (current_node->allocated == true) {
-            ptr = current_node->addr;
-        }
+        
 
         // Move to the next node
         current_node = current_node->next;
