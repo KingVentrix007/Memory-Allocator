@@ -99,7 +99,7 @@ int main_automated_testing_end()
     //     free(memory_region);
     //     memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
     // }
-    // return 0;
+    return 0;
 }
 
 #endif
@@ -112,6 +112,7 @@ int mem_main(void *free_region_start_address,size_t size)
     init_pmm(free_region_start_address,size);
     const void *allocation_region = allocate_pmm_block(100*PMM_BLOCK_SIZE_BYTES);
     init_memory_allocation(allocation_region,100*PMM_BLOCK_SIZE_BYTES);
+    return 0;
 }
 
 void *kmalloc(size_t size)
