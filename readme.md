@@ -80,6 +80,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+
 The Memory Allocator is a versatile project designed for hobby operating systems. It provides essential functionality for managing memory regions using a linked list data structure. This project aims to facilitate memory allocation, deallocation, and extension of allocation space in a dynamic and efficient manner. The Memory Allocator is intended to be utilized both as a standalone library and as part of an operating system.
 
 
