@@ -62,7 +62,7 @@ int main_automated_testing_end()
     //     free(memory_region);
     //     memory_region = NULL; // Set to NULL after freeing to avoid dangling pointer
     // }
-    // return 0;
+    return 0;
 }
 
 #else

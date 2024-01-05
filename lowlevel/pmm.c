@@ -6,10 +6,10 @@ void *pmm_node_region_end = NULL;
 void *pmm_memory_region_end = NULL;
 void *pmm_memory_region = NULL;
 
-// int start()
-// {
-//     pmm_memory_region = malloc(1234);
-// }
+
+
+
+
 /**
  * @brief Initializes the Physical Memory Manager (PMM).
  *
@@ -165,13 +165,14 @@ void *pmm_free_block(const void *addr)
     {
         current_node = current_node->next;
     }
-    // FreeZone freezone;
-    // if (current_node != NULL && current_node->addr != NULL)
-    // {
-    //     freezone.start_ptr = current_node->addr;
-    // }
-    // freezone.size = get_memory_size(addr);
-    // If the node is found, free the memory blocks
+    
+
+
+
+
+
+
+    
     if (current_node != NULL && current_node->allocated)
     {
         size_t num_blocks_to_free = current_node->num_block_used;
@@ -186,9 +187,10 @@ void *pmm_free_block(const void *addr)
         }
         // Return NULL after freeing
         memset(addr, 0, get_memory_size(addr));
-        // freezone.end_ptr = current_node->addr;
-        // free_zones[free_zone_count] = freezone;
-        // free_zone_count++;
+       
+
+
+
         return NULL;
     }
     else
