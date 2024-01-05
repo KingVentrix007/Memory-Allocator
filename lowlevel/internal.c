@@ -48,7 +48,7 @@ int internal_memcmp(const void* s1, const void* s2, size_t n) {
  *
  * @return (void*) - Pointer to the destination memory area (dest).
  */
-void* internal_memcpy(void* dest, const void* src, size_t n) {
+void* internal_memcpy(const void* dest, const void* src, size_t n) {
     unsigned char* d = dest;
     const unsigned char* s = src;
     while (n-- > 0) {

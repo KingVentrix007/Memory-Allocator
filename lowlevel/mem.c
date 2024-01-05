@@ -175,9 +175,6 @@ void *sys_free_memory(const void *addr)
 
         // Return NULL after freeing
         memset(addr, 0, get_memory_size(addr));
-        // freezone.end_ptr = current_node->addr;
-        // free_zones[free_zone_count] = freezone;
-        // free_zone_count++;
         #ifdef STANDALONE_MEMORY_ALLOCATION
         clock_t end_time = clock();
         long double elapsed_time = ((long double)(end_time - start_time)) / CLOCKS_PER_SEC;

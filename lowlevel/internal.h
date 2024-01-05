@@ -21,7 +21,7 @@
  * Return:
  *   (void*) - Pointer to the memory area s.
  */
-void* internal_memset(void* s, int c, size_t n);
+void* internal_memset(const void* s, int c, size_t n);
 /**
  * Function Name: internal_memcpy
  * Description: Copies n bytes from memory area src to memory area dest.
