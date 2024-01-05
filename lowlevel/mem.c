@@ -536,16 +536,15 @@ int find_dangling_pointer() {
     while (current_node != NULL && current_node->next != NULL) {
         if (current_node->allocated == false) {
             // Check if the memory region contains non-zero bytes
-            for (size_t i = 0; i < current_node->size; ++i) {
-                if (*((char *)(current_node->addr) + i) != 0 && (((current_node->next == NULL || current_node->next->allocated == false) &&
-                        (current_node->next == NULL || current_node->next->allocated == false)))) {
-                    // Check if the memory region borders an allocated region
-                    
-                        MEM_ALLOC_LOG(1, "Potential dangling pointer at 0x%p", current_node->addr);
-                        return -1;
-                    
-                }
+           for (size_t i = 0; i < current_node->size; ++i) {
+            if (*((char *)(current_node->addr) + i) != 0 && 
+                ((current_node->next == NULL || !current_node->next->allocated))) {
+                // Check if the memory region borders an allocated region
+                MEM_ALLOC_LOG(1, "Potential dangling pointer at 0x%p", current_node->addr);
+                return -1;
             }
+        }
+
         }
 
         if (current_node->allocated == true) {
