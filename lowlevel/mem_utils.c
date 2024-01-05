@@ -9,7 +9,10 @@
 #include "mem.h"
 #include "mem_output.h"
 #include "mem_config.h"
-
+#ifdef STANDALONE_MEMORY_ALLOCATION
+long double elapsed_times_allocate[10000];
+ int num_samples_alloc = 0;
+ #endif
 /**
  * @brief Finds a free zone of memory to allocate.
  * @param current_node The current node to start searching from.

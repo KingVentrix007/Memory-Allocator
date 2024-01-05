@@ -12,8 +12,7 @@
 #include "mem_utils.h"
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #include <time.h>
- long double elapsed_times_allocate[10000];
- int num_samples_alloc = 0;
+ 
   long double elapsed_times_free[10000];
   int num_samples_free = 0;
 #endif
