@@ -189,7 +189,7 @@ void *sys_free_memory(const void *addr)
         MEM_ALLOC_LOG(0, "Invalid address or memory is not allocated 0x%p\n", addr);
 
         // Return the original address if not found or not allocated
-        return (void *)addr;
+        return (const void *)addr;
     }
 }
 
@@ -459,7 +459,7 @@ void memcleanup()
 int buffer_overflow_detector()
 {
     Node *current_node = (Node *)memory_region;
-    void *ptr = NULL;
+    const void *ptr = NULL;
 
     while (current_node != NULL && current_node->next != NULL)
     {
@@ -531,19 +531,19 @@ void memory_leak_detector() {
  */
 int find_dangling_pointer() {
     Node *current_node = (Node *)memory_region;
-    void *ptr = NULL;
+    const void *ptr = NULL;
 
     while (current_node != NULL && current_node->next != NULL) {
         if (current_node->allocated == false) {
             // Check if the memory region contains non-zero bytes
             for (size_t i = 0; i < current_node->size; ++i) {
-                if (*((char *)(current_node->addr) + i) != 0) {
+                if (*((char *)(current_node->addr) + i) != 0 && (((current_node->next == NULL || current_node->next->allocated == false) &&
+                        (current_node->next == NULL || current_node->next->allocated == false)))) {
                     // Check if the memory region borders an allocated region
-                    if ((current_node->next == NULL || current_node->next->allocated == false) &&
-                        (current_node->next == NULL || current_node->next->allocated == false)) {
+                    
                         MEM_ALLOC_LOG(1, "Potential dangling pointer at 0x%p", current_node->addr);
                         return -1;
-                    }
+                    
                 }
             }
         }

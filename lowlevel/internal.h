@@ -61,5 +61,5 @@ int internal_memcmp(const void* s1, const void* s2, size_t n);
  * 
  * @return int 
  */ 
-int ptr_is_null(void* ptr);
+int ptr_is_null(const void* ptr);
 #endif

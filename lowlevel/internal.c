@@ -89,7 +89,7 @@ void* internal_memset(void* s, int c, size_t n) {
  * 
  * @return int 
  */ 
-int ptr_is_null(void* ptr) 
+int ptr_is_null(const void* ptr) 
 { 
     if (ptr == NULL) 
     { 
