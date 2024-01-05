@@ -9,6 +9,7 @@
 #include "mem.h"
 #include "internal.h"
 #include "mem_config.h"
+#include "mem_utils.h"
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #include <time.h>
  long double elapsed_times_allocate[10000];
@@ -113,52 +114,7 @@ void *sys_allocate_memory(int size)
     // Find a consecutive bunch of free nodes
     Node *current_node = (Node *)memory_region;
     current_node = current_node->next;
-    while (current_node != NULL)
-    {
-        if (!current_node->allocated)
-        {
-            int consecutive_free_blocks = 0;
-            Node *start_node = current_node;
-            start_node->total_requested_memory = size;
-
-            // Check for consecutive free blocks
-            while (current_node != NULL && !current_node->allocated && consecutive_free_blocks < num_blocks_needed)
-            {
-                ++consecutive_free_blocks;
-                current_node = current_node->next;
-            }
-
-            // If enough consecutive free blocks are found, allocate them
-            if (consecutive_free_blocks >= num_blocks_needed)
-            {
-                // Mark the nodes as allocated
-                current_node = start_node;
-                for (int i = 0; i < num_blocks_needed; ++i)
-                {
-                    current_node->allocated = true;
-                    current_node->first_block = (i == 0);
-                    current_node->num_block_used = num_blocks_needed;
-                    current_node = current_node->next;
-                }
-
-                MEM_ALLOC_LOG(2, "Allocated %d bytes of memory\n", size);
-                #ifdef STANDALONE_MEMORY_ALLOCATION
-                 clock_t end_time = clock();
-                 long double elapsed_time = ((long double)(end_time - start_time)) / CLOCKS_PER_SEC;
-                //  printf("Elapsed Time: %Lf seconds to allocate %lu bytes of memory\n", elapsed_time,size);
-                    elapsed_times_allocate[num_samples_alloc] = elapsed_time;
-                    num_samples_alloc++;
-                #endif
-                return start_node->addr;
-            }
-        }
-
-        // Move to the next node
-        if (current_node != NULL && current_node->next != NULL)
-        {
-            current_node = current_node->next;
-        }
-    }
+    return find_free_zone(current_node,size,num_blocks_needed);
 
     MEM_ALLOC_LOG(0, "Failed to allocate %d bytes of memory\n", size);
     return NULL;
