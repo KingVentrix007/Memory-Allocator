@@ -164,6 +164,6 @@ void *pmm_free_block(const void *addr)
     {
         MEM_ALLOC_LOG(0, "Invalid address or memory is not allocated 0x%p\n", addr);
         // Return the original address if not found or not allocated
-        return (void *)addr;
+        return addr;
     }
 }

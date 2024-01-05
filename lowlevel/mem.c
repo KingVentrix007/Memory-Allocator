@@ -531,7 +531,7 @@ void memory_leak_detector() {
  */
 int find_dangling_pointer() {
     Node *current_node = (Node *)memory_region;
-    const void *ptr = NULL;
+    
 
     while (current_node != NULL && current_node->next != NULL) {
         if (current_node->allocated == false) {

@@ -16,7 +16,7 @@
  * @brief Set up function called before each test function.
  */
 void setUp(void) {
-    // printf("setUp() called\n");
+    
     main_automated_testing();
 }
 
@@ -59,10 +59,10 @@ void test_store_values() {
  * @brief Tests freeing allocated memory.
  */
 void test_free_memory() {
-    void *ptr2 = sys_allocate_memory(2048);
-    // printf("ptr2 = 0x%p",ptr2);
+    const void *ptr2 = sys_allocate_memory(2048);
+    
     ptr2 = sys_free_memory(ptr2);
-    //  printf("\n%s:%d ptr2 = 0x%p\n",__FILE__,__LINE__,ptr2);
+    
     TEST_ASSERT_NULL(ptr2);
 }
 
@@ -101,7 +101,7 @@ void test_reallocate_smaller_size() {
  * @brief Tests getting the size of allocated memory.
  */
 void test_get_memory_size() {
-    void *ptr7 = sys_allocate_memory(1028);
+    const void *ptr7 = sys_allocate_memory(1028);
     TEST_ASSERT_NOT_NULL(ptr7);
     size_t size = get_memory_size(ptr7);
     TEST_ASSERT_EQUAL_INT(1028, size);
@@ -120,7 +120,7 @@ void test_free_all_memory() {
 void test_buffer_overflow_detector() {
     void *ptr9  = sys_allocate_memory(1024);
     TEST_ASSERT_NOT_NULL(ptr9);
-    // const int *value = 1;
+    
     memset(ptr9,1,1100);
     int ret = buffer_overflow_detector();
     TEST_ASSERT_EQUAL_INT(-1,ret);
@@ -145,7 +145,7 @@ void simulate_memory_operations() {
         int allocation_size = rand() % 4001 + 1001;
 
         // // Call sys_allocate_memory with the generated size
-        void* allocated_memory = sys_allocate_memory(allocation_size);
+        const void* allocated_memory = sys_allocate_memory(allocation_size);
         if(allocated_memory == NULL)
         {
             printf("NULL");
