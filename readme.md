@@ -283,7 +283,7 @@ Project Link: [https://github.com/KingVentrix007/Memory-Allocator](https://githu
 [issues-shield]: https://img.shields.io/github/issues/KingVentrix007/Memory-Allocator.svg?style=for-the-badge
 [issues-url]: https://github.com/KingVentrix007/Memory-Allocator/issues
 [license-shield]: https://img.shields.io/github/license/KingVentrix007/Memory-Allocator.svg?style=for-the-badge
-[license-url]: https://github.com/KingVentrix007/Memory-Allocator/blob/master/LICENSE.txt
+[license-url]: https://github.com/KingVentrix007/Memory-Allocator/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tristan-kuhn-40386b2a1
 [product-screenshot]: images/screenshot.png
