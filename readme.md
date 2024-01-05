@@ -47,12 +47,18 @@ Allocating memory takes an average of 0.000000 seconds. Freeing memory takes an 
     git clone https://github.com/KingVentrix007/Memory-Allocator.git
     ```
 
-2. **Include the Memory Allocator in Your Project:**
+2. Switch to one of the release branches
+
+```bash
+    git checkout release-V(X).(X)
+```
+
+3. **Include the Memory Allocator in Your Project:**
 
     Include the necessary files (`mem.h` and `mem.c` and optinally `internal.c` and `internal.h`) in your hobby OS project.
     **Important** mem.c and mem.h rely on memset,memcpy and other mem functions, These need to be provided or internal.c and internal.h must be included
 
-3. **Initialize Memory Allocation:**
+4. **Initialize Memory Allocation:**
 
     ```c
     #include "mem.h"
@@ -70,7 +76,7 @@ Allocating memory takes an average of 0.000000 seconds. Freeing memory takes an 
     }
     ```
 
-4. **Allocate and Free Memory:**
+5. **Allocate and Free Memory:**
 
     ```c
     // Allocate memory
@@ -82,7 +88,7 @@ Allocating memory takes an average of 0.000000 seconds. Freeing memory takes an 
     sys_free_memory(ptr);
     ```
 
-5. **Extend Allocation Space:**
+6. **Extend Allocation Space:**
     **CURRENTLY NOT WORKING. IS IN PROGRESS**
 
     ```c
@@ -100,11 +106,17 @@ See [Examples](/docs/examples/basic.md#basic-memory-allocation-and-deallocation)
 git clone https://github.com/KingVentrix007/Memory-Allocator.git
 ```
 
-2. Edit mem_config.h
+2. Switch to one of the release branches
+
+```bash
+    git checkout release-V(X).(X)
+```
+
+3. Edit mem_config.h
 
     Set your desired parameters
 
-3. Run Normal version
+4. Run Normal version
 
 ```bash
 make build
@@ -113,7 +125,7 @@ make run
 
 you can set `USE_VERBOSE_OUTPUT` to 1 in the config file to get printed output
 
-4. Run tests
+5. Run tests
 
 ```bash
 make build-test
