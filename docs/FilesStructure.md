@@ -1,0 +1,283 @@
+Folder Structure Analysis:
+
+- `.github/` - This folder contains the GitHub-specific configuration files and workflows for the project.
+  - `workflows/` - This subfolder contains the workflow files, specifically the `SonarCloud.yaml` file, which is used for continuous code quality analysis using SonarCloud.
+
+- `.gitignore` - This file specifies which files and folders should be ignored by Git version control.
+
+- `Doxyfile` - This file is a configuration file for the Doxygen documentation generator tool.
+
+- `LICENSE` - This file contains the license information for the project.
+
+- `docs/` - This folder contains the documentation files for the project.
+  - `examples/` - This subfolder contains example documentation files, specifically the `basic.md` file.
+  - `html/` - This subfolder contains the generated HTML documentation files by Doxygen. It includes various HTML files, images, and JavaScript files for navigation and search functionality.
+
+- `examples/` - This folder contains example code files for the project. It includes a subfolder `example1/` which contains the `main.c` file, `main.o` object file, and a `makefile` for building the example.
+
+- `extra/` - This folder contains additional code files (`extra.c` and `extra.h`) that are not part of the main project.
+
+- `highlevel/` - This folder contains high-level code files (`allocation.c` and `allocation.h`) for the project.
+
+- `internal.o` - This is an object file generated from the internal code.
+
+- `lib/` - This folder contains the compiled library file (`libmem.a`) generated from the project code.
+
+- `lowlevel/` - This folder contains low-level code files for the project. It includes `internal.c`, `internal.h`, `mem.c`, `mem.h`, `mem_config.h`, `mem_main.c`, `mem_output.h`, `pmm.c`, and `pmm.h`.
+
+- `makefile` - This file contains the instructions for building the project using a makefile.
+
+- `mem.o`, `mem_main.o`, `pmm.o` - These are object files generated from the code.
+
+- `readme.md` - This file contains the project's readme documentation.
+
+- `sonar-project.properties` - This file contains the configuration properties for SonarQube code analysis.
+
+- `sonarcloud.yml` - This file contains the configuration for SonarCloud integration.
+
+- `tempCodeRunnerFile.c` - This file seems to be a temporary code runner file used during development.
+
+- `test/` - This folder contains the test code files for the project.
+  - `main.c` - This file contains the main test code.
+  - `unity.c`, `unity.h`, `unity_internals.h` - These files are related to the Unity testing framework for C.
+
+- `test.out` - This is an output file generated from running the tests.
+
+All files:
+
+.- .github/
+  - workflows/
+    - SonarCloud.yaml
+- .gitignore
+- Doxyfile
+- LICENSE
+- docs/
+  - examples/
+    - basic.md
+  - html/
+    - allocation_8h_source.html
+    - annotated.html
+    - bc_s.png
+    - bdwn.png
+    - classes.html
+    - closed.png
+    - dir_13e138d54eb8818da29c3992edef070a.html
+    - dir_26cd47652b16d197ebc64ecf415996b2.html
+    - dir_49e56c817e5e54854c35e136979f97ca.html
+    - dir_61725470c0c4ad532abb3cb1e156c123.html
+    - dir_77c33839815b7c6c2ca556064fb28352.html
+    - dir_d6cedb65a6f064efea0933261d9a7018.html
+    - doc.png
+    - doxygen.css
+    - doxygen.svg
+    - dynsections.js
+    - extra_8h_source.html
+    - files.html
+    - folderclosed.png
+    - folderopen.png
+    - functions.html
+    - functions_vars.html
+    - globals.html
+    - globals_defs.html
+    - globals_func.html
+    - globals_type.html
+    - globals_vars.html
+    - index.html
+    - internal_8c.html
+    - internal_8h.html
+    - internal_8h_source.html
+    - jquery.js
+    - main_8c.html
+    - md_docs_examples_basic.html
+    - md_readme.html
+    - mem_8c.html
+    - mem_8h.html
+    - mem_8h_source.html
+    - mem__config_8h.html
+    - mem__config_8h_source.html
+    - mem__output_8h.html
+    - mem__output_8h_source.html
+    - menu.js
+    - menudata.js
+    - nav_f.png
+    - nav_g.png
+    - nav_h.png
+    - open.png
+    - pages.html
+    - search/
+      - all_0.html
+      - all_0.js
+      - all_1.html
+      - all_1.js
+      - all_2.html
+      - all_2.js
+      - all_3.html
+      - all_3.js
+      - all_4.html
+      - all_4.js
+      - all_5.html
+      - all_5.js
+      - all_6.html
+      - all_6.js
+      - all_7.html
+      - all_7.js
+      - all_8.html
+      - all_8.js
+      - all_9.html
+      - all_9.js
+      - all_a.html
+      - all_a.js
+      - all_b.html
+      - all_b.js
+      - all_c.html
+      - all_c.js
+      - classes_0.html
+      - classes_0.js
+      - classes_1.html
+      - classes_1.js
+      - classes_2.html
+      - classes_2.js
+      - classes_3.html
+      - classes_3.js
+      - close.svg
+      - defines_0.html
+      - defines_0.js
+      - defines_1.html
+      - defines_1.js
+      - defines_2.html
+      - defines_2.js
+      - defines_3.html
+      - defines_3.js
+      - defines_4.html
+      - defines_4.js
+      - files_0.html
+      - files_0.js
+      - files_1.html
+      - files_1.js
+      - functions_0.html
+      - functions_0.js
+      - functions_1.html
+      - functions_1.js
+      - functions_2.html
+      - functions_2.js
+      - functions_3.html
+      - functions_3.js
+      - functions_4.html
+      - functions_4.js
+      - functions_5.html
+      - functions_5.js
+      - functions_6.html
+      - functions_6.js
+      - functions_7.html
+      - functions_7.js
+      - functions_8.html
+      - functions_8.js
+      - mag_sel.svg
+      - nomatches.html
+      - pages_0.html
+      - pages_0.js
+      - pages_1.html
+      - pages_1.js
+      - search.css
+      - search.js
+      - search_l.png
+      - search_m.png
+      - search_r.png
+      - searchdata.js
+      - typedefs_0.html
+      - typedefs_0.js
+      - typedefs_1.html
+      - typedefs_1.js
+      - variables_0.html
+      - variables_0.js
+      - variables_1.html
+      - variables_1.js
+      - variables_2.html
+      - variables_2.js
+      - variables_3.html
+      - variables_3.js
+      - variables_4.html
+      - variables_4.js
+      - variables_5.html
+      - variables_5.js
+      - variables_6.html
+      - variables_6.js
+      - variables_7.html
+      - variables_7.js
+    - splitbar.png
+    - structFreeZone-members.html
+    - structFreeZone.html
+    - structMemoryAllocationInfo-members.html
+    - structMemoryAllocationInfo.html
+    - structNode-members.html
+    - structNode.html
+    - structUNITY__STORAGE__T-members.html
+    - structUNITY__STORAGE__T.html
+    - sync_off.png
+    - sync_on.png
+    - tab_a.png
+    - tab_b.png
+    - tab_h.png
+    - tab_s.png
+    - tabs.css
+    - unity_8h_source.html
+    - unity__internals_8h_source.html
+  - latex/
+    - Makefile
+    - annotated.tex
+    - doxygen.sty
+    - files.tex
+    - internal_8c.tex
+    - internal_8h.tex
+    - longtable_doxygen.sty
+    - main_8c.tex
+    - md_docs_examples_basic.tex
+    - md_readme.tex
+    - mem_8c.tex
+    - mem_8h.tex
+    - mem__config_8h.tex
+    - mem__output_8h.tex
+    - refman.tex
+    - structFreeZone.tex
+    - structMemoryAllocationInfo.tex
+    - structNode.tex
+    - structUNITY__STORAGE__T.tex
+    - tabu_doxygen.sty
+- examples/
+  - example1/
+    - main.c
+    - main.o
+    - makefile
+- extra/
+  - extra.c
+  - extra.h
+- highlevel/
+  - allocation.c
+  - allocation.h
+- internal.o
+- lib/
+  - libmem.a
+- lowlevel/
+  - internal.c
+  - internal.h
+  - mem.c
+  - mem.h
+  - mem_config.h
+  - mem_main.c
+  - mem_output.h
+  - pmm.c
+  - pmm.h
+- makefile
+- mem.o
+- mem_main.o
+- pmm.o
+- readme.md
+- sonar-project.properties
+- sonarcloud.yml
+- tempCodeRunnerFile.c
+- test/
+  - main.c
+  - unity.c
+  - unity.h
+  - unity_internals.h
+- test.out

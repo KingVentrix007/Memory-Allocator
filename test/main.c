@@ -154,8 +154,8 @@ void simulate_memory_operations() {
         // // Call sys_free_memory with the pointer from the allocation
         sys_free_memory(allocated_memory);
     }
-    printf("Allocating memory time average %f seconds\n",get_average_allocation_time());
-    printf("Freeing memory time average %f seconds\n",get_average_free_time()); 
+    printf("Allocating memory time average %llf seconds\n",get_average_allocation_time());
+    printf("Freeing memory time average %llf seconds\n",get_average_free_time()); 
     
 }
 /**

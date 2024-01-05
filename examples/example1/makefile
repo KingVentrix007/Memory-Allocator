@@ -24,4 +24,7 @@ $(BUILDDIR)/%.o: $(EXAMPLESDIR)/%.c
 clean:
 	rm -rf $(BUILDDIR)/*.o $(BUILDDIR)/example1.out
 
-.PHONY: build clean
+#Target: Run
+run:
+	$(BUILDDIR)/example1.out
+.PHONY: build clean run

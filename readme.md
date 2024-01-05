@@ -28,6 +28,11 @@ It can be compiled as a static library.
 - **Examples**:
 There are examples to help get you started
 
+- **Fast**: 
+Allocating memory takes an average of 0.000000 seconds. Freeing memory takes an average 0.000001 seconds
+
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -116,6 +121,8 @@ make run-test
 ```
 Check out the [docs](docs/html/index.html) for more specifics on each function
 Check out the examples
+See The AI Generated [FileStructure.md](docs/FilesStructure.md) for more info on each file
+
 ## Contributing
 
 If you have suggestions or improvements, feel free to open an issue or create a pull request.

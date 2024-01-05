@@ -9,6 +9,9 @@ This repository contains a simple memory allocator designed for hobby operating 
 \item {\bfseries{Platform independent}}\+: It can run on a hosted environment, or it can run as a part of an OS,
 \item {\bfseries{Architecture Independent}}\+: It uses NO architecture specific code, is fully portable
 \item {\bfseries{And many others}}
+\item {\bfseries{Library Option}}\+: It can be compiled as a static library.
+\item {\bfseries{Examples}}\+: There are examples to help get you started
+\item {\bfseries{Fast}}\+: Allocating memory takes an average of 0.\+000000 seconds. Freeing memory takes an average 0.\+000001 seconds
 \end{DoxyItemize}\hypertarget{md_readme_autotoc_md7}{}\doxysection{Getting Started}\label{md_readme_autotoc_md7}
 \hypertarget{md_readme_autotoc_md8}{}\doxysubsection{Prerequisites}\label{md_readme_autotoc_md8}
 
@@ -29,7 +32,7 @@ Include the necessary files ({\ttfamily \mbox{\hyperlink{mem_8h}{mem.\+h}}} and 
 
 void $\ast$memory\+\_\+region = NULL;
 
-int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}} \{ // Allocate initial memory memory\+\_\+region = (void$\ast$)start\+\_\+of\+\_\+open\+\_\+memory; init\+\_\+memory\+\_\+allocation(memory\+\_\+region, \mbox{[}size of start\+\_\+of\+\_\+open\+\_\+memory\mbox{]});
+int \mbox{\hyperlink{test_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}} \{ // Allocate initial memory memory\+\_\+region = (void$\ast$)start\+\_\+of\+\_\+open\+\_\+memory; init\+\_\+memory\+\_\+allocation(memory\+\_\+region, \mbox{[}size of start\+\_\+of\+\_\+open\+\_\+memory\mbox{]});
 
 // Your code here
 
@@ -88,6 +91,6 @@ you can set {\ttfamily USE\+\_\+\+VERBOSE\+\_\+\+OUTPUT} to 1 in the config file
 \DoxyCodeLine{make run-\/test}
 
 \end{DoxyCode}
-\hypertarget{md_readme_autotoc_md11}{}\doxysection{Contributing}\label{md_readme_autotoc_md11}
+ Check out the \href{docs/html/index.html}{\texttt{ docs}} for more specifics on each function Check out the examples See The AI Generated \mbox{\hyperlink{md_docs_FilesStructure}{File\+Structure.md}} for more info on each file\hypertarget{md_readme_autotoc_md11}{}\doxysection{Contributing}\label{md_readme_autotoc_md11}
 If you have suggestions or improvements, feel free to open an issue or create a pull request.\hypertarget{md_readme_autotoc_md12}{}\doxysection{License}\label{md_readme_autotoc_md12}
 This project is licensed under the \href{https://opensource.org/license/mit/}{\texttt{ MIT}} -\/ see the \mbox{[}LICENSE\mbox{]}(LICENSE) file for details. 

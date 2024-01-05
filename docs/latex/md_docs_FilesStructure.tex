@@ -1,0 +1,305 @@
+Folder Structure Analysis\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily .github/} -\/ This folder contains the Git\+Hub-\/specific configuration files and workflows for the project.
+\begin{DoxyItemize}
+\item {\ttfamily workflows/} -\/ This subfolder contains the workflow files, specifically the {\ttfamily Sonar\+Cloud.\+yaml} file, which is used for continuous code quality analysis using Sonar\+Cloud.
+\end{DoxyItemize}
+\item {\ttfamily .gitignore} -\/ This file specifies which files and folders should be ignored by Git version control.
+\item {\ttfamily Doxyfile} -\/ This file is a configuration file for the Doxygen documentation generator tool.
+\item {\ttfamily LICENSE} -\/ This file contains the license information for the project.
+\item {\ttfamily docs/} -\/ This folder contains the documentation files for the project.
+\begin{DoxyItemize}
+\item {\ttfamily examples/} -\/ This subfolder contains example documentation files, specifically the {\ttfamily basic.\+md} file.
+\item {\ttfamily html/} -\/ This subfolder contains the generated HTML documentation files by Doxygen. It includes various HTML files, images, and Java\+Script files for navigation and search functionality.
+\end{DoxyItemize}
+\item {\ttfamily examples/} -\/ This folder contains example code files for the project. It includes a subfolder {\ttfamily example1/} which contains the {\ttfamily main.\+c} file, {\ttfamily main.\+o} object file, and a {\ttfamily makefile} for building the example.
+\item {\ttfamily extra/} -\/ This folder contains additional code files ({\ttfamily extra.\+c} and {\ttfamily \mbox{\hyperlink{extra_8h_source}{extra.\+h}}}) that are not part of the main project.
+\item {\ttfamily highlevel/} -\/ This folder contains high-\/level code files ({\ttfamily allocation.\+c} and {\ttfamily \mbox{\hyperlink{allocation_8h_source}{allocation.\+h}}}) for the project.
+\item {\ttfamily internal.\+o} -\/ This is an object file generated from the internal code.
+\item {\ttfamily lib/} -\/ This folder contains the compiled library file ({\ttfamily libmem.\+a}) generated from the project code.
+\item {\ttfamily lowlevel/} -\/ This folder contains low-\/level code files for the project. It includes {\ttfamily \mbox{\hyperlink{internal_8c}{internal.\+c}}}, {\ttfamily \mbox{\hyperlink{internal_8h}{internal.\+h}}}, {\ttfamily \mbox{\hyperlink{mem_8c}{mem.\+c}}}, {\ttfamily \mbox{\hyperlink{mem_8h}{mem.\+h}}}, {\ttfamily \mbox{\hyperlink{mem__config_8h}{mem\+\_\+config.\+h}}}, {\ttfamily mem\+\_\+main.\+c}, {\ttfamily \mbox{\hyperlink{mem__output_8h}{mem\+\_\+output.\+h}}}, {\ttfamily pmm.\+c}, and {\ttfamily \mbox{\hyperlink{pmm_8h_source}{pmm.\+h}}}.
+\item {\ttfamily makefile} -\/ This file contains the instructions for building the project using a makefile.
+\item {\ttfamily mem.\+o}, {\ttfamily mem\+\_\+main.\+o}, {\ttfamily pmm.\+o} -\/ These are object files generated from the code.
+\item {\ttfamily readme.\+md} -\/ This file contains the project\textquotesingle{}s readme documentation.
+\item {\ttfamily sonar-\/project.\+properties} -\/ This file contains the configuration properties for Sonar\+Qube code analysis.
+\item {\ttfamily sonarcloud.\+yml} -\/ This file contains the configuration for Sonar\+Cloud integration.
+\item {\ttfamily temp\+Code\+Runner\+File.\+c} -\/ This file seems to be a temporary code runner file used during development.
+\item {\ttfamily test/} -\/ This folder contains the test code files for the project.
+\begin{DoxyItemize}
+\item {\ttfamily main.\+c} -\/ This file contains the main test code.
+\item {\ttfamily unity.\+c}, {\ttfamily \mbox{\hyperlink{unity_8h_source}{unity.\+h}}}, {\ttfamily \mbox{\hyperlink{unity__internals_8h_source}{unity\+\_\+internals.\+h}}} -\/ These files are related to the Unity testing framework for C.
+\end{DoxyItemize}
+\item {\ttfamily test.\+out} -\/ This is an output file generated from running the tests.
+\end{DoxyItemize}
+
+All files\+:
+
+.-\/ .github/
+\begin{DoxyItemize}
+\item workflows/
+\begin{DoxyItemize}
+\item Sonar\+Cloud.\+yaml
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+.gitignore
+\begin{DoxyItemize}
+\item Doxyfile
+\item LICENSE
+\item docs/
+\begin{DoxyItemize}
+\item examples/
+\begin{DoxyItemize}
+\item basic.\+md
+\end{DoxyItemize}
+\item html/
+\begin{DoxyItemize}
+\item allocation\+\_\+8h\+\_\+source.\+html
+\item annotated.\+html
+\item bc\+\_\+s.\+png
+\item bdwn.\+png
+\item classes.\+html
+\item closed.\+png
+\item dir\+\_\+13e138d54eb8818da29c3992edef070a.\+html
+\item dir\+\_\+26cd47652b16d197ebc64ecf415996b2.\+html
+\item dir\+\_\+49e56c817e5e54854c35e136979f97ca.\+html
+\item dir\+\_\+61725470c0c4ad532abb3cb1e156c123.\+html
+\item dir\+\_\+77c33839815b7c6c2ca556064fb28352.\+html
+\item dir\+\_\+d6cedb65a6f064efea0933261d9a7018.\+html
+\item doc.\+png
+\item doxygen.\+css
+\item doxygen.\+svg
+\item dynsections.\+js
+\item extra\+\_\+8h\+\_\+source.\+html
+\item files.\+html
+\item folderclosed.\+png
+\item folderopen.\+png
+\item functions.\+html
+\item functions\+\_\+vars.\+html
+\item globals.\+html
+\item globals\+\_\+defs.\+html
+\item globals\+\_\+func.\+html
+\item globals\+\_\+type.\+html
+\item globals\+\_\+vars.\+html
+\item index.\+html
+\item internal\+\_\+8c.\+html
+\item internal\+\_\+8h.\+html
+\item internal\+\_\+8h\+\_\+source.\+html
+\item jquery.\+js
+\item main\+\_\+8c.\+html
+\item md\+\_\+docs\+\_\+examples\+\_\+basic.\+html
+\item md\+\_\+readme.\+html
+\item mem\+\_\+8c.\+html
+\item mem\+\_\+8h.\+html
+\item mem\+\_\+8h\+\_\+source.\+html
+\item mem\+\_\+\+\_\+config\+\_\+8h.\+html
+\item mem\+\_\+\+\_\+config\+\_\+8h\+\_\+source.\+html
+\item mem\+\_\+\+\_\+output\+\_\+8h.\+html
+\item mem\+\_\+\+\_\+output\+\_\+8h\+\_\+source.\+html
+\item menu.\+js
+\item menudata.\+js
+\item nav\+\_\+f.\+png
+\item nav\+\_\+g.\+png
+\item nav\+\_\+h.\+png
+\item open.\+png
+\item pages.\+html
+\item search/
+\begin{DoxyItemize}
+\item all\+\_\+0.\+html
+\item all\+\_\+0.\+js
+\item all\+\_\+1.\+html
+\item all\+\_\+1.\+js
+\item all\+\_\+2.\+html
+\item all\+\_\+2.\+js
+\item all\+\_\+3.\+html
+\item all\+\_\+3.\+js
+\item all\+\_\+4.\+html
+\item all\+\_\+4.\+js
+\item all\+\_\+5.\+html
+\item all\+\_\+5.\+js
+\item all\+\_\+6.\+html
+\item all\+\_\+6.\+js
+\item all\+\_\+7.\+html
+\item all\+\_\+7.\+js
+\item all\+\_\+8.\+html
+\item all\+\_\+8.\+js
+\item all\+\_\+9.\+html
+\item all\+\_\+9.\+js
+\item all\+\_\+a.\+html
+\item all\+\_\+a.\+js
+\item all\+\_\+b.\+html
+\item all\+\_\+b.\+js
+\item all\+\_\+c.\+html
+\item all\+\_\+c.\+js
+\item classes\+\_\+0.\+html
+\item classes\+\_\+0.\+js
+\item classes\+\_\+1.\+html
+\item classes\+\_\+1.\+js
+\item classes\+\_\+2.\+html
+\item classes\+\_\+2.\+js
+\item classes\+\_\+3.\+html
+\item classes\+\_\+3.\+js
+\item close.\+svg
+\item defines\+\_\+0.\+html
+\item defines\+\_\+0.\+js
+\item defines\+\_\+1.\+html
+\item defines\+\_\+1.\+js
+\item defines\+\_\+2.\+html
+\item defines\+\_\+2.\+js
+\item defines\+\_\+3.\+html
+\item defines\+\_\+3.\+js
+\item defines\+\_\+4.\+html
+\item defines\+\_\+4.\+js
+\item files\+\_\+0.\+html
+\item files\+\_\+0.\+js
+\item files\+\_\+1.\+html
+\item files\+\_\+1.\+js
+\item functions\+\_\+0.\+html
+\item functions\+\_\+0.\+js
+\item functions\+\_\+1.\+html
+\item functions\+\_\+1.\+js
+\item functions\+\_\+2.\+html
+\item functions\+\_\+2.\+js
+\item functions\+\_\+3.\+html
+\item functions\+\_\+3.\+js
+\item functions\+\_\+4.\+html
+\item functions\+\_\+4.\+js
+\item functions\+\_\+5.\+html
+\item functions\+\_\+5.\+js
+\item functions\+\_\+6.\+html
+\item functions\+\_\+6.\+js
+\item functions\+\_\+7.\+html
+\item functions\+\_\+7.\+js
+\item functions\+\_\+8.\+html
+\item functions\+\_\+8.\+js
+\item mag\+\_\+sel.\+svg
+\item nomatches.\+html
+\item pages\+\_\+0.\+html
+\item pages\+\_\+0.\+js
+\item pages\+\_\+1.\+html
+\item pages\+\_\+1.\+js
+\item search.\+css
+\item search.\+js
+\item search\+\_\+l.\+png
+\item search\+\_\+m.\+png
+\item search\+\_\+r.\+png
+\item searchdata.\+js
+\item typedefs\+\_\+0.\+html
+\item typedefs\+\_\+0.\+js
+\item typedefs\+\_\+1.\+html
+\item typedefs\+\_\+1.\+js
+\item variables\+\_\+0.\+html
+\item variables\+\_\+0.\+js
+\item variables\+\_\+1.\+html
+\item variables\+\_\+1.\+js
+\item variables\+\_\+2.\+html
+\item variables\+\_\+2.\+js
+\item variables\+\_\+3.\+html
+\item variables\+\_\+3.\+js
+\item variables\+\_\+4.\+html
+\item variables\+\_\+4.\+js
+\item variables\+\_\+5.\+html
+\item variables\+\_\+5.\+js
+\item variables\+\_\+6.\+html
+\item variables\+\_\+6.\+js
+\item variables\+\_\+7.\+html
+\item variables\+\_\+7.\+js
+\end{DoxyItemize}
+\item splitbar.\+png
+\item struct\+Free\+Zone-\/members.\+html
+\item struct\+Free\+Zone.\+html
+\item struct\+Memory\+Allocation\+Info-\/members.\+html
+\item struct\+Memory\+Allocation\+Info.\+html
+\item struct\+Node-\/members.\+html
+\item struct\+Node.\+html
+\item struct\+UNITY\+\_\+\+\_\+\+STORAGE\+\_\+\+\_\+\+T-\/members.\+html
+\item struct\+UNITY\+\_\+\+\_\+\+STORAGE\+\_\+\+\_\+\+T.\+html
+\item sync\+\_\+off.\+png
+\item sync\+\_\+on.\+png
+\item tab\+\_\+a.\+png
+\item tab\+\_\+b.\+png
+\item tab\+\_\+h.\+png
+\item tab\+\_\+s.\+png
+\item tabs.\+css
+\item unity\+\_\+8h\+\_\+source.\+html
+\item unity\+\_\+\+\_\+internals\+\_\+8h\+\_\+source.\+html
+\end{DoxyItemize}
+\item latex/
+\begin{DoxyItemize}
+\item Makefile
+\item annotated.\+tex
+\item doxygen.\+sty
+\item files.\+tex
+\item internal\+\_\+8c.\+tex
+\item internal\+\_\+8h.\+tex
+\item longtable\+\_\+doxygen.\+sty
+\item main\+\_\+8c.\+tex
+\item md\+\_\+docs\+\_\+examples\+\_\+basic.\+tex
+\item md\+\_\+readme.\+tex
+\item mem\+\_\+8c.\+tex
+\item mem\+\_\+8h.\+tex
+\item mem\+\_\+\+\_\+config\+\_\+8h.\+tex
+\item mem\+\_\+\+\_\+output\+\_\+8h.\+tex
+\item refman.\+tex
+\item struct\+Free\+Zone.\+tex
+\item struct\+Memory\+Allocation\+Info.\+tex
+\item struct\+Node.\+tex
+\item struct\+UNITY\+\_\+\+\_\+\+STORAGE\+\_\+\+\_\+\+T.\+tex
+\item tabu\+\_\+doxygen.\+sty
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item examples/
+\begin{DoxyItemize}
+\item example1/
+\begin{DoxyItemize}
+\item main.\+c
+\item main.\+o
+\item makefile
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item extra/
+\begin{DoxyItemize}
+\item extra.\+c
+\item \mbox{\hyperlink{extra_8h_source}{extra.\+h}}
+\end{DoxyItemize}
+\item highlevel/
+\begin{DoxyItemize}
+\item allocation.\+c
+\item \mbox{\hyperlink{allocation_8h_source}{allocation.\+h}}
+\end{DoxyItemize}
+\item internal.\+o
+\item lib/
+\begin{DoxyItemize}
+\item libmem.\+a
+\end{DoxyItemize}
+\item lowlevel/
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{internal_8c}{internal.\+c}}
+\item \mbox{\hyperlink{internal_8h}{internal.\+h}}
+\item \mbox{\hyperlink{mem_8c}{mem.\+c}}
+\item \mbox{\hyperlink{mem_8h}{mem.\+h}}
+\item \mbox{\hyperlink{mem__config_8h}{mem\+\_\+config.\+h}}
+\item mem\+\_\+main.\+c
+\item \mbox{\hyperlink{mem__output_8h}{mem\+\_\+output.\+h}}
+\item pmm.\+c
+\item \mbox{\hyperlink{pmm_8h_source}{pmm.\+h}}
+\end{DoxyItemize}
+\item makefile
+\item mem.\+o
+\item mem\+\_\+main.\+o
+\item pmm.\+o
+\item readme.\+md
+\item sonar-\/project.\+properties
+\item sonarcloud.\+yml
+\item temp\+Code\+Runner\+File.\+c
+\item test/
+\begin{DoxyItemize}
+\item main.\+c
+\item unity.\+c
+\item \mbox{\hyperlink{unity_8h_source}{unity.\+h}}
+\item \mbox{\hyperlink{unity__internals_8h_source}{unity\+\_\+internals.\+h}}
+\end{DoxyItemize}
+\item test.\+out 
+\end{DoxyItemize}

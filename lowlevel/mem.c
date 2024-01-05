@@ -11,9 +11,9 @@
 #include "mem_config.h"
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #include <time.h>
- double elapsed_times_allocate[10000];
+ long double elapsed_times_allocate[10000];
  int num_samples_alloc = 0;
-  double elapsed_times_free[10000];
+  long double elapsed_times_free[10000];
   int num_samples_free = 0;
 #endif
 /**
@@ -144,8 +144,8 @@ void *sys_allocate_memory(int size)
                 MEM_ALLOC_LOG(2, "Allocated %d bytes of memory\n", size);
                 #ifdef STANDALONE_MEMORY_ALLOCATION
                  clock_t end_time = clock();
-                 double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-                //  printf("Elapsed Time: %f seconds to allocate %lu bytes of memory\n", elapsed_time,size);
+                 long double elapsed_time = ((long double)(end_time - start_time)) / CLOCKS_PER_SEC;
+                //  printf("Elapsed Time: %Lf seconds to allocate %lu bytes of memory\n", elapsed_time,size);
                     elapsed_times_allocate[num_samples_alloc] = elapsed_time;
                     num_samples_alloc++;
                 #endif
@@ -166,7 +166,7 @@ void *sys_allocate_memory(int size)
 /**
  * @brief Frees memory blocks starting from the specified address and updates the linked list.
  *        Also removes the corresponding block from the memory_allocations list and sorts it.
- *
+ * 
  * This function is responsible for freeing memory blocks starting from the specified address and updating the linked list accordingly.
  * It takes the address of the memory to free as a parameter.
  * The function searches for the node corresponding to the given address in the linked list.
@@ -226,8 +226,8 @@ void *sys_free_memory(const void *addr)
         // free_zone_count++;
         #ifdef STANDALONE_MEMORY_ALLOCATION
         clock_t end_time = clock();
-        double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-        // printf("Elapsed Time: %f seconds to free\n", elapsed_time);
+        long double elapsed_time = ((long double)(end_time - start_time)) / CLOCKS_PER_SEC;
+        // printf("Elapsed Time: %Lf seconds to free\n", elapsed_time);
         elapsed_times_free[num_samples_free] = elapsed_time;
         num_samples_free++;
         #endif
@@ -245,7 +245,7 @@ void *sys_free_memory(const void *addr)
 
 /**
  * @brief Reallocates memory for a previously allocated block and updates the linked list.
- *        !! WARNING !!: This function deallocates the addr value.
+ * @warning This function deallocates the addr value.
  *
  * This function is responsible for reallocating memory for a previously allocated block and updating the linked list accordingly.
  * It takes the address of the memory block to reallocate, the current size of the memory block, and the new size to which the memory block should be reallocated.
@@ -618,9 +618,9 @@ int* run_checks()
 }
 
 #ifdef STANDALONE_MEMORY_ALLOCATION
-double get_average_allocation_time()
+long double get_average_allocation_time()
 {
-    double total_time = 0.0;
+    long double total_time = 0.0;
 
     for (size_t i = 0; i < num_samples_alloc; ++i)
     {
@@ -630,9 +630,9 @@ double get_average_allocation_time()
     return (num_samples_alloc > 0) ? total_time / num_samples_alloc : 0.0;
 }
 
-double get_average_free_time()
+long double get_average_free_time()
 {
-    double total_time = 0.0;
+    long double total_time = 0.0;
 
     for (size_t i = 0; i < num_samples_free; ++i)
     {

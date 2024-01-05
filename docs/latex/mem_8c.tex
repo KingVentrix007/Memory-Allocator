@@ -13,14 +13,14 @@ Memory Allocation Implementation.
 \item 
 void \mbox{\hyperlink{mem_8c_a53bcc9c1f4fe098b102b72a97af1cb38}{print\+\_\+node\+\_\+info}} (const \mbox{\hyperlink{structNode}{Node}} $\ast$node)
 \begin{DoxyCompactList}\small\item\em Prints information about a given node. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{mem_8c_a4c501aea02a6ff74414bba87cd076113}{init\+\_\+memory\+\_\+allocation}} (void $\ast$start\+\_\+addr, int size)
+void \mbox{\hyperlink{mem_8c_a01d9aa05cca676db51d106a9703ad541}{init\+\_\+memory\+\_\+allocation}} (void $\ast$start\+\_\+addr, size\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em Initializes memory allocation. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{mem_8c_a7b9a0e78f9993c8f45e8ccaea7f14dd5}{sys\+\_\+allocate\+\_\+memory}} (int size)
 \begin{DoxyCompactList}\small\item\em Allocates a consecutive bunch of memory blocks and updates the linked list. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{mem_8c_a406fd90a3f95c858165853e109fe7271}{sys\+\_\+free\+\_\+memory}} (const void $\ast$addr)
 \begin{DoxyCompactList}\small\item\em Frees memory blocks starting from the specified address and updates the linked list. Also removes the corresponding block from the memory\+\_\+allocations list and sorts it. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{mem_8c_aa2cb60350e8b0887063d3976054b6769}{sys\+\_\+reallocate\+\_\+memory}} (void $\ast$addr, int old\+\_\+size, int new\+\_\+size)
-\begin{DoxyCompactList}\small\item\em Reallocates memory for a previously allocated block and updates the linked list. !! WARNING !!\+: This function deallocates the addr value. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reallocates memory for a previously allocated block and updates the linked list. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{mem_8c_a18e1848dd1f6ac2ef3a214ef6b157af2}{print\+\_\+memory\+\_\+info}} ()
 \begin{DoxyCompactList}\small\item\em Prints information about the memory. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{mem_8c_a350fdfeaa16470a038585904910c0973}{init\+\_\+memory\+\_\+region}} (void $\ast$start\+\_\+addr, size\+\_\+t size)
@@ -154,11 +154,11 @@ This function is responsible for retrieving the size of the allocated memory blo
 \begin{DoxyReturn}{Returns}
 The size of the allocated memory block, or -\/1 if it is not found or not allocated. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{mem_8c_a4c501aea02a6ff74414bba87cd076113}\label{mem_8c_a4c501aea02a6ff74414bba87cd076113}} 
+\mbox{\Hypertarget{mem_8c_a01d9aa05cca676db51d106a9703ad541}\label{mem_8c_a01d9aa05cca676db51d106a9703ad541}} 
 \index{mem.c@{mem.c}!init\_memory\_allocation@{init\_memory\_allocation}}
 \index{init\_memory\_allocation@{init\_memory\_allocation}!mem.c@{mem.c}}
 \doxysubsubsection{\texorpdfstring{init\_memory\_allocation()}{init\_memory\_allocation()}}
-{\footnotesize\ttfamily void init\+\_\+memory\+\_\+allocation (\begin{DoxyParamCaption}\item[{void $\ast$}]{start\+\_\+addr,  }\item[{int}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void init\+\_\+memory\+\_\+allocation (\begin{DoxyParamCaption}\item[{void $\ast$}]{start\+\_\+addr,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -308,8 +308,11 @@ NULL after freeing the memory blocks, or the original address if it is not found
 
 
 
-Reallocates memory for a previously allocated block and updates the linked list. !! WARNING !!\+: This function deallocates the addr value. 
+Reallocates memory for a previously allocated block and updates the linked list. 
 
+\begin{DoxyWarning}{Warning}
+This function deallocates the addr value.
+\end{DoxyWarning}
 This function is responsible for reallocating memory for a previously allocated block and updating the linked list accordingly. It takes the address of the memory block to reallocate, the current size of the memory block, and the new size to which the memory block should be reallocated. The function first checks for invalid parameters, such as when the old size exceeds the new size or when the address is NULL or out of range. If the parameters are valid, the function allocates new memory using the {\ttfamily sys\+\_\+allocate\+\_\+memory} function. It then checks if the allocation was successful, and if so, it copies the data from the old memory to the new memory using {\ttfamily memcpy}. Finally, the function frees the old memory using the {\ttfamily sys\+\_\+free\+\_\+memory} function and returns the new address of the reallocated memory block. If the reallocation fails, a log message is printed, and the function returns the original address.
 
 

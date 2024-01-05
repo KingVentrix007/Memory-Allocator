@@ -15,7 +15,7 @@ int mem_main(void *free_region_start_address,size_t size);
  *
  * @return 0 if successful, 1 if there was a problem using malloc.
  */
-#ifndef EXAMPLE_BUILD
+#ifndef LIB_BUILD
 int main()
 {
     // Allocate initial memory
@@ -108,7 +108,7 @@ int main_automated_testing_end()
 
 int mem_main(void *free_region_start_address,size_t size)
 {
-    printf("Block SIZE %d",PMM_BLOCK_SIZE_BYTES);
+    // printf("Block SIZE %d",PMM_BLOCK_SIZE_BYTES);
     init_pmm(free_region_start_address,size);
     const void *allocation_region = allocate_pmm_block(100*PMM_BLOCK_SIZE_BYTES);
     init_memory_allocation(allocation_region,100*PMM_BLOCK_SIZE_BYTES);

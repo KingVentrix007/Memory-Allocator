@@ -222,7 +222,7 @@ int main_automated_testing_end();
  */
 int buffer_overflow_detector();
 #ifdef STANDALONE_MEMORY_ALLOCATION
-double get_average_allocation_time();
-double get_average_free_time();
+long double get_average_allocation_time();
+long double get_average_free_time();
 #endif
 #endif // MEMORY_MANAGER_H

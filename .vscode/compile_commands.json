@@ -1,6 +1,6 @@
 [
     {
-        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -o mem.out lowlevel/*.c",
+        "command": "gcc -Wall -Wextra -DSTANDALONE_MEMORY_ALLOCATION -DMEMORY_ALLOCATION_VERBOSE_OUTPUT -o out/mem.out lowlevel/*.c",
         "directory": "/home/king/projects/OS-helper/memory_allocation",
         "file": "/home/king/projects/OS-helper/memory_allocation/lowlevel/*.c"
     }

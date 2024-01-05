@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "aefmnpst",
   5: "fn",
   6: "abdmu",
-  7: "mu"
+  7: "fmu"
 };
 
 var indexSectionNames =

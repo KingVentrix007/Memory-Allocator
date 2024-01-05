@@ -70,10 +70,10 @@ Basic Memory Allocation and Deallocation</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="mem_8h.html">mem.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code" href="test_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
 <div class="line">    <span class="comment">// Allocate initial memory</span></div>
 <div class="line">    <span class="keywordtype">void</span> *<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a> = malloc([initial_memory_size]);</div>
-<div class="line">    <a class="code" href="mem_8c.html#a4c501aea02a6ff74414bba87cd076113">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
+<div class="line">    <a class="code" href="mem_8c.html#a01d9aa05cca676db51d106a9703ad541">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Allocate memory</span></div>
 <div class="line">    <span class="keywordtype">void</span> *ptr1 = <a class="code" href="mem_8c.html#a7b9a0e78f9993c8f45e8ccaea7f14dd5">sys_allocate_memory</a>([size1]);</div>
@@ -98,10 +98,10 @@ Basic Memory Allocation and Deallocation</h2>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="mem_8h.html">mem.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code" href="test_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
 <div class="line">    <span class="comment">// Allocate initial memory</span></div>
 <div class="line">    <span class="keywordtype">void</span> *<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a> = malloc([initial_memory_size]);</div>
-<div class="line">    <a class="code" href="mem_8c.html#a4c501aea02a6ff74414bba87cd076113">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
+<div class="line">    <a class="code" href="mem_8c.html#a01d9aa05cca676db51d106a9703ad541">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Extend allocation space</span></div>
 <div class="line">    <span class="keywordtype">void</span> *new_region = malloc([extra_memory_size]);</div>
@@ -135,10 +135,10 @@ Basic Memory Allocation and Deallocation</h2>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code" href="test_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
 <div class="line">    <span class="comment">// Allocate initial memory</span></div>
 <div class="line">    <span class="keywordtype">void</span> *<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a> = malloc([initial_memory_size]);</div>
-<div class="line">    <a class="code" href="mem_8c.html#a4c501aea02a6ff74414bba87cd076113">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
+<div class="line">    <a class="code" href="mem_8c.html#a01d9aa05cca676db51d106a9703ad541">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Your code here</span></div>
 <div class="line"> </div>
@@ -152,22 +152,22 @@ Basic Memory Allocation and Deallocation</h2>
 <div class="line">    free(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>);</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="amain_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Main function that runs all the test functions.</div><div class="ttdef"><b>Definition:</b> main.c:136</div></div>
-<div class="ttc" id="amem_8c_html_a406fd90a3f95c858165853e109fe7271"><div class="ttname"><a href="mem_8c.html#a406fd90a3f95c858165853e109fe7271">sys_free_memory</a></div><div class="ttdeci">void * sys_free_memory(const void *addr)</div><div class="ttdoc">Frees memory blocks starting from the specified address and updates the linked list....</div><div class="ttdef"><b>Definition:</b> mem.c:268</div></div>
-<div class="ttc" id="amem_8c_html_a4c501aea02a6ff74414bba87cd076113"><div class="ttname"><a href="mem_8c.html#a4c501aea02a6ff74414bba87cd076113">init_memory_allocation</a></div><div class="ttdeci">void init_memory_allocation(void *start_addr, int size)</div><div class="ttdoc">Initializes memory allocation.</div><div class="ttdef"><b>Definition:</b> mem.c:178</div></div>
-<div class="ttc" id="amem_8c_html_a6edaee3ea2b783507029f348655a1374"><div class="ttname"><a href="mem_8c.html#a6edaee3ea2b783507029f348655a1374">extend_allocation_space</a></div><div class="ttdeci">void extend_allocation_space(void *extra_region, size_t size)</div><div class="ttdoc">Extends the allocation space by initializing new nodes in the extra region.</div><div class="ttdef"><b>Definition:</b> mem.c:496</div></div>
-<div class="ttc" id="amem_8c_html_a7b9a0e78f9993c8f45e8ccaea7f14dd5"><div class="ttname"><a href="mem_8c.html#a7b9a0e78f9993c8f45e8ccaea7f14dd5">sys_allocate_memory</a></div><div class="ttdeci">void * sys_allocate_memory(int size)</div><div class="ttdoc">Allocates a consecutive bunch of memory blocks and updates the linked list.</div><div class="ttdef"><b>Definition:</b> mem.c:189</div></div>
-<div class="ttc" id="amem_8c_html_aca28c5c6565ca8703cf66b756b53b7ee"><div class="ttname"><a href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a></div><div class="ttdeci">void * memory_region</div><div class="ttdoc">Pointer to the start of the memory region.</div><div class="ttdef"><b>Definition:</b> mem.c:15</div></div>
+<div class="ttc" id="amem_8c_html_a01d9aa05cca676db51d106a9703ad541"><div class="ttname"><a href="mem_8c.html#a01d9aa05cca676db51d106a9703ad541">init_memory_allocation</a></div><div class="ttdeci">void init_memory_allocation(void *start_addr, size_t size)</div><div class="ttdoc">Initializes memory allocation.</div><div class="ttdef"><b>Definition:</b> mem.c:81</div></div>
+<div class="ttc" id="amem_8c_html_a406fd90a3f95c858165853e109fe7271"><div class="ttname"><a href="mem_8c.html#a406fd90a3f95c858165853e109fe7271">sys_free_memory</a></div><div class="ttdeci">void * sys_free_memory(const void *addr)</div><div class="ttdoc">Frees memory blocks starting from the specified address and updates the linked list....</div><div class="ttdef"><b>Definition:</b> mem.c:183</div></div>
+<div class="ttc" id="amem_8c_html_a6edaee3ea2b783507029f348655a1374"><div class="ttname"><a href="mem_8c.html#a6edaee3ea2b783507029f348655a1374">extend_allocation_space</a></div><div class="ttdeci">void extend_allocation_space(void *extra_region, size_t size)</div><div class="ttdoc">Extends the allocation space by initializing new nodes in the extra region.</div><div class="ttdef"><b>Definition:</b> mem.c:421</div></div>
+<div class="ttc" id="amem_8c_html_a7b9a0e78f9993c8f45e8ccaea7f14dd5"><div class="ttname"><a href="mem_8c.html#a7b9a0e78f9993c8f45e8ccaea7f14dd5">sys_allocate_memory</a></div><div class="ttdeci">void * sys_allocate_memory(int size)</div><div class="ttdoc">Allocates a consecutive bunch of memory blocks and updates the linked list.</div><div class="ttdef"><b>Definition:</b> mem.c:93</div></div>
+<div class="ttc" id="amem_8c_html_aca28c5c6565ca8703cf66b756b53b7ee"><div class="ttname"><a href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a></div><div class="ttdeci">void * memory_region</div><div class="ttdoc">Pointer to the start of the memory region.</div><div class="ttdef"><b>Definition:</b> mem.c:22</div></div>
 <div class="ttc" id="amem_8h_html"><div class="ttname"><a href="mem_8h.html">mem.h</a></div><div class="ttdoc">Memory Allocation Implementation Definitions.</div></div>
+<div class="ttc" id="atest_2main_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="test_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Main function that runs all the test functions.</div><div class="ttdef"><b>Definition:</b> main.c:166</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md2"></a>
 Reallocate Memory</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="mem_8h.html">mem.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code" href="test_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
 <div class="line">    <span class="comment">// Allocate initial memory</span></div>
 <div class="line">    <span class="keywordtype">void</span> *<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a> = malloc([initial_memory_size]);</div>
-<div class="line">    <a class="code" href="mem_8c.html#a4c501aea02a6ff74414bba87cd076113">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
+<div class="line">    <a class="code" href="mem_8c.html#a01d9aa05cca676db51d106a9703ad541">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Your code here</span></div>
 <div class="line"> </div>
@@ -193,16 +193,16 @@ Reallocate Memory</h2>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="amem_8c_html_aa2cb60350e8b0887063d3976054b6769"><div class="ttname"><a href="mem_8c.html#aa2cb60350e8b0887063d3976054b6769">sys_reallocate_memory</a></div><div class="ttdeci">void * sys_reallocate_memory(void *addr, int old_size, int new_size)</div><div class="ttdoc">Reallocates memory for a previously allocated block and updates the linked list. !...</div><div class="ttdef"><b>Definition:</b> mem.c:339</div></div>
+<div class="ttc" id="amem_8c_html_aa2cb60350e8b0887063d3976054b6769"><div class="ttname"><a href="mem_8c.html#aa2cb60350e8b0887063d3976054b6769">sys_reallocate_memory</a></div><div class="ttdeci">void * sys_reallocate_memory(void *addr, int old_size, int new_size)</div><div class="ttdoc">Reallocates memory for a previously allocated block and updates the linked list.</div><div class="ttdef"><b>Definition:</b> mem.c:263</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 Get Memory Size</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="mem_8h.html">mem.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code" href="test_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>() {</div>
 <div class="line">    <span class="comment">// Allocate initial memory</span></div>
 <div class="line">    <span class="keywordtype">void</span> *<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a> = malloc([initial_memory_size]);</div>
-<div class="line">    <a class="code" href="mem_8c.html#a4c501aea02a6ff74414bba87cd076113">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
+<div class="line">    <a class="code" href="mem_8c.html#a01d9aa05cca676db51d106a9703ad541">init_memory_allocation</a>(<a class="code" href="mem_8c.html#aca28c5c6565ca8703cf66b756b53b7ee">memory_region</a>, [initial_memory_size]);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Your code here</span></div>
 <div class="line"> </div>
@@ -217,7 +217,7 @@ Get Memory Size</h2>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="amem_8c_html_afcde9dfb4a3501997defaf0629f3729f"><div class="ttname"><a href="mem_8c.html#afcde9dfb4a3501997defaf0629f3729f">get_memory_size</a></div><div class="ttdeci">size_t get_memory_size(const void *ptr)</div><div class="ttdoc">Retrieves the size of the allocated memory block pointed to by ptr.</div><div class="ttdef"><b>Definition:</b> mem.c:529</div></div>
+<div class="ttc" id="amem_8c_html_afcde9dfb4a3501997defaf0629f3729f"><div class="ttname"><a href="mem_8c.html#afcde9dfb4a3501997defaf0629f3729f">get_memory_size</a></div><div class="ttdeci">size_t get_memory_size(const void *ptr)</div><div class="ttdoc">Retrieves the size of the allocated memory block pointed to by ptr.</div><div class="ttdef"><b>Definition:</b> mem.c:454</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
