@@ -53,4 +53,5 @@ void *find_free_zone(Node *current_node, size_t size,int num_blocks_needed)
             current_node = current_node->next;
         }
     }
+    return NULL;
 }
