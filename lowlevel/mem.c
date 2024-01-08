@@ -12,9 +12,8 @@
 #include "mem_utils.h"
 #ifdef STANDALONE_MEMORY_ALLOCATION
 #include <time.h>
- 
-  long double elapsed_times_free[10000];
-  int num_samples_free = 0;
+long double elapsed_times_free[10000];
+int num_samples_free = 0;
 #endif
 /**
  * @brief Pointer to the start of the memory region.
@@ -80,7 +79,7 @@ void print_node_info(const Node *node)
  */
 void init_memory_allocation(void *start_addr, size_t size)
 {
-    printf("size = %d\n", size);
+    // printf("size = %d\n", size);
     init_memory_region(start_addr, size);
     // memory_allocations = (MemoryAllocationInfo *)sys_allocate_memory(sizeof(MemoryAllocationInfo) * 10);
     // Now nodes are initialized, and the available memory is divided accordingly
